@@ -1,0 +1,32 @@
+#noteSvg{
+    padding-right: 1vmin;
+}
+#saveIcon{
+    padding-right: 1px;
+    padding-left: 0;
+}
+
+.container-Note input:focus, .container-Note textarea:focus{
+    border-color: var(--darkblue);
+    box-shadow: none;
+}
+
+.container-Note button{
+    color: white;
+    background-color: var(--herb);
+    transition: 0.4s;
+}
+
+.container-Note button:hover{
+    color: var(--darkblue);
+    background-color: var(--lightBlue);
+}
+
+.container-Note #saveNote{
+    margin-right: 1vmin;
+    width: 45%;
+}
+.container-Note #fullNote{
+    width: 53%;
+    margin: 0;
+}

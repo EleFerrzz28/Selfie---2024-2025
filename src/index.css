@@ -1,15 +1,17 @@
 :root {
-  
-          --lightPurple: rgb(216,179,231);
-          --yellow:  rgb(249,241,192);
-          --lightBrown: rgb(244,183,92);
-          --brown: rgb(203,126,38);
- 
-          --darkTM: rgb(80,87,97);
-          --darkGreen: rgb(46,159,129);
-          --mdGreen:  rgb(104,193,113);
-          --lightGreen: rgb(208,238,138);
-     }
+  --celeste: rgb(147, 203, 206);
+  --lionsmane: rgb(252, 243, 227);
+  --herb: rgb(112, 140, 105);
+  --marigold: rgb(244, 162, 88);
+  --midnight: rgb(1, 61, 90);
+  --lightBlue: #C4C3E3;
+  --darkblue: #504E76;
+  --panna: #FDF8E2;
+  --sageGreen: #A3B565;
+  --lightOrange: #FCDD9D;
+  --orange: #F1642E;
+
+}
 
 
 body {

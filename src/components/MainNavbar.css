@@ -22,7 +22,7 @@
     position: absolute;
     width: 100%;
     height: 1vmin;
-    background-color: var(--lightPurple);
+    background-color: var(--celeste);
     border-radius: 1vmin;
     transform: scaleX(0);
     transition: all 0.6s ease;
@@ -89,9 +89,9 @@
 .avatar:hover {
     border-width: 1vmin;
     border-style: solid;
-    border-color: var(--lightPurple);
+    border-color: var(--celeste);
 }
 
 .custom-tooltip {
-    --bs-tooltip-bg: var(--lightPurple);
+    --bs-tooltip-bg: var(--celeste);
 }

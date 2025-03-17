@@ -55,7 +55,7 @@
 }
 
 #welcomeForm button {
-    background: var(--lightPurple);
+    background: var(--celeste);
     width: 75%;
     color: white;
     border: none;
@@ -65,13 +65,13 @@
 }
 
 #welcomeForm button:hover {
-    background: var(--brown);
+    background: var(--herb);
     box-shadow: 0 0 0 1vmin #fff,
-    0 0 0 1vmin var(--brown);
+    0 0 0 1vmin var(--herb);
 }
 
 #welcomeForm span {
-    color: var(--brown);
+    color: var(--herb);
     cursor: pointer;
     font-weight: bold;
 }
