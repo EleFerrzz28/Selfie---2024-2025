@@ -10,7 +10,7 @@
     perspective: 100vmin; 
     width: 55vmin;
     height: 85vmin;
-    min-width: 55vmin;
+    min-width: 320px;
     margin: auto;
 }
 

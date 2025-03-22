@@ -24,11 +24,11 @@ function MainNavbar({ numNotif }) {
                 </button>
                 <div className="offcanvas offcanvas-start bg-opacity-10" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                     <div className="offcanvas-header">
-                        <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                        <h5 className="offcanvas-title" id="offcanvasNavbarLabel">SELFIE</h5>
                         <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div className="offcanvas-body" id="navbarSupportedContent">
-                        <ul className="navbar-nav mb-2 mb-lg-0">
+                        <ul className="navbar-nav mb-2 mb-lg-0 ">
                             <li className="nav-item">
                                 <a className="nav-link active" aria-current="page" href="#">Home</a>
                             </li>

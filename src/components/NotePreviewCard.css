@@ -1,0 +1,15 @@
+.previewNota{
+    width: auto;
+}
+
+#tagStyle{
+    background-color: var(--panna);
+    width: auto;
+    cursor:pointer;
+    transition: 0.3s;
+}
+#tagStyle:hover{
+    background-color: var(--marigold);
+    color: var(--panna) !important;
+}
+

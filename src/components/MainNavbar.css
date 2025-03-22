@@ -1,16 +1,54 @@
 #settings,
-#notif, #search {
+#notif,
+#search {
     width: 4vmin;
     height: auto;
     margin-left: 1vmin;
 }
 
-#logo{
+@media screen and (max-width: 991px) {
+
+    #settings,
+    #notif,
+    #search,
+    .avatar {
+        width: 5vmin;
+        height: auto;
+        margin-left: 1vmin;
+    }
+
+    #logo {
+        width: 15vmin;
+        height: auto;
+    }
+
+    #offcanvasNavbar .nav-link {
+        color: var(--panna) !important; 
+        font-size: 5vmin;
+    }
+    #offcanvasNavbar .nav-link:hover {
+        color: var(--celeste) !important; 
+    }
+    
+    #offcanvasNavbar .offcanvas-header {
+        background-color: var(--midnight); /* Sfondo scuro */
+        color: white; /* Testo bianco */
+        font-style: italic;
+    }
+    
+    #offcanvasNavbar .btn-close {
+        filter: invert(1); /* Rende il bottone chiaro su sfondi scuri */
+    }
+    
+}
+
+#logo {
     width: 12vmin;
     height: auto;
 }
 
 .nav-item {
+    color: var(--celeste);
     margin-right: 5vmin;
     font-weight: bold;
     font-size: 3vmin;
@@ -75,7 +113,7 @@
     backdrop-filter: blur(20px);
 }
 
-.avatar{
+.avatar {
     vertical-align: middle;
     width: 8vmin;
     height: auto;
@@ -95,3 +133,5 @@
 .custom-tooltip {
     --bs-tooltip-bg: var(--celeste);
 }
+
+

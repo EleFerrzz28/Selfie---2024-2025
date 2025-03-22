@@ -29,7 +29,7 @@ function Form() {
                     <input className="m-3 p-2" type="text" placeholder="Username" />
                     <input className="mb-3 p-2" type="email" placeholder="Email" />
                     <input className="mb-1 p-2" type="password" placeholder="Password" />
-                    <div id="passwordHelpBlock" className="form-text m-2 px-1">
+                    <div id="passwordHelpBlock" className="form-text m-2 ps-3">
                         Your password must be 6-12 characters long, contain letters and numbers, and must not contain spaces or special characters.
                     </div>
                     <button>Register</button>

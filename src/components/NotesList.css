@@ -1,0 +1,57 @@
+/* .cardHeading {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+} */
+
+/* width */
+::-webkit-scrollbar {
+    width: 2vmin;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: whitesmoke;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--lightBlue);
+    border-radius: 1vmin;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--midnight);
+}
+
+#searchButton, .orderButton{
+    color: white;
+    background-color: var(--herb);
+    transition: 0.4s;
+}
+
+ #searchButton:hover, .orderButton:hover{
+    color: var(--darkblue);
+    background-color: var(--lightBlue);
+}
+
+.searchNote{
+    background-color: rgb(244, 250, 237);
+    border-color:  rgb(244, 250, 237);
+    box-shadow: none;
+}
+.searchNote:focus{
+    background-color: rgb(244, 250, 237);
+    border-color:  rgb(244, 250, 237);
+    box-shadow: none;
+}
+
+#searchIcon, #orderIcon{
+    width: 4vmin;
+    height: auto;
+}
+
+@media screen and (max-width: 991) {
+    #searchIcon, #orderIcon{
+        width: 4vmin;
+    }
+}

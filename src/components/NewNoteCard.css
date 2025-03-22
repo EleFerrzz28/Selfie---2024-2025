@@ -1,14 +1,26 @@
-#noteSvg{
+#noteSvg {
     padding-right: 1vmin;
+    width: 4vmin;
+    height: 4vmin;
 }
-#saveIcon{
-    padding-right: 1px;
-    padding-left: 0;
+#tagsIcon {
+    padding-right: 0;
+    width: 3vmin;
+    height: auto;
+}
+
+.container-Note{
+    min-width: 320px;
 }
 
 .container-Note input:focus, .container-Note textarea:focus{
-    border-color: var(--darkblue);
+    background-color: rgb(244, 250, 237);
+    border-color:  rgb(244, 250, 237);
     box-shadow: none;
+}
+.container-Note textarea, .container-Note input{
+    background-color: rgb(244, 250, 237);
+    border-color: rgb(244, 250, 237);
 }
 
 .container-Note button{
@@ -24,9 +36,45 @@
 
 .container-Note #saveNote{
     margin-right: 1vmin;
-    width: 45%;
+    width: 100%;
 }
-.container-Note #fullNote{
-    width: 53%;
-    margin: 0;
+
+.fullNote {
+    transition: 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+}
+
+.fullNote button {
+    border-radius: 30vmin;  
+    width: 7vmin;
+    align-items: center;
+    transition: width 0.3s ease-in-out, padding 0.3s ease-in-out;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: var(--herb);
+    border: none;
+}
+
+.fullNote button svg {
+    width: 4vmin;
+    transition: transform 0.3s ease-in-out;
+}
+
+.fullNote:hover button {
+    width: 30vmin; /* Espande il bottone */
+    padding: 2vmin 4vmin;
+}
+
+.fullNote button span {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.fullNote:hover button span {
+    opacity: 1;
+}
+
+@media screen and (max-width: 991) {
+    
 }
