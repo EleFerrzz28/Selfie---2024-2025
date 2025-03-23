@@ -1,6 +1,6 @@
 import "./NotePreviewCard.css";
 
-function NotePreviewCard({ title, text, tags }) {
+function NotePreviewCard({ title, text, tags, date }) {
     const maxLength = 200;
     var truncated = "";
 
@@ -27,6 +27,7 @@ function NotePreviewCard({ title, text, tags }) {
                     }
                 </div>
                 <p className="card-text">{truncated}</p>
+                <h6 className="card-subtitle mb-2 text-muted">Last modified on date: {date}</h6>
             </div>
         </div>
     );

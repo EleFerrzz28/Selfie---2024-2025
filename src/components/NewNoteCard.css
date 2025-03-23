@@ -62,11 +62,12 @@
 }
 
 .fullNote:hover button {
-    width: 30vmin; /* Espande il bottone */
+    width: 30vmin; 
     padding: 2vmin 4vmin;
 }
 
 .fullNote button span {
+    font-weight: bold;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
 }
