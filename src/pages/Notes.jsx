@@ -50,10 +50,10 @@ function Notes() {
     return (
         <div className="container-fluid justify-content-center">
             <div className="row">
-                <div className="col-lg-5 col-12">
+                <div className="pe-0 col-lg-5 col-12">
                     <NewNoteCard addNote={addNote} />
                 </div>
-                <div className="col-lg-7 col-12">
+                <div className="pe-0 col-lg-7 col-12">
                     <NotesList 
                     notesList={notesList}
                     setNotesList={setNotesList} />

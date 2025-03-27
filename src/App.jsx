@@ -9,10 +9,10 @@ function App() {
     <>
       <div className="container-fluid">
         <div className="row">
-          <div className="ps-0 col col-lg-2 col-md-3">
+          <div className="ps-0 pe-0 col col-lg-2 col-md-3">
             <MainNavbar></MainNavbar>
           </div>
-          <div className="col col-lg-10 col-md-9">
+          <div className="ps-0 col col-lg-10 col-md-9">
             <Notes></Notes>
           </div>
         </div>

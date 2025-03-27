@@ -1,4 +1,4 @@
-#sidebar{
+#sidebar {
     box-sizing: border-box;
     height: 100vh;
     width: max;
@@ -12,76 +12,99 @@
     overflow: hidden;
     text-wrap: nowrap;
 }
-#sidebar.close{
-    padding: 5px;
-    width: 60px;
-    padding: 5px 10px;
+
+#sidebar.close {
+    width: 10vmin;
     white-space: nowrap;
     overflow: visible;
 }
-#sidebar.close a span {
-    display: none; 
+
+#sidebar.close>ul {
+    margin: 0;
+    padding: 0;
 }
-#display.close a{
+
+#sidebar.close a span {
+    display: none;
+}
+
+#sidebar.close a {
     display: flex;
     justify-content: center;
 }
+
 #sidebar.close a svg {
     margin: auto;
-    display: block; 
+    display: block;
 }
+
 #sidebar.close button {
-    left: 10px;
+    margin-left: 0;
 }
-#sidebar > ul > li:first-child{
-    .logo{
+
+#sidebar>ul>li:first-child {
+    .logo {
         font-weight: bold;
     }
 }
-#sidebar > ul > li:last-child{
-    position: absolute; 
+
+#sidebar > ul >li:last-child {
+    width: 100%;
+    position: absolute;
     bottom: 0;
 }
-#sidebar ul{
+
+#sidebar ul {
     list-style: none;
 }
-#sidebar ul li.active a{
+
+#sidebar li.active a {
     color: var(--midnight);
     font-weight: bolder;
-    svg{
+
+    svg {
         fill: var(--midnight);
     }
 }
 
-#sidebar a, #sidebar logo{
+#sidebar a,
+#sidebar logo {
     border-radius: .5em;
     text-decoration: none;
     color: var(--darkblue);
     display: flex;
     align-items: center;
     gap: 3vmin;
-    svg{
+
+    svg {
         fill: var(--darkblue)
     }
+
     transition: 0.4s;
 }
-#toggle-btn{
+
+#toggle-btn {
     border: none;
     outline: none;
     transition: 0.4s;
     height: 3vmin;
+
+    svg {
+        fill: var(--midnight);
+    }
+
     background-color: var(--panna);
-    position: relative; 
+    position: relative;
     margin-left: auto;
     transform-origin: center;
 }
 
-#sidebar svg{
+#sidebar svg {
     width: 4vmin;
     flex-shrink: 0;
 }
 
-.avatar{
+.avatar {
     flex-shrink: 0;
     width: 8vmin;
     height: auto;
@@ -89,17 +112,28 @@
     opacity: 1;
 }
 
-#sidebar a span{
+#sidebar a span {
     flex-grow: 1;
 }
 
-#sidebar a:hover{
+#sidebar a:hover {
     background-color: var(--celeste);
     color: white;
-    svg{
-        color:white;
+
+    svg {
+        fill: white;
     }
 }
+#sidebar li.active a:hover {
+    background-color: var(--lightBlue);
+    color: white;
+
+    svg {
+        fill:white;
+    }
+}
+
+
 
 /* #settings,
 #notif,

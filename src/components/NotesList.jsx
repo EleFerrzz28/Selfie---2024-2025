@@ -36,7 +36,7 @@ function NotesList({ notesList, setNotesList }) {
         <div className="noteListContainer">
             <div className="card mt-2">
                 <div className="cardHeading d-flex justify-content-between align-items-center p-1" style={{ borderBottom: "solid 1px rgb(192, 192, 192)" }}>
-                    <h5 className="card-title px-3 pt-2 pb-1 mb-0"><strong>All Notes</strong></h5>
+                    <h5 className="card-title px-3 pt-2 mb-0"><strong>All Notes</strong></h5>
                     <div className="d-flex p-1">
                         <form className="pe-1 d-flex" role="search">
                             <input
