@@ -1,5 +1,12 @@
 .previewNota{
     width: auto;
+    height: auto;
+}
+.previewNota p::selection{
+    background-color: var(--sageGreen);
+}
+.cardHeadingPreview{
+    position: relative;
 }
 
 #tagStyle{
@@ -11,5 +18,40 @@
 #tagStyle:hover{
     background-color: var(--marigold);
     color: var(--panna) !important;
+}
+#noteMenu{
+    width: 4vmin;
+    height: auto;
+    transition: 0.4s;
+}
+#noteMenu:hover{
+    color: var(--darkblue);
+}
+.cardHeadingPreview button{
+    border-radius: 30vmin;
+    transition: 0.4s;
+}
+.cardHeadingPreview button:hover{
+    border-radius: 30vmin;
+    border: solid 1px var(--darkblue);
+}
+#noteOption{
+    height: auto;
+    width: 20vmin;
+    transition: 0.4s;
+    position: absolute;
+    right: 0;
+    top: 100%; 
+    z-index: 10; 
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+}
+#noteOption div{
+    transition: 0.4s;
+    color: black;
+}
+#noteOption div:hover{
+    background-color: var(--lightBlue);
+    text-decoration: none;
 }
 

@@ -3,9 +3,6 @@ import "./Form.css";
 
 function Form() {
     const [isFlipped, setIsFlipped] = useState(false);
-    const togglePass = () => {
-        return 1;
-    }
 
     return (
         <div id="welcomeForm" className="card-container mt-5">

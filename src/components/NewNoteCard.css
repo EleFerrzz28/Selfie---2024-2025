@@ -1,3 +1,7 @@
+.container-Note{
+    height: 85vh;
+    min-width: 320px;
+}
 #noteSvg {
     padding-right: 1vmin;
     width: 4vmin;
@@ -7,10 +11,6 @@
     padding-right: 0;
     width: 3vmin;
     height: auto;
-}
-
-.container-Note{
-    min-width: 320px;
 }
 
 .container-Note input:focus, .container-Note textarea:focus{

@@ -1,7 +1,7 @@
-/* .cardHeading {
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-} */
-
+.noteListContainer .card .card-body{
+    height: 87vh;
+    overflow: auto;
+}
 /* width */
 ::-webkit-scrollbar {
     width: 2vmin;

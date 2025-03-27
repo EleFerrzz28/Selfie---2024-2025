@@ -1,28 +1,49 @@
 import "./NotePreviewCard.css";
 
-function NotePreviewCard({ title, text, tags, date }) {
+function NotePreviewCard({ id, title, desc, tags, date, notesList, setNotesList, openMenuId, setOpenMenuId }) {
     const maxLength = 200;
-    var truncated = "";
-
-    const truncateText = () => {
-        if(text.length > maxLength){
-            truncated = text.substr(0,maxLength) + "...";
-        }
+    const truncated = desc ? (desc.length > maxLength ? desc.substr(0, maxLength) + "..." : desc) : "No description available";
+    
+    const openNoteMenu = (e)=>{
+        e.stopPropagation(); 
+        setOpenMenuId(openMenuId === id ? null : id);
     }
-    truncateText();
+
+    const deleteNote = ()=>{
+        setNotesList(notesList.filter(note => note.id !== id));
+    }
+    const copyNote = ()=>{
+        const noteCopied = {
+            id: Date.now(),
+            title: title,
+            desc: desc,
+            tags: tags,
+            date: date
+        }
+        setNotesList([...notesList, noteCopied]);
+    }
     return (
-        <div className="card previewNota shadow rounded p-3 mb-3">
-            <div className="cardHeading d-flex justify-content-between align-items-center p-1">
-                <h5 className="card-title"><strong>{title}</strong></h5>
-                <div className="dropdown d-flex">
-                    {/* inserisci kebab menu */}
+        <div className="card previewNota shadow rounded p-3 mb-3" onClick={() => setOpenMenuId(null)}>
+            <div className="cardHeadingPreview d-flex justify-content-between align-items-center p-0 m-0">
+                <h5 className="card-title">{title}</h5>
+                <div className="d-flex">
+                    <div id="noteOption" className = "rounded-2 border border-secondary p-2 mb-2 border-opacity-25" style = {{display : openMenuId === id? "block" : "none"}}>
+                        <div className = "p-2 border-bottom border-secondary p-2 border-opacity-50" onClick = {copyNote}>Copy</div>
+                        <div className = "p-2 border-bottom border-secondary p-2 border-opacity-50" href="#edit">Edit</div>
+                        <div className = "p-2" onClick = {deleteNote}>Delete</div>
+                    </div>
+                    <button className="btn p-2" onClick = {openNoteMenu}>
+                        <svg style = {{transform : openMenuId === id ? "rotate(90deg)" : "rotate(0)"}} xmlns="http://www.w3.org/2000/svg" id="noteMenu" fill="currentColor" className="bi bi-three-dots p-0 m-0" viewBox="0 0 16 16">
+                            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
+                        </svg>
+                    </button>
                 </div>
             </div>
             <div className="container-fluid p-1">
                 <div className="row">
                     {
                         tags.map((tag) => (
-                            <h6 id = "tagStyle" className="card-subtitle rounded mb-2 ms-2 p-1 text-muted">{tag}</h6>
+                            <h6 id="tagStyle" className="card-subtitle rounded mb-2 ms-2 p-1 text-muted">{tag}</h6>
                         ))
                     }
                 </div>

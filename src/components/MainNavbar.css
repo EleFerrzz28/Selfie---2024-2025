@@ -1,4 +1,107 @@
-#settings,
+#sidebar{
+    box-sizing: border-box;
+    height: 100vh;
+    width: max;
+    background-color: var(--lionsmane);
+    font-weight: bold;
+
+    position: sticky;
+    top: 0;
+    align-self: start;
+    transition: 300ms ease-in-out;
+    overflow: hidden;
+    text-wrap: nowrap;
+}
+#sidebar.close{
+    padding: 5px;
+    width: 60px;
+    padding: 5px 10px;
+    white-space: nowrap;
+    overflow: visible;
+}
+#sidebar.close a span {
+    display: none; 
+}
+#display.close a{
+    display: flex;
+    justify-content: center;
+}
+#sidebar.close a svg {
+    margin: auto;
+    display: block; 
+}
+#sidebar.close button {
+    left: 10px;
+}
+#sidebar > ul > li:first-child{
+    .logo{
+        font-weight: bold;
+    }
+}
+#sidebar > ul > li:last-child{
+    position: absolute; 
+    bottom: 0;
+}
+#sidebar ul{
+    list-style: none;
+}
+#sidebar ul li.active a{
+    color: var(--midnight);
+    font-weight: bolder;
+    svg{
+        fill: var(--midnight);
+    }
+}
+
+#sidebar a, #sidebar logo{
+    border-radius: .5em;
+    text-decoration: none;
+    color: var(--darkblue);
+    display: flex;
+    align-items: center;
+    gap: 3vmin;
+    svg{
+        fill: var(--darkblue)
+    }
+    transition: 0.4s;
+}
+#toggle-btn{
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    height: 3vmin;
+    background-color: var(--panna);
+    position: relative; 
+    margin-left: auto;
+    transform-origin: center;
+}
+
+#sidebar svg{
+    width: 4vmin;
+    flex-shrink: 0;
+}
+
+.avatar{
+    flex-shrink: 0;
+    width: 8vmin;
+    height: auto;
+    border-radius: 50%;
+    opacity: 1;
+}
+
+#sidebar a span{
+    flex-grow: 1;
+}
+
+#sidebar a:hover{
+    background-color: var(--celeste);
+    color: white;
+    svg{
+        color:white;
+    }
+}
+
+/* #settings,
 #notif,
 #search {
     width: 4vmin;
@@ -31,13 +134,13 @@
     }
     
     #offcanvasNavbar .offcanvas-header {
-        background-color: var(--midnight); /* Sfondo scuro */
-        color: white; /* Testo bianco */
+        background-color: var(--midnight);
+        color: white; 
         font-style: italic;
     }
     
     #offcanvasNavbar .btn-close {
-        filter: invert(1); /* Rende il bottone chiaro su sfondi scuri */
+        filter: invert(1); 
     }
     
 }
@@ -134,4 +237,4 @@
     --bs-tooltip-bg: var(--celeste);
 }
 
-
+ */
