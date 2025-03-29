@@ -1,0 +1,6 @@
+input,textarea,select{
+    border-color: white;
+}
+input:hover,select:hover, textarea:hover{
+    cursor:pointer;
+}
