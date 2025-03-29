@@ -60,6 +60,7 @@ function NewNoteCard({ addNote }) {
                     <div className="mb-3">
                         <label htmlFor="desc" className="form-label">Your Note</label>
                         <textarea
+                            style = {{resize: "none"}}
                             placeholder="Add Note..."
                             className="form-control"
                             id="desc"

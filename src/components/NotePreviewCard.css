@@ -37,7 +37,7 @@
 }
 #noteOption{
     height: auto;
-    width: 20vmin;
+    width: 50%;
     transition: 0.4s;
     position: absolute;
     right: 0;

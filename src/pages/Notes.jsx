@@ -1,6 +1,11 @@
 import "./Notes.css"
 import NewNoteCard from "../components/NewNoteCard.jsx"
 import NotesList from "../components/NotesList.jsx"
+
+import MainNavbar from "../components/MainNavbar.jsx"
+import BottomNavbar from "../components/BottomNavbar.jsx"
+
+import useMediaQuery from "../hooks/useMediaQuery.jsx"
 import { useState } from "react"
 
 function Notes() {
@@ -47,19 +52,46 @@ function Notes() {
         setNotesList([...notesList, note]);
     };
 
+    const isDesktop = useMediaQuery("(min-width: 960px)");
+
     return (
-        <div className="container-fluid justify-content-center">
-            <div className="row">
-                <div className="pe-0 col-lg-5 col-12">
-                    <NewNoteCard addNote={addNote} />
-                </div>
-                <div className="pe-0 col-lg-7 col-12">
-                    <NotesList 
-                    notesList={notesList}
-                    setNotesList={setNotesList} />
-                </div>
+        <>
+            <div className="container-fluid p-0 m-0">
+                {isDesktop ? (
+                    <div className="container-fluid justify-content-center">
+                        <div className="row">
+                            <div className="p-0 m-0 col-lg-2">
+                                <MainNavbar></MainNavbar>
+                            </div>
+                            <div className="pe-0 m-0 col-lg-5">
+                                <NewNoteCard addNote={addNote} />
+                            </div>
+                            <div className="pe-1 col-lg-5">
+                                <NotesList
+                                    notesList={notesList}
+                                    setNotesList={setNotesList} />
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    <>
+                        <BottomNavbar />
+                        <div className="container-fluid mt-5">
+                            <div className="row">
+                                <div className="ps-1 pe-1 col-12">
+                                    <NewNoteCard addNote={addNote} />
+                                </div>
+                                <div className="ps-1 pe-1 mb-5 col-12">
+                                    <NotesList
+                                        notesList={notesList}
+                                        setNotesList={setNotesList} />
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                )}
             </div>
-        </div>
+        </>
     );
 }
 
