@@ -1,0 +1,49 @@
+.container{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+#year-selection{
+    margin:0 10vmin 5vmin 9vmin;
+    font-size: 4vmin;
+    cursor:pointer;
+}
+#month-selection{
+    margin:0 4vmin 5vmin 4vmin;
+    font-size: 3vmin;
+    cursor:pointer;
+}
+#day-selection{
+    font-size: 3vmin;
+    cursor:pointer;
+    margin: 0 4vmin 5vmin 4vmin;
+}
+
+@media (min-width:500px){
+    .modal-content{
+        background-color: rgba(252, 243, 227, 0.277);
+        color:var(--midnight);
+    }
+}
+
+@media (max-width:500px){
+    #year-selection{
+        font-size: larger;
+    }
+    #month-selection, #day-selection{
+        font-size: 4vmin;
+    }
+    .modal-content{
+        background-color: rgba(255, 255, 255, 0.277);
+        color:var(--midnight);
+    }
+}
+.modal-content{
+    backdrop-filter: blur(7px);
+}
+.modal-header{
+    border-bottom: solid 1px var(--midnight);
+}
+.btn-close:focus{
+    box-shadow: none;
+}

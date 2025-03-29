@@ -6,7 +6,7 @@ import MainNavbar from "../components/MainNavbar.jsx"
 import BottomNavbar from "../components/BottomNavbar.jsx"
 
 import useMediaQuery from "../hooks/useMediaQuery.jsx"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 function Notes() {
     const [notesList, setNotesList] = useState([
@@ -52,47 +52,51 @@ function Notes() {
         setNotesList([...notesList, note]);
     };
 
+    const [isReady, setIsReady] = useState(false);
     const isDesktop = useMediaQuery("(min-width: 960px)");
+
+    useEffect(() => {
+        // Quando il componente è montato, impostiamo isReady a true
+        setIsReady(true);
+    }, []);
+
+    // Evitiamo il rendering finché isReady non è true
+    if (!isReady) return null;
 
     return (
         <>
-            <div className="container-fluid p-0 m-0">
-                {isDesktop ? (
+            {isDesktop ? (
+                <div className="container-fluid p-0 m-0">
                     <div className="container-fluid justify-content-center">
                         <div className="row">
                             <div className="p-0 m-0 col-lg-2">
-                                <MainNavbar></MainNavbar>
+                                <MainNavbar />
                             </div>
                             <div className="pe-0 m-0 col-lg-5">
                                 <NewNoteCard addNote={addNote} />
                             </div>
                             <div className="pe-1 col-lg-5">
-                                <NotesList
-                                    notesList={notesList}
-                                    setNotesList={setNotesList} />
+                                <NotesList notesList={notesList} setNotesList={setNotesList} />
                             </div>
                         </div>
                     </div>
-                ) : (
-                    <>
-                        <BottomNavbar />
-                        <div className="container-fluid mt-5">
-                            <div className="row">
-                                <div className="ps-1 pe-1 col-12">
-                                    <NewNoteCard addNote={addNote} />
-                                </div>
-                                <div className="ps-1 pe-1 mb-5 col-12">
-                                    <NotesList
-                                        notesList={notesList}
-                                        setNotesList={setNotesList} />
-                                </div>
-                            </div>
+                </div>
+            ) : (
+                <div className="mobile-layout p-5">
+                    <BottomNavbar />
+                    <div className="row">
+                        <div className="ps-1 pe-1 col-12">
+                            <NewNoteCard addNote={addNote} />
                         </div>
-                    </>
-                )}
-            </div>
+                        <div className="ps-1 pe-1 mb-5 col-12">
+                            <NotesList notesList={notesList} setNotesList={setNotesList} />
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     );
+
 }
 
 export default Notes
