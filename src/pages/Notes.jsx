@@ -82,13 +82,13 @@ function Notes() {
                     </div>
                 </div>
             ) : (
-                <div className="mobile-layout p-5">
+                <div className="mobile-layout">
                     <BottomNavbar />
-                    <div className="row">
-                        <div className="ps-1 pe-1 col-12">
+                    <div className="row ps-1">
+                        <div className="mt-5 pe-1 col-12" style = {{position: "relative"}}>
                             <NewNoteCard addNote={addNote} />
                         </div>
-                        <div className="ps-1 pe-1 mb-5 col-12">
+                        <div className="pe-1 mb-5 col-12">
                             <NotesList notesList={notesList} setNotesList={setNotesList} />
                         </div>
                     </div>

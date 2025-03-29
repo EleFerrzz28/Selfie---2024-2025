@@ -2,6 +2,9 @@
     height: 87vh;
     overflow: auto;
 }
+.noteListContainer{
+    min-width: 320px;
+}
 /* width */
 ::-webkit-scrollbar {
     width: 2vmin;

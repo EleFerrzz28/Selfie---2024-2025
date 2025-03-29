@@ -1,6 +1,7 @@
 import "./NewNoteCard.css"
 import TestualInput from "../components/TestualInput.jsx"
-import { useState } from "react"
+import useMediaQuery from "../hooks/useMediaQuery.jsx"
+import { useState,useEffect } from "react"
 
 function NewNoteCard({ addNote }) {
     const [formData, setFormData] = useState({
@@ -30,8 +31,19 @@ function NewNoteCard({ addNote }) {
         setFormData({ title: "", desc: "", tags: "" })
     }
 
+    const [isReady, setIsReady] = useState(false);
+    const isDesktop = useMediaQuery("(min-width: 960px)");
+
+    useEffect(() => {
+        // Quando il componente è montato, impostiamo isReady a true
+        setIsReady(true);
+    }, []);
+
+    // Evitiamo il rendering finché isReady non è true
+    if (!isReady) return null;
+
     return (
-        <div className="container-Note m-0">
+        <div className="container-Note">
             <div className="card m-0 mt-2">
                 <div className="cardHeading d-flex justify-content-between align-items-center p-1" style={{ borderBottom: "solid 1px rgb(192, 192, 192)" }}>
                     <h5 className="card-title px-3 pt-2 pb-1 mb-0"><strong>New Rapid Note</strong></h5>
@@ -60,12 +72,12 @@ function NewNoteCard({ addNote }) {
                     <div className="mb-3">
                         <label htmlFor="desc" className="form-label">Your Note</label>
                         <textarea
-                            style = {{resize: "none"}}
+                            style={!isDesktop ? { minHeight: "80px", maxHeight: "200px", overflowY: "auto", resize: "none" } : {resize: "none"}}
                             placeholder="Add Note..."
                             className="form-control"
                             id="desc"
+                            rows = {isDesktop && "9"}
                             name="desc"
-                            rows="9"
                             value={formData.desc}
                             onChange={handleInputChange}
                         ></textarea>
