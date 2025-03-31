@@ -11,7 +11,7 @@ function CalendarPage(){
         "2025-03-05": ["Drink Coffee", "Learn React", "Sleep"],
         "2025-03-06": ["Drink Coffee", "Learn Angular", "Sleep"],
         "2025-04-09": ["dinner with Maria", "Drink"],
-        "2025-03-21": ["Drink Coffee", "Learn React", "Sleep"],
+        "2025-03-21": ["Drink Coffee", "Learn React", "Sleep", "sigmaBoy"],
         "2025-03-24": ["Drink Coffee", "Learn Vue", "Sleep"],
     };
     const activities={
@@ -22,9 +22,9 @@ function CalendarPage(){
     }
     return(
         <>
-            <div className="container-fluid p-3">
+            <div className="body container-fluid p-3">
                 <div className="row" style={{alignItems:"center"}}>
-                <div className="col-12 col-lg-8 ">    
+                <div className="col-12 col-lg-8">    
                         <CalendarComponent events={events}></CalendarComponent>
                     </div>
                     <div className="col-12 col-lg-3">
@@ -35,7 +35,7 @@ function CalendarPage(){
                                     <button onClick={() => clicked(true)} id="buttonEffect" type="button" className={`btn-lg rounded p-3 ${click ? "animation" : ""}`} data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">
                                         ADD EVENT</button>
-                                    <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel"
                                         aria-hidden="true">
                                         <div  className="modal-dialog modal-dialog-centered">
                                             <div  id="modal-window" className="modal-content border border-white text-white">

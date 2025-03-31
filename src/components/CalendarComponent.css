@@ -10,7 +10,6 @@
 
 
 .calendar-headline-button{
-    position:absolute;
     cursor: pointer;
     padding:1vmin;
     border-top: solid 1px white;
@@ -66,12 +65,9 @@
 
 .calendar-headline {
     display: flex;
-    justify-content:space-evenly;
+    justify-content:space-around;
     color:white;
     background-color:var(--celeste);
-    vertical-align: middle;
-}
-.calendar-headline-month{
     padding:3vmin 0 3vmin 0;
 }
 
@@ -80,40 +76,13 @@
 }
 
 .calendar-headline-control{
-    position:absolute;
     cursor: pointer;
-    padding:3vmin 0 3vmin 0;
 }
 
-#todayButton{
-    margin:1vmin 0 1vmin 70vmin;
-}
-
-.specificDayButton{
-    margin:1vmin 0 1vmin -70vmin;
-}
-
-.fivePrev{
-    margin-left: -45vmin;
-}
-
-.prev{
-    margin-left: -35vmin;
-}
-
-.fiveNext{
-    margin-left: 45vmin;
-}
-
-.next{
-    margin-left: 35vmin;
-}
-  
 .calendar-weeks-grid {
     display: grid;
     grid-template-columns: repeat(7, minmax(0, 1fr));
     padding:2vmin 5vmin 3vmin 0vmin;
-    color: white;
     color:var(--celeste);
     border-bottom: solid 1px var(--celeste);
 }
@@ -125,7 +94,6 @@
 .calendar-grid-cell-inactive {
     color: #aaa;
 }
-  
 
 .calendar-grid {
     display: grid;
@@ -155,8 +123,20 @@
 
 .dropdown-menu{
     padding: 2vmin;
-    background-color: rgba(194, 194, 194, 0.322);
+    background-color: white;
     color:black;
-    border-color: white;
-    backdrop-filter: blur(3px);
 }
+
+#changeSlideButtons{
+    display: flex;
+    justify-content: center;
+    margin-top: 1vmin;
+}
+
+.event-title{
+    color:var(--darkblue);
+    background-color: var(--lightBlue);
+    padding:2px 7px;
+}
+
+

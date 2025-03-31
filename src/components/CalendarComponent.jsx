@@ -5,6 +5,8 @@ import classnames from "classnames"
 import SpecificDayModal from "./SpecificDayModal"
 
 function CalendarComponent({events}){
+    const [slide, setSlide]=useState(0);
+
     Settings.defaultLocale="en"
     const today=DateTime.local()
     
@@ -56,6 +58,7 @@ function CalendarComponent({events}){
 
     //array mesi
     const months=Info.months();
+    console.log(slide);
     return(
         <>
             <div className="calendar-container" >
@@ -78,11 +81,11 @@ function CalendarComponent({events}){
                     </div>
                     <div className="calendar-grid">
                         {daysOfMonth.map((dayOfMonth,dayOfMonthIndex)=>(
-                        <div key={dayOfMonthIndex} className={classnames({"calendar-grid-cell ":true, "calendar-grid-cell-inactive":dayOfMonth.month!==firstDayOfActiveMonth.month,"calendar-grid-cell-active":activeDay?.toISODate()===dayOfMonth.toISODate(),"day-with-events": daysWithEvents.includes(dayOfMonth.toISODate()),})} onClick={()=> setActiveDay(dayOfMonth)} data-bs-toggle="dropdown" aria-expanded="false">
+                        <div key={dayOfMonthIndex} className={classnames({"calendar-grid-cell ":true, "calendar-grid-cell-inactive":dayOfMonth.month!==firstDayOfActiveMonth.month,"calendar-grid-cell-active":activeDay?.toISODate()===dayOfMonth.toISODate(),"day-with-events": daysWithEvents.includes(dayOfMonth.toISODate()),})} onClick={()=>{ setActiveDay(dayOfMonth);setSlide(0);}}  data-bs-toggle="dropdown" aria-expanded="false">
                             {dayOfMonth.day}
                         </div>
                         ))}
-                        <div className="dropdown-menu">
+                        <div className="dropdown-menu border">
                             <div className="schedule-headline">
                                 {activeDay === null && <div>Please select a day</div>}
                                 {activeDay && (
@@ -91,18 +94,31 @@ function CalendarComponent({events}){
                             </div>
                             <hr/>
                             <div>
-                                {activeDay && activeDayEvents.length === 0 && (
+                            {activeDay && activeDayEvents.length === 0 && (
                                 <div>No Planned events Today</div>
-                                )}
-                                <ul>
-                                    {activeDay && activeDayEvents.length > 0 && (
-                                    <>
+                            )}
+                            {activeDay && activeDayEvents.length > 0 && (
+                                <>
+                                    <div id='carousel'>
                                         {activeDayEvents.map((event, eventIndex) => (
-                                            <li key={eventIndex}>{event}</li>
+                                            <div key={eventIndex} className={`list-group ${eventIndex!==slide ? "d-none" : ""}`}>
+                                                <div className="d-flex w-70 justify-content-between">
+                                                    <h5 className="event-title mb-1 fs-6 text-uppercase">{event}</h5>
+                                                    <small className='text-muted'>modifica</small>
+                                                    <small className='text-muted'>elimina</small>
+                                                </div>
+                                                <p className="mb-1">Lorem ipsum dolor sit amet consectetur.</p>
+                                                <small>info</small>
+                                            </div>
                                         ))}
-                                    </>
-                                    )}
-                                </ul>
+                                        <div id='changeSlideButtons'>
+                                            {activeDayEvents.map((event, eventIndex) => (
+                                                <input key={eventIndex} className="radio-button" type="radio" name="toggle" checked={eventIndex==slide} onClick={()=>setSlide(eventIndex)}/> 
+                                            ))}
+                                        </div>
+                                    </div>
+                                </>
+                            )}
                             </div>
                         </div>
                     </div>

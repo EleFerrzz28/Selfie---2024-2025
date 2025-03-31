@@ -18,12 +18,10 @@
     cursor:pointer;
     margin: 0 4vmin 5vmin 4vmin;
 }
-
-@media (min-width:500px){
-    .modal-content{
-        background-color: rgba(252, 243, 227, 0.277);
-        color:var(--midnight);
-    }
+.modal-content{
+    background-color: rgba(255, 255, 255, 0.129);
+    backdrop-filter:brightness(85%);
+    color:white;
 }
 
 @media (max-width:500px){
@@ -33,17 +31,7 @@
     #month-selection, #day-selection{
         font-size: 4vmin;
     }
-    .modal-content{
-        background-color: rgba(255, 255, 255, 0.277);
-        color:var(--midnight);
-    }
-}
-.modal-content{
-    backdrop-filter: blur(7px);
-}
-.modal-header{
-    border-bottom: solid 1px var(--midnight);
-}
+};
 .btn-close:focus{
     box-shadow: none;
 }

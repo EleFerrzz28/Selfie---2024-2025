@@ -25,7 +25,7 @@ function EventForm(){
                 <input className="input rounded" type="text" name="loc"/>
             </div>
             <div className="mt-2">
-                <label for="cat">Category: </label><br/>
+                <label htmlFor="cat">Category: </label><br/>
                 <select className="input rounded" name="cat">
                     <option value="">--select one--</option>
                     <option value="lunch">Lunch</option>

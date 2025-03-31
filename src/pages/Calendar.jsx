@@ -22,7 +22,7 @@ function Calendar() {
           </div>
         </div>
       ) : (
-        <div className="mobile-layout pt-5 pb-5">
+        <div className="mobile-layout pt-5 pb-5 m-3">
           <BottomNavbar />
           <CalendarPage></CalendarPage>
         </div>
