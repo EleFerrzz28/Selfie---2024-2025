@@ -1,39 +1,22 @@
 import "./NotesList.css";
 import NotePreviewCard from "../components/NotePreviewCard.jsx"
-import { useState, useEffect } from "react"
+import NoteItem from "../components/NotePreviewCard.jsx"
 
-function NotesList({ notesList, setNotesList }) {
-    const [query, setQuery] = useState("");
+import { useState, useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux";
+import { setSortBy, setQuery } from "../redux/notes/notesSlice.js";
+import { selectFilteredSortedNotes } from "../redux/notes/selectors.js";
+import { Link } from "react-router-dom";
+
+
+function NotesList() {
+    const dispatch = useDispatch();
+    const notes = useSelector(selectFilteredSortedNotes);
+
     const [openMenuId, setOpenMenuId] = useState(null);
 
-    const filteredNotes = notesList.filter(note => {
-        return (note.title.toLowerCase().includes(query.toLowerCase()) ||
-            note.desc.toLowerCase().includes(query.toLowerCase()) ||
-            note.date.toLowerCase().includes(query.toLowerCase()) ||
-            note.tags.some(tag => tag.toLowerCase().includes(query.toLowerCase()))
-        )
-    })
-
-    const alphabeticalOrder = () => {
-        setNotesList([...notesList].sort((a, b) => {
-            const titleA = a.title.toUpperCase();
-            const titleB = b.title.toUpperCase();
-            return titleA.localeCompare(titleB);
-        }));
-    }
-    const dateOrder = () => {
-        setNotesList([...notesList].sort((a, b) => {
-            return new Date(b.date) - new Date(a.date);
-        }));
-    }
-    const lengthOrder = () => {
-        setNotesList([...notesList].sort((a, b) => {
-            return b.desc.length - a.desc.length;
-        }));
-    }
-
     return (
-        <div className="noteListContainer">
+        <div className="shadow noteListContainer">
             <div className="card mt-2">
                 <div className="cardHeading d-flex justify-content-between align-items-center p-1" style={{ borderBottom: "solid 1px rgb(192, 192, 192)" }}>
                     <h5 className="card-title px-3 pt-2 mb-0"><strong>All Notes</strong></h5>
@@ -41,8 +24,7 @@ function NotesList({ notesList, setNotesList }) {
                         <form className="pe-1 d-flex" role="search">
                             <input
                                 className="searchNote form-control me-2"
-                                value={query}
-                                onChange={e => setQuery(e.target.value)}
+                                onChange={e => dispatch(setQuery(e.target.value))}
                                 type="search"
                                 placeholder="Search Note..."
                                 aria-label="Search" />
@@ -54,9 +36,9 @@ function NotesList({ notesList, setNotesList }) {
                                 </svg>
                             </button>
                             <ul className="dropdown-menu">
-                                <li><button className="dropdown-item" type="button" onClick={alphabeticalOrder}>Alphabetical Order</button></li>
-                                <li><button className="dropdown-item" type="button" onClick={dateOrder}>Date Order</button></li>
-                                <li><button className="dropdown-item" type="button" onClick={lengthOrder}>Length Order</button></li>
+                                <li><button className="dropdown-item" onClick={() => dispatch(setSortBy("alphabetical"))}>Alphabetical Order</button></li>
+                                <li><button className="dropdown-item" onClick={() => dispatch(setSortBy("date"))}>Date Order</button></li>
+                                <li><button className="dropdown-item" onClick={() => dispatch(setSortBy("length"))}>Length Order</button></li>
                             </ul>
                         </div>
                     </div>
@@ -64,20 +46,19 @@ function NotesList({ notesList, setNotesList }) {
                 <div className="card-body p-0">
                     <div data-spy="scroll" data-target="#noteList" data-offset="50">
                         <div id="noteList" className="card-body p-0 ps-2 pt-2">
-                            {filteredNotes.map((note) => (
-                                <div className="p-1">
-                                    <NotePreviewCard
+                            {notes.map((note) => (
+                                // <Link to={`/Notes/${note.id}`} key={note.id}>
+                                    <NotePreviewCard key = {note.id}
                                         id={note.id}
                                         title={note.title}
                                         desc={note.desc}
                                         tags={note.tags}
                                         date={note.date}
-                                        notesList={notesList}
-                                        setNotesList={setNotesList}
+
                                         openMenuId={openMenuId}
                                         setOpenMenuId={setOpenMenuId}
                                     />
-                                </div>
+                                //</Link>
                             ))}
                         </div>
                     </div>

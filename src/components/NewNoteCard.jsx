@@ -1,9 +1,13 @@
 import "./NewNoteCard.css"
 import TestualInput from "../components/TestualInput.jsx"
 import useMediaQuery from "../hooks/useMediaQuery.jsx"
-import { useState,useEffect } from "react"
+import { useState, useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { add } from "../redux/notes/notesSlice.js"
 
-function NewNoteCard({ addNote }) {
+function NewNoteCard() {
+    const dispatch = useDispatch();
+
     const [formData, setFormData] = useState({
         title: "",
         desc: "",
@@ -25,9 +29,9 @@ function NewNoteCard({ addNote }) {
             title: formData.title,
             desc: formData.desc,
             tags: formData.tags.split(",").map(tag => tag.trim()),
-            date: new Date().toLocaleDateString()
+            date: new Date().toISOString().split('T')[0]
         };
-        addNote(newNote);
+        dispatch(add(newNote));
         setFormData({ title: "", desc: "", tags: "" })
     }
 
@@ -43,7 +47,7 @@ function NewNoteCard({ addNote }) {
     if (!isReady) return null;
 
     return (
-        <div className="container-Note">
+        <div className="shadow container-Note">
             <div className="card m-0 mt-2">
                 <div className="cardHeading d-flex justify-content-between align-items-center p-1" style={{ borderBottom: "solid 1px rgb(192, 192, 192)" }}>
                     <h5 className="card-title px-3 pt-2 pb-1 mb-0"><strong>New Rapid Note</strong></h5>
@@ -76,7 +80,7 @@ function NewNoteCard({ addNote }) {
                             placeholder="Add Note..."
                             className="form-control"
                             id="desc"
-                            rows = {isDesktop && "9"}
+                            rows = {isDesktop ? "9" : undefined}
                             name="desc"
                             value={formData.desc}
                             onChange={handleInputChange}
