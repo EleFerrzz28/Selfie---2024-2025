@@ -36,6 +36,9 @@ function EventForm(){
                 <p className="mt-2">Want to add a new category?</p>
                 <input className="input rounded"/>
             </div>
+            <div className="mt-2">
+                <input type='color' value="#947eb9"/>
+            </div>
         </form>
     );
 }
