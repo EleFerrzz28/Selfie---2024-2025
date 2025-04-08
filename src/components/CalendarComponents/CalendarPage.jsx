@@ -1,7 +1,7 @@
 import CalendarComponent from "./CalendarComponent"
-import EventForm from "./EventForm"
 import './CalendarPage.css'
 import Activity from './Activity'
+import EventForm from "./EventForm"
 import {useState} from 'react';
 
 function CalendarPage(){

@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import "./NotePreviewCard.css";
-import { deleteNote, copyNote } from "../redux/notes/notesSlice";
+import { deleteNote, copyNote } from "../../redux/notes/notesSlice";
 import { Link } from "react-router-dom";
 
 function NotePreviewCard({ id, title, desc, tags, date, openMenuId, setOpenMenuId }) {

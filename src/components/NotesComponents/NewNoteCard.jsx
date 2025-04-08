@@ -1,9 +1,9 @@
 import "./NewNoteCard.css"
-import TestualInput from "../components/TestualInput.jsx"
-import useMediaQuery from "../hooks/useMediaQuery.jsx"
+import TestualInput from "./TestualInput.jsx"
+import useMediaQuery from "../../hooks/useMediaQuery.jsx"
 import { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { add } from "../redux/notes/notesSlice.js"
+import { add } from "../../redux/notes/notesSlice.js"
 
 function NewNoteCard() {
     const dispatch = useDispatch();

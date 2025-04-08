@@ -1,6 +1,6 @@
 import "./Notes.css"
-import NewNoteCard from "../components/NewNoteCard.jsx"
-import NotesList from "../components/NotesList.jsx"
+import NewNoteCard from "../components/NotesComponents/NewNoteCard.jsx"
+import NotesList from "../components/NotesComponents/NotesList.jsx"
 
 import MainNavbar from "../components/MainNavbar.jsx"
 import BottomNavbar from "../components/BottomNavbar.jsx"

@@ -1,7 +1,7 @@
 import MainNavbar from '../components/MainNavbar';
 import BottomNavbar from "../components/BottomNavbar";
 import useMediaQuery from '../hooks/useMediaQuery';
-import CalendarPage from "../components/CalendarPage"
+import CalendarPage from "../components/CalendarComponents/CalendarPage"
 import {useEffect, useState} from "react";
 
 /* NOTA: la struttura per la renderizzazione è questa, cioè, per usare due navbar differenti

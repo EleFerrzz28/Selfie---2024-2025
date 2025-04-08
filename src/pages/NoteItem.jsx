@@ -1,6 +1,6 @@
 import MainNavbar from "../components/MainNavbar";
 import BottomNavbar from "../components/BottomNavbar";
-import FullNote from "../components/FullNote.jsx";
+import FullNote from "../components/NotesComponents/FullNote.jsx";
 
 import useMediaQuery from "../hooks/useMediaQuery.jsx"
 import { useState, useEffect } from "react"

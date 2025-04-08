@@ -1,10 +1,10 @@
 import "./NotesList.css";
-import NotePreviewCard from "../components/NotePreviewCard.jsx"
+import NotePreviewCard from "./NotePreviewCard.jsx"
 
 import { useState } from "react"
 import { useSelector, useDispatch } from "react-redux";
-import { setSortBy, setQuery } from "../redux/notes/notesSlice.js";
-import { selectFilteredSortedNotes } from "../redux/notes/selectors.js";
+import { setSortBy, setQuery } from "../../redux/notes/notesSlice.js";
+import { selectFilteredSortedNotes } from "../../redux/notes/selectors.js";
 
 
 function NotesList() {
