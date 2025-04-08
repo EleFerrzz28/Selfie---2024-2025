@@ -1,22 +1,21 @@
 import MainNavbar from '../components/MainNavbar';
 import BottomNavbar from "../components/BottomNavbar";
 import useMediaQuery from '../hooks/useMediaQuery';
-import "./Pomodoro.css" 
+import "./Pomodoro.css"
+import { useState, useEffect } from "react";
 
 /* NOTA: la struttura per la renderizzazione è questa, cioè, per usare due navbar differenti
 è obbligatorio importare l'hook useMediaQuery e poi fare rendering condizionale; la
 gestione del layout invece è a vostra discrezione*/
 
 function Pomodoro() {
-  const [isReady, setIsReady] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 960px)");
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    // Quando il componente è montato, impostiamo isReady a true
     setIsReady(true);
   }, []);
 
-  // Evitiamo il rendering finché isReady non è true
   if (!isReady) return null;
 
   return (
