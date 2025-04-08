@@ -1,0 +1,10 @@
+.title{
+    color:var(--sageGreen);
+}
+.button{
+    background-color:var(--sageGreen) ;
+    color:var(--lionsmane);
+}
+.card-title{
+    color:var(--sageGreen);
+}

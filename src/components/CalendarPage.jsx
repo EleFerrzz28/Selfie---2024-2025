@@ -7,7 +7,7 @@ import {useState} from 'react';
 function CalendarPage(){
     const [click, clicked]=useState(false);
 
-    const events = {
+    const events={
         "2025-03-05": ["Drink Coffee", "Learn React", "Sleep"],
         "2025-03-06": ["Drink Coffee", "Learn Angular", "Sleep"],
         "2025-04-09": ["dinner with Maria", "Drink"],
@@ -20,6 +20,29 @@ function CalendarPage(){
         "2025-05-05": "website creation",
         "2025-04-15": "English language exam",
     }
+
+    /*const [eventsState, setEvents] = useState([
+        {
+            id:0,
+            nome:"Dinner with Laura",
+            descrizione:"lorem impsum",
+            ora:"20:00",
+            giorno:"20/04/2025",
+            categoria:"Cene"
+        },
+        {
+            id:1,
+            nome:"progetto Selfie",
+            descrizione:"lorem impsum jrvniunuv",
+            ora:"10:30",
+            giorno:"21/04/2025",
+            categoria:"uni"
+        }
+    ]);
+
+    const addEvent=(event) =>{
+        setEvents([...eventsState, event])
+    }*/
     return(
         <>
             <div className="body container-fluid p-3">

@@ -13,7 +13,7 @@ function PomodoroAnimation(){
                 <div className="pomo" id="pomo3"></div>
                 <div id="terra"></div>
                 <div id="terra1"></div>
-                <div className="pomo" id="bigPomo"></div>
+                <div className="pomo shadow-lg" id="bigPomo"></div>
                 <div id="fogliaBigPomo"></div>
             </div>
         </div>

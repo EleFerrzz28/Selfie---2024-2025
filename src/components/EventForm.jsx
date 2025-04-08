@@ -1,5 +1,11 @@
 import './EventForm.css'
+import { DateTime, Settings } from 'luxon';
+
 function EventForm(){
+
+    Settings.defaultLocale="it"
+    const today=DateTime.local().toLocaleString(DateTime.DATE_SHORT)
+    
     return(
         <form id="modal-form" method="get" className='was-validated'>
             <div>
@@ -17,8 +23,8 @@ function EventForm(){
                 <input className="input rounded" type="time" name="time" required/>
             </div>
             <div className="mt-2">
-                <label>Day: </label><br/>
-                <input className="input rounded" type="date" name="day" required/>
+                <label>Day:</label><br/>
+                <input className="input rounded" type="date" min={today} name="day" required/>
             </div>
             <div className="mt-2">
                 <label>Location: </label><br/>
@@ -35,9 +41,6 @@ function EventForm(){
                 </select>
                 <p className="mt-2">Want to add a new category?</p>
                 <input className="input rounded"/>
-            </div>
-            <div className="mt-2">
-                <input type='color' value="#947eb9"/>
             </div>
         </form>
     );
