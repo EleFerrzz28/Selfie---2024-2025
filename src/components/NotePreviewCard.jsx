@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import "./NotePreviewCard.css";
 import { deleteNote, copyNote } from "../redux/notes/notesSlice";
+import { Link } from "react-router-dom";
 
 function NotePreviewCard({ id, title, desc, tags, date, openMenuId, setOpenMenuId }) {
     const maxLength = 200;
@@ -20,7 +21,7 @@ function NotePreviewCard({ id, title, desc, tags, date, openMenuId, setOpenMenuI
                 <div className="d-flex">
                     <div id="noteOption" className = "rounded-2 border border-secondary p-2 mb-2 border-opacity-25" style = {{display : openMenuId === id? "block" : "none"}}>
                         <div className = "p-2 border-bottom border-secondary p-2 border-opacity-50" onClick = {() => dispatch(copyNote(id))}>Copy</div>
-                        <div className = "p-2 border-bottom border-secondary p-2 border-opacity-50" href="#edit">Edit</div>
+                        <div className = "p-2 border-bottom border-secondary p-2 border-opacity-50"><Link to={`/Notes/${id}`} id = "editNote">Edit</Link></div>
                         <div className = "p-2" onClick = {() => dispatch(deleteNote(id))}>Delete</div>
                     </div>
                     <button className="btn p-2" onClick = {openNoteMenu}>

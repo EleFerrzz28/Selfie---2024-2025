@@ -13,11 +13,9 @@ function Notes() {
     const isDesktop = useMediaQuery("(min-width: 960px)");
 
     useEffect(() => {
-        // Quando il componente è montato, impostiamo isReady a true
         setIsReady(true);
     }, []);
 
-    // Evitiamo il rendering finché isReady non è true
     if (!isReady) return null;
 
     return (

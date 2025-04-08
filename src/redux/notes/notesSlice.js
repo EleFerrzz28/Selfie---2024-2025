@@ -9,7 +9,7 @@ export const notesSlice = createSlice({
                  title: "Operating Systems",
                  desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate saepe tenetur magnam libero nobis repellat sint numquam molestias illo nemo aliquam quia ratione fuga totam, alias culpa, placeat animi provident! Incidunt commodi omnis quas mollitia dignissimos excepturi est id, corrupti dolorem accusamus cupiditate provident ipsum, odio maiores? Dolores voluptatibus officiis tempora illum at suscipit iste fugit eos hic animi culpa asperiores dolore sapiente accusantium atque, rerum aperiam quas vel pariatur, eligendi sit quisquam. Placeat dolore, enim, itaque velit fugiat doloremque aut voluptatibus, neque deleniti excepturi exercitationem perferendis id quasi!",
                  tags: ["university", "exams"],
-                 date: "2025-10-12"
+                 date: "2024-01-14"
              },
              {
                  id: 1,
@@ -24,7 +24,7 @@ export const notesSlice = createSlice({
                  title: "Compiti Sabato",
                  desc: "Cupiditate saepe tenetur magnam libero nobis repellat sint numquam molestias illo nemo aliquam quia ratione fuga totam, alias culpa, placeat animi provident! Incidunt commodi omnis quas mollitia dignissimos excepturi est id, corrupti dolorem accusamus cupiditate provident ipsum, odio maiores? Dolores voluptatibus officiis tempora illum at suscipit iste fugit eos hic animi culpa asperiores dolore sapiente accusantium atque, rerum aperiam quas vel pariatur, eligendi sit quisquam. Placeat dolore, enim, itaque velit fugiat doloremque aut voluptatibus, neque deleniti excepturi exercitationem perferendis id quasi!",
                  tags: ["homeworks"],
-                 date: "2025-08-19"
+                 date: "2023-01-19"
              },
              {
                  id: 3,

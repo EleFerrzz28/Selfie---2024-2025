@@ -1,12 +1,10 @@
 import "./NotesList.css";
 import NotePreviewCard from "../components/NotePreviewCard.jsx"
-import NoteItem from "../components/NotePreviewCard.jsx"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { setSortBy, setQuery } from "../redux/notes/notesSlice.js";
 import { selectFilteredSortedNotes } from "../redux/notes/selectors.js";
-import { Link } from "react-router-dom";
 
 
 function NotesList() {
@@ -18,7 +16,7 @@ function NotesList() {
     return (
         <div className="shadow noteListContainer">
             <div className="card mt-2">
-                <div className="cardHeading d-flex justify-content-between align-items-center p-1" style={{ borderBottom: "solid 1px rgb(192, 192, 192)" }}>
+                <div className="cardHeading d-flex justify-content-between align-items-center pb-1 pt-1" style={{ borderBottom: "solid 1px rgb(192, 192, 192)" }}>
                     <h5 className="card-title px-3 pt-2 mb-0"><strong>All Notes</strong></h5>
                     <div className="d-flex p-1">
                         <form className="pe-1 d-flex" role="search">
@@ -47,18 +45,16 @@ function NotesList() {
                     <div data-spy="scroll" data-target="#noteList" data-offset="50">
                         <div id="noteList" className="card-body p-0 ps-2 pt-2">
                             {notes.map((note) => (
-                                // <Link to={`/Notes/${note.id}`} key={note.id}>
-                                    <NotePreviewCard key = {note.id}
-                                        id={note.id}
-                                        title={note.title}
-                                        desc={note.desc}
-                                        tags={note.tags}
-                                        date={note.date}
+                                <NotePreviewCard key={note.id}
+                                    id={note.id}
+                                    title={note.title}
+                                    desc={note.desc}
+                                    tags={note.tags}
+                                    date={note.date}
 
-                                        openMenuId={openMenuId}
-                                        setOpenMenuId={setOpenMenuId}
-                                    />
-                                //</Link>
+                                    openMenuId={openMenuId}
+                                    setOpenMenuId={setOpenMenuId}
+                                />
                             ))}
                         </div>
                     </div>

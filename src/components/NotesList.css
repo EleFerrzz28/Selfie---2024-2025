@@ -5,26 +5,6 @@
 .noteListContainer{
     min-width: 320px;
 }
-/* width */
-::-webkit-scrollbar {
-    width: 2vmin;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    background: whitesmoke;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: var(--lightBlue);
-    border-radius: 1vmin;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: var(--midnight);
-}
 
 #searchButton, .orderButton{
     color: white;

@@ -49,7 +49,7 @@ function NewNoteCard() {
     return (
         <div className="shadow container-Note">
             <div className="card m-0 mt-2">
-                <div className="cardHeading d-flex justify-content-between align-items-center p-1" style={{ borderBottom: "solid 1px rgb(192, 192, 192)" }}>
+                <div className="cardHeading d-flex justify-content-between align-items-center pt-1 pb-1" style={{ borderBottom: "solid 1px rgb(192, 192, 192)" }}>
                     <h5 className="card-title px-3 pt-2 pb-1 mb-0"><strong>New Rapid Note</strong></h5>
                     <div className="d-flex fullNote rounded">
                         <button type="button" className="btn p-2 m-1 pb-1 ms-0"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-file-earmark-plus-fill" viewBox="-1 0 16 20">
