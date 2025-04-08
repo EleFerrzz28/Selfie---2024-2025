@@ -1,8 +1,9 @@
 #actContainer{
-    height:50vmin;
     font-size:3vmin;
 }
-.flexbox{
-    display:flex;
-    justify-content: space-between;
+#changeSlideButtonsAct{
+    display: flex;
+    justify-content: center;
+    gap:2vmin;
+    margin:2vmin;
 }

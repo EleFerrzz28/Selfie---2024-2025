@@ -1,17 +1,30 @@
+input[type="radio"]{
+    appearance: none;
+    border:solid 1px var(--darkblue);
+    border-radius: 50%;
+}
+#changeSlideButtons input[type="radio"]{
+    margin:1vmin;
+    width: 2vmin;
+    height: 2vmin;
+}
+#changeSlideButtonsAct input[type="radio"]{
+    width: 3vmin;
+    height: 3vmin;
+}
+input[type="radio"]:checked{
+    background-color: var(--lightBlue);
+    border: solid 1px var(--darkblue);
+}
 #logo {
     height:15vmin;
 }
 #anteprimaCalendario {
     height: 100vmin;
 }
-#listaAttivita {
-    background-color: lightcoral;
-    height: 65vmin;
-}
 #modal-window{
-    background: linear-gradient(to bottom right, #504e764b 0%,rgba(147, 203, 206, 0.388) 50%, #c4c3e366 100%);
-    color:white;
-    backdrop-filter: blur(2px);
+    background-color: rgba(255, 255, 255, 0.129);
+    backdrop-filter:brightness(85%);
 }
 .buttonClose,.buttonClose:hover{
     background-color: var(--lightBlue);
@@ -22,6 +35,9 @@
     background-color: var(--celeste);
     border-color: var(--celeste);
     color:white;
+}
+.modal-header {
+    border-bottom: solid 1px #fff;
 }
 /*https://www.youtube.com/watch?v=F7iFnhSZe7o*/
 #buttonEffect{

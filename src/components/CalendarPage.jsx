@@ -11,7 +11,7 @@ function CalendarPage(){
         "2025-03-05": ["Drink Coffee", "Learn React", "Sleep"],
         "2025-03-06": ["Drink Coffee", "Learn Angular", "Sleep"],
         "2025-04-09": ["dinner with Maria", "Drink"],
-        "2025-03-21": ["Drink Coffee", "Learn React", "Sleep"],
+        "2025-03-21": ["Drink Coffee", "Learn React", "Sleep", "sigmaBoy"],
         "2025-03-24": ["Drink Coffee", "Learn Vue", "Sleep"],
     };
     const activities={
@@ -22,9 +22,9 @@ function CalendarPage(){
     }
     return(
         <>
-            <div className="container-fluid p-3">
+            <div className="body container-fluid p-3">
                 <div className="row" style={{alignItems:"center"}}>
-                <div className="col-12 col-lg-8 ">    
+                <div className="col-12 col-lg-8">    
                         <CalendarComponent events={events}></CalendarComponent>
                     </div>
                     <div className="col-12 col-lg-3">

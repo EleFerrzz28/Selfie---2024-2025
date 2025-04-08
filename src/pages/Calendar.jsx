@@ -1,8 +1,6 @@
 import MainNavbar from '../components/MainNavbar';
 import BottomNavbar from "../components/BottomNavbar";
 import useMediaQuery from '../hooks/useMediaQuery';
-import CalendarPage from "../components/CalendarPage";
-import {useState, useEffect} from "react";
 
 /* NOTA: la struttura per la renderizzazione è questa, cioè, per usare due navbar differenti
 è obbligatorio importare l'hook useMediaQuery e poi fare rendering condizionale; la
@@ -28,18 +26,17 @@ function Calendar() {
           <div className="col p-0 m-0 col-lg-2 col-md-3">
             <MainNavbar />
           </div>
-          <div className="col col-lg-10 col-md-9 col-sm-12" style={{ display: "flex", alignItems: "center" }}>
-            <CalendarPage></CalendarPage>
+          <div className="col col-lg-10 col-md-9">
+            <h1>This shall be the calendar page</h1>
           </div>
         </div>
-      </div>
-    ) : (
-      <div className="mobile-layout pt-5 pb-5">
-        <BottomNavbar />
-        <CalendarPage></CalendarPage>
-      </div>
-    )
-
+      ) : (
+        <div className="mobile-layout p-5">
+          <BottomNavbar />
+          <h1>This shall be the calendar page</h1>
+        </div>
+      )}
+    </div>
   );
 }
 

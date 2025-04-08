@@ -1,0 +1,14 @@
+.pomoLomo{
+    display:flex;
+    justify-content: center;
+}
+#pomo{
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border:solid 1px red;
+    border-radius: 50%;
+}
+#fogliePomo{
+
+}
