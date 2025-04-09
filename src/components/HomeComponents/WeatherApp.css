@@ -1,0 +1,158 @@
+.weather-app {
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--border-radius-3);
+    background-image: linear-gradient(45deg, var(--midnight), var(--lightBlue));
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+
+
+.weather{
+    display: flex;
+    flex-direction: row;
+
+}
+.icon {
+    max-width: 90px;
+    max-height: 90px;
+    margin-bottom: 2vmin;
+}
+
+.degree{
+    color: white;
+    font-size: 4.5vmin;
+    font-weight: bold;
+    margin-right: 2vmin;
+}
+
+.weather-data{
+    display: flex;
+    flex-direction: column;
+}
+
+.weather-description{
+    margin: 0;
+    color: white;
+    font-size: 2.5vmin;
+    font-weight: bold;
+
+}
+
+
+
+.location{
+    margin: 0;
+    color: white;
+    font-size: 2vmin;
+    font-weight: bold;
+
+}
+
+.weahter-animation{
+    width: 80%;
+    height: 80%;
+
+}
+
+.weather-container{
+    width: 250px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.sun {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(to right, #fcbb04, #fffc00);
+    border-radius: 50%;
+    position: absolute;
+    display: inline-block;
+}
+
+.sun-glow{
+    animation: sunGlow 2s infinite;
+}
+
+.cloud{
+    width: 250px;
+}
+
+.cloud-front{
+    margin-left: 25px;
+    padding-top: 45px;
+    position: absolute;
+    z-index: 11;
+    animation: moveClouds 8s infinite ease-in-out ;
+}
+
+
+.cloud-back{
+    margin-left: 150px ;
+    margin-top: -30px;
+    z-index: 10;
+    animation: moveClouds 12s infinite ease-in-out;
+}
+
+.cloud-part{
+    background-color: #4c9beb;
+    display: inline-block;
+    z-index: 5;
+}
+
+.cloud-left-front{
+    width: 65px;
+    height: 65px;
+    border-radius: 50% 50% 0 50%;
+}
+
+.cloud-right-front{
+    width: 45px;
+    height: 45px;
+    margin-left: -25px;
+    border-radius: 50% 50% 50% 0; ;
+}
+
+.cloud-left-back{
+    width: 30px;
+    height: 30px;
+    border-radius: 50% 50% 0 50%;    
+}
+
+.cloud-right-back{
+    width: 50px;
+    height: 50px;
+    margin-left: -20px;
+    border-radius: 50% 50% 50% 0;
+}
+
+@keyframes sunGlow{
+    0%{
+        transform: scale(1);
+        opacity: 0.6 ;
+    }
+
+    100%{
+        transform: scale(1.4);
+        opacity: 0;
+    }
+}
+
+
+@keyframes moveClouds {
+    0%{
+        transform: translateX(15px);
+    }
+
+    50%{
+        transform: translateX(0);
+    }
+
+    100%{
+        transform: translateX(15px);
+    }
+}

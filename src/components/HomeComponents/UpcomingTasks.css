@@ -1,0 +1,16 @@
+.UpcomingTasks{
+    width: 100%;
+    
+
+}
+
+.DoThings{
+    font-weight: bold;
+    color: var(--midnight);
+}
+
+
+.tip{
+    color: var(--midnight);
+}
+

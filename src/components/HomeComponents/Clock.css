@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Jockey+One&display=swap');
+
+.clock-container {
+    height: 23vmin;
+}
+
+
+
+.current-time{
+    color: var(--midnight);
+    font-size: 12vmin;
+    font-weight: 500;
+}

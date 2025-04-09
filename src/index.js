@@ -10,6 +10,7 @@ import Notes from "./pages/Notes.jsx"
 import NoteItem from './pages/NoteItem.jsx';
 import Calendar from "./pages/Calendar.jsx"
 import Pomodoro from "./pages/Pomodoro.jsx"
+import SettingsPage from './pages/SettingsPage.js';
 
 import reportWebVitals from './reportWebVitals.js';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: "/Notes/:noteID",
     element: <NoteItem></NoteItem>
+  },
+  {
+    path: "/Settings",
+    element: <SettingsPage/>
   }
 ])
 

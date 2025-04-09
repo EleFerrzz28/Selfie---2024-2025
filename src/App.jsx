@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
 
-import logo from './logo.svg';
 import MainNavbar from './components/MainNavbar';
 import BottomNavbar from "./components/BottomNavbar";
+import Home from "./components/HomeComponents/Home";
 import useMediaQuery from './hooks/useMediaQuery';
 import './App.css';
 
@@ -25,14 +25,14 @@ function App() {
             <MainNavbar />
           </div>
           <div className="col col-lg-10 col-md-9">
-            <h1>This shall be the home page</h1>
+            <Home />
           </div>
         </div>
       </div>
     ) : (
       <div className="mobile-layout p-5">
         <BottomNavbar />
-        <h1>This shall be the home page</h1>
+        <Home />
       </div>
     )
   );
