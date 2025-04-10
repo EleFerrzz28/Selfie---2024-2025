@@ -14,16 +14,13 @@ function SpecificDayModal({months, years,goToSpecificDate}){
         setState(2);
     }
 
-
     function selectMonth(monthParam){
-        const monthNumber = DateTime.fromFormat(monthParam, "LLLL").month;
-        setSelectedMonth(monthNumber);
+        setSelectedMonth(monthParam);
         setState(3);
     }
    
     function DaysArray(){
         if (!selectedYear || !selectedMonth) return [];
-
 
         const firstDayOfMonth = DateTime.fromObject({year: selectedYear, month:selectedMonth}); //year-month-01
         const numberOfDays = firstDayOfMonth.daysInMonth; //numero di giorni in un mese
@@ -55,7 +52,7 @@ function SpecificDayModal({months, years,goToSpecificDate}){
                         <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
-                        <div className={`container ${state!==1 ? "d-none" : ""}`}>
+                        <div className={`date-container container ${state!==1 ? "d-none" : ""}`}>
                             {years.map((yearIt,yearIndex)=>(
                                 <div onClick={()=>selectYear(yearIt.year)} id="year-selection" key={yearIndex}>
                                     {yearIt.year}
@@ -63,9 +60,9 @@ function SpecificDayModal({months, years,goToSpecificDate}){
                             ))}
                         </div>
                         <div className={`${state!==2 ? "d-none" : ""}`}>
-                            <div className="container">
+                            <div className="date-container">
                                 {months.map((monthIt,monthIndex)=>(
-                                    <div onClick={() => selectMonth(monthIt)} id="month-selection" key={monthIndex}>
+                                    <div onClick={() => selectMonth(monthIndex+1)} id="month-selection" key={monthIndex}>
                                         {monthIt}
                                     </div>
                                 ))}
@@ -75,7 +72,7 @@ function SpecificDayModal({months, years,goToSpecificDate}){
                             </svg>
                         </div>
                         <div className={`${state!==3 ? "d-none" : ""}`}>
-                            <div className="container">
+                            <div className="date-container">
                                 {DaysArray().map((dayIt,dayIndex)=>(
                                     <div onClick={()=>handleDateSelection(dayIt)} data-bs-dismiss="modal" id="day-selection" key={dayIndex}>
                                         {dayIt}

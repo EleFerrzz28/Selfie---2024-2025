@@ -9,12 +9,12 @@ function Activity({activities}){
     const act= Object.values(activities);
     return(
         <>
-            <div id="actContainer" className='mt-3 me-5'>
-                <div className="card border-0">
-                    <div class="card-body">
+            <div id="actContainer d-flex align-items-end" className='mt-3'>
+                <div className="card bg-transparent border-0">
+                    <div className="card-body">
                         <div>
                             {DateTime.now().toLocaleString(DateTime.DATETIME_SHORT)}
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="var(--lightOrange)" className="bi bi-clock-fill ms-3" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="var(--lightBlue)" className="bi bi-clock-fill ms-3" viewBox="0 0 16 16">
                                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
                             </svg>
                         </div>

@@ -30,7 +30,7 @@ function App() {
         </div>
       </div>
     ) : (
-      <div className="mobile-layout p-5">
+      <div className="mobile-layout">
         <BottomNavbar />
         <Home />
       </div>

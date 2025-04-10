@@ -6,10 +6,10 @@ function PomodoroPage(){
     return(
         <>
             <PomodoroAnimation/>
-            <div class="card-body pomodoroCard d-flex align-items-center justify-content-around">
+            <div class="card-body pomodoroCard d-flex align-items-center justify-content-around flex-wrap">
                 <div>
                     <h5 class="card-title">Get ready to concentrate!</h5>
-                    <form class="mt-3">
+                    <form class="mt-3 mb-5">
                         <div>
                             <label className="mt-3">Period of productivity: (min)</label><br/>
                             <input className="border" type="number" name="prod" value="30"/>

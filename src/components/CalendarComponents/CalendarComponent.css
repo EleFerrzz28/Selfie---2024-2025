@@ -1,3 +1,7 @@
+.calendar{
+    background-color: white;
+}
+
 .day-with-events:after{
     content:"";
     width:1.5vmin;
@@ -5,14 +9,15 @@
     height:1.5vmin;
     border-radius: 50%;
     background-color: var(--marigold);
-    z-index:-1;
+    z-index:0;
 }
 
 .calendar-headline-button{
     cursor: pointer;
     padding:1vmin;
     border-top: solid 1px white;
-    border-bottom:solid 1px white
+    border-bottom:solid 1px white;
+    position:absolute;
 }
 
 .calendar-grid-cell {
@@ -23,6 +28,7 @@
     cursor: pointer;
     height:10vmin;
     width:8vmin;
+    z-index:0;
 }
 
 @media (min-width: 500px){/*pc*/
@@ -31,11 +37,28 @@
         height:1.5vmin;
         transform: translate(0,150%);
     }
+    .calendar-headline-month {
+        font-size: xx-large;
+    }
     .calendar-headline-control{
-        font-size:3vmin;
+        font-size:4vmin;
     }
     .calendar-headline-button{
         font-size:2vmin;
+    }
+    .fivePrev{
+        left:20vh;
+    }
+    .prev{
+        left: 25vh;
+    }
+    
+    .fiveNext{
+       right:20vh;
+    }
+    
+    .next{
+        right: 25vh;
     }
 }
 
@@ -60,12 +83,29 @@
     .dropdown-menu{
         font-size: small;
     }
+    .fivePrev{
+        left:15vh;
+    }
+    
+    .prev{
+        left: 18vh;
+    }
+    
+    .fiveNext{
+       right:15vh;
+    }
+    
+    .next{
+        right: 18vh;
+    }
 }
 
 .calendar-headline {
     display: flex;
-    justify-content:space-around;
+    justify-content:center;
+    align-items: center;
     color:white;
+    position:relative;
     background-color:var(--celeste);
     padding:3vmin 0 3vmin 0;
 }
@@ -76,6 +116,15 @@
 
 .calendar-headline-control{
     cursor: pointer;
+    position:absolute;
+}
+
+.specificDayButton{
+    left:2vh;
+}
+
+#todayButton{
+    right: 2vh;
 }
 
 .calendar-weeks-grid {

@@ -2,7 +2,7 @@ import "./PomodoroAnimation.css"
 function PomodoroAnimation(){
     return(
         //animazione sessione di studio
-        <div className="container d-flex align-items-center justify-content-center">
+        <div className="pomo-container d-flex align-items-center justify-content-center">
             <div className="pianta d-flex align-items-end justify-content-center">
                 <div id="gambo"></div>
                 <div className="foglia" id="foglia1"></div>

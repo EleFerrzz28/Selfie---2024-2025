@@ -2,7 +2,7 @@
     --green:rgb(91, 154, 91);
 }
 
-.container{
+.pomo-container{
     height:60vmin;
 }
 
@@ -27,7 +27,7 @@
     border-radius: 0 50% 0 0;
     z-index:-1;
 }
-#gambo{
+.animation, #gambo{
     height: 0;
     width:1vmin;
     background-color:var(--green);
@@ -45,7 +45,7 @@
     }
 }
 
-.foglia{
+.animation, .foglia{
     opacity:0;
     height:4vmin;
     background:linear-gradient(90deg, var(--green) 0%, rgb(17, 122, 17) 100%);
@@ -55,16 +55,16 @@
     z-index:-1;
 }
 
-#foglia1{
+.animation, #foglia1{
     transform: translate(43%,-470%);
 }
 
-#foglia2{
+.animation, #foglia2{
     transform: translate(-58%,-350%) rotateX(-180deg);
     background:linear-gradient(-90deg, var(--green) 0%, rgb(17, 122, 17) 100%);
 }
 
-#foglia3{
+.animation,#foglia3{
     transform: translate(59%,-200%);
 }
 
@@ -87,17 +87,17 @@
     border-radius: 50%;
 }
 
-#pomo1{
+.animation, #pomo1{
     transform: translate(50%,-850%);
     animation: crescitaPomo1 2s ease-in-out 4s forwards;
 }
 
-#pomo2{
+.animation, #pomo2{
     transform: translate(-58%,-650%) rotateX(-180deg);
     animation: crescitaPomo2 2s ease-in-out 4s forwards;
 }
 
-#pomo3{
+.animation, #pomo3{
     transform: translate(59%,-350%);
     animation: crescitaPomo3 2s ease-in-out 4s forwards;
 }
@@ -161,7 +161,7 @@
     }
 }
 
-#bigPomo{
+.animation,#bigPomo{
     opacity:0;
     background-color: red;
     transform: translate(57%,-200%);
@@ -170,7 +170,7 @@
     animation: crescitaBigPomo 1s ease-in-out 6s forwards;
 }
 
-#fogliaBigPomo{
+.animation,#fogliaBigPomo{
     opacity:0;
     background:linear-gradient(90deg, var(--green) 0%, green 100%);
     height:8vmin;

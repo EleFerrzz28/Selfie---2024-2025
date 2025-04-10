@@ -7,40 +7,43 @@ function EventForm(){
     const today=DateTime.local().toLocaleString(DateTime.DATE_SHORT)
     
     return(
-        <form id="modal-form" method="get" className='was-validated'>
+        <form id="modal-form" method="get" className='was-validated '>
+            <div class="mb-3">
+                <label htmlFor="exampleFormControlInput1" className="form-label">Title:</label>
+                <input type="text" className="form-control" id="exampleFormControlInput1" name="title" placeholder="Business meeting" required/>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                <textarea className="form-control" id="exampleFormControlTextarea1" rows="2" name='description'></textarea>
+            </div>
+            <div class="mb-3">
+                <label htmlFor="exampleFormControlInput1" className="form-label">Time:</label>
+                <input type="time" className="form-control" id="exampleFormControlInput1" name="time" required/>
+            </div>
+            <div class="mb-3">
+                <label htmlFor="exampleFormControlInput1" className="form-label">Day:</label>
+                <input type="date" className="form-control" id="exampleFormControlInput1" name="day" required/>
+            </div>
+            <div class="mb-3">
+                <label htmlFor="exampleFormControlInput1" className="form-label">Location:</label>
+                <input type="text" className="form-control" id="exampleFormControlInput1" name="title" placeholder="Home"/>
+            </div>
             <div>
-                <label>Title: </label><br/>
-                <input className="input rounded" type="text" name="title" placeholder="Business meeting" required/>
-                <div className="valid-feedback text-light">Thank you!</div>
-                <div className="invalid-feedback text-light">This field is required.</div>
-            </div>
-            <div className="mt-2">
-                <label>Description: </label><br/>
-                <textarea className="input rounded" type="text" name="description"></textarea>
-            </div>
-            <div className="mt-2">
-                <label>Time: </label><br/>
-                <input className="input rounded" type="time" name="time" required/>
-            </div>
-            <div className="mt-2">
-                <label>Day:</label><br/>
-                <input className="input rounded" type="date" min={today} name="day" required/>
-            </div>
-            <div className="mt-2">
-                <label>Location: </label><br/>
-                <input className="input rounded" type="text" name="loc"/>
-            </div>
-            <div className="mt-2">
-                <label htmlFor="cat">Category: </label><br/>
-                <select className="input rounded" name="cat">
-                    <option value="">--select one--</option>
-                    <option value="lunch">Lunch</option>
-                    <option value="dinner">Dinner</option>
-                    <option value="work">Work</option>
-                    <option value="ed">Education</option>
-                </select>
-                <p className="mt-2">Want to add a new category?</p>
-                <input className="input rounded"/>
+                <div className='mb-3'>
+                    <label htmlFor="exampleDataList" className="form-label">Category:</label>
+                    <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search..."/>
+                    <datalist id="datalistOptions">
+                        <option value="Lunch"/>
+                        <option value="Dinner"/>
+                        <option value="Work"/>
+                        <option value="Education"/>
+                        <option value="Chicago"/>
+                    </datalist>
+                </div>
+                <div class="mb-3">
+                <label htmlFor="exampleFormControlInput1" className="form-label">Want to add a new category?</label>
+                <input type="text" className="form-control input rounded" id="exampleFormControlInput1" name="title" placeholder="Business meeting"/>
+                </div>
             </div>
         </form>
     );
