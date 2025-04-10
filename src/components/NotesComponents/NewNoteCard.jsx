@@ -1,8 +1,13 @@
 import "./NewNoteCard.css"
-import TestualInput from "../components/TestualInput.jsx"
-import { useState } from "react"
+import TestualInput from "./TestualInput.jsx"
+import useMediaQuery from "../../hooks/useMediaQuery.jsx"
+import { useState, useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { add } from "../../redux/notes/notesSlice.js"
 
-function NewNoteCard({ addNote }) {
+function NewNoteCard() {
+    const dispatch = useDispatch();
+
     const [formData, setFormData] = useState({
         title: "",
         desc: "",
@@ -24,16 +29,27 @@ function NewNoteCard({ addNote }) {
             title: formData.title,
             desc: formData.desc,
             tags: formData.tags.split(",").map(tag => tag.trim()),
-            date: new Date().toLocaleDateString()
+            date: new Date().toISOString().split('T')[0]
         };
-        addNote(newNote);
+        dispatch(add(newNote));
         setFormData({ title: "", desc: "", tags: "" })
     }
 
+    const [isReady, setIsReady] = useState(false);
+    const isDesktop = useMediaQuery("(min-width: 960px)");
+
+    useEffect(() => {
+        // Quando il componente è montato, impostiamo isReady a true
+        setIsReady(true);
+    }, []);
+
+    // Evitiamo il rendering finché isReady non è true
+    if (!isReady) return null;
+
     return (
-        <div className="container-Note m-0">
+        <div className="shadow container-Note">
             <div className="card m-0 mt-2">
-                <div className="cardHeading d-flex justify-content-between align-items-center p-1" style={{ borderBottom: "solid 1px rgb(192, 192, 192)" }}>
+                <div className="cardHeading d-flex justify-content-between align-items-center pt-1 pb-1" style={{ borderBottom: "solid 1px rgb(192, 192, 192)" }}>
                     <h5 className="card-title px-3 pt-2 pb-1 mb-0"><strong>New Rapid Note</strong></h5>
                     <div className="d-flex fullNote rounded">
                         <button type="button" className="btn p-2 m-1 pb-1 ms-0"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-file-earmark-plus-fill" viewBox="-1 0 16 20">
@@ -60,12 +76,12 @@ function NewNoteCard({ addNote }) {
                     <div className="mb-3">
                         <label htmlFor="desc" className="form-label">Your Note</label>
                         <textarea
-                            style = {{resize: "none"}}
+                            style={!isDesktop ? { minHeight: "80px", maxHeight: "200px", overflowY: "auto", resize: "none" } : {resize: "none"}}
                             placeholder="Add Note..."
                             className="form-control"
                             id="desc"
+                            rows = {isDesktop ? "9" : undefined}
                             name="desc"
-                            rows="9"
                             value={formData.desc}
                             onChange={handleInputChange}
                         ></textarea>

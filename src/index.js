@@ -7,12 +7,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App.jsx';
 import Notes from "./pages/Notes.jsx"
+import NoteItem from './pages/NoteItem.jsx';
 import Calendar from "./pages/Calendar.jsx"
 import Pomodoro from "./pages/Pomodoro.jsx"
+import SettingsPage from './pages/SettingsPage.js';
 
 import reportWebVitals from './reportWebVitals.js';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import store from "./redux/store";
+import store from './redux/store.js';
 import {Provider} from "react-redux";
 
 const router = createBrowserRouter([
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
   {
     path: "/Notes",
     element: <Notes></Notes>
+  },
+  {
+    path: "/Notes/:noteID",
+    element: <NoteItem></NoteItem>
+  },
+  {
+    path: "/Settings",
+    element: <SettingsPage/>
   }
 ])
 

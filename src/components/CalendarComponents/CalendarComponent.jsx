@@ -6,6 +6,7 @@ import SpecificDayModal from "./SpecificDayModal"
 
 function CalendarComponent({events}){
     const [slide, setSlide]=useState(0);
+    const totalDays=42;
 
     Settings.defaultLocale="en"
     const today=DateTime.local()
@@ -19,10 +20,22 @@ function CalendarComponent({events}){
     
     const weekDays=Info.weekdays("short")//array contenente i giorni della settimana
     
-    const daysOfMonth=Interval.fromDateTimes(
+    let daysOfMonth=Interval.fromDateTimes(
         firstDayOfActiveMonth.startOf('week'),
         firstDayOfActiveMonth.endOf('month').endOf("week")
     ).splitBy({day:1}).map((day)=>day.start)//array che inizia con la settimana contenente il primo giorno del mese e finisce con la settimana contenente l'ultimo giorno
+
+    if(daysOfMonth.length<totalDays){
+        const plusDays=totalDays-daysOfMonth.length
+        let lastDayOfMonth=daysOfMonth[daysOfMonth.length-1];
+
+        let additionalDays=Interval.fromDateTimes(
+            lastDayOfMonth, 
+            lastDayOfMonth.plus({day:plusDays})
+        ).splitBy({day:1}).map((day)=>day.start)
+
+        daysOfMonth=[...daysOfMonth, ...additionalDays]
+    }
 
     const daysWithEvents = Object.keys(events).map((date) => DateTime.fromISO(date).toISODate())
 
@@ -61,7 +74,7 @@ function CalendarComponent({events}){
     console.log(slide);
     return(
         <>
-            <div className="calendar-container" >
+            <div className="calendar-container">
                 <div className="calendar border rounded">
                     <div className="calendar-headline rounded-top">
                         <div className="shadow-lg calendar-headline-button specificDayButton text-center" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Select a <br/>specific date</div>

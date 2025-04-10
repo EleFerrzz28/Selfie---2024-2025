@@ -1,0 +1,99 @@
+.calendar-card{
+    width: 100%;
+    transition: all 300ms ease;
+}
+
+
+
+.heading{
+    display: flex;
+    column-gap: 2vmin;
+    align-items: center;
+    justify-content: start;
+    text-align: center;
+    color: var(--midnight);
+   
+}
+
+
+.button-ahead{
+    width: 3.5vmin;
+    height: 2.5vmin;
+    border: none;
+    background-color: transparent;
+}
+
+.button-back{
+    width: 3.5vmin;
+    height: 2.5vmin;
+    border: none;
+    background-color: transparent;
+}
+
+.structure{
+    display: flex;
+    flex-direction: column;
+}
+
+.interval{
+    font-weight: bold;
+}
+.day{
+    color: var(--color-dark);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: calc(100% / 7);
+    font-size: clamp(1.5vmin, .5cqi, 1.3vmin );
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: .1vmin;
+
+}
+
+.week-days{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 2vmin 0;
+}
+
+
+.days-box{
+    background-color: var(--white);
+    color: var(--color-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% / 7);
+    height: 5vmin;
+    border: solid gainsboro 1px;
+    
+    
+}
+
+.current-day{
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% / 7);
+    height: 5vmin;
+    border: solid gainsboro 1px;
+    background-color: var(--lightOrange);
+}
+
+.days-container{
+    display: flex;
+    flex-wrap: wrap;    
+}
+
+.button-ahead{
+    border-radius: 1vmin;
+}
+
+
+
+.button-back{
+    border-radius: 1vmin;
+}

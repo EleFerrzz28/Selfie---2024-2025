@@ -1,9 +1,13 @@
 #actContainer{
     font-size:3vmin;
+    border-left: solid 1px var(--lightBlue);
+    min-height:60vh;
+    max-height: 70vh;
 }
 #changeSlideButtonsAct{
     display: flex;
     justify-content: center;
     gap:2vmin;
     margin:2vmin;
+    align-items: flex-end;
 }

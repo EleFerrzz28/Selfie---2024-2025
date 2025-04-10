@@ -1,0 +1,10 @@
+.title{
+    color:var(--sageGreen);
+}
+.pomodoroCard button{
+    background-color:var(--sageGreen) ;
+    color:var(--lionsmane);
+}
+.pomodoroCard .card-title{
+    color:var(--sageGreen);
+}

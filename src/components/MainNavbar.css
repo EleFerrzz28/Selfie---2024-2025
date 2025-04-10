@@ -27,16 +27,6 @@
 #sidebar ul {
     list-style: none;
 }
-
-.nav-link.active {
-    color: var(--midnight);
-    font-weight: bolder;
-}
-
-.nav-link.active svg {
-    fill: var(--midnight);
-}
-
 #sidebar .nav-link,
 #sidebar .logo {
     transition: 0.4s;
@@ -55,22 +45,6 @@
     width: 100%;
     position: absolute;
     top: 0;
-}
-
-#toggle-btn {
-    border: none;
-    outline: none;
-    transition: 0.4s;
-    height: 3vmin;
-    background-color: var(--lionsmane);
-    position: relative;
-    margin-left: auto;
-    transform-origin: center;
-    display: none;
-
-    svg {
-        fill: var(--midnight);
-    }
 }
 
 #sidebar svg {
@@ -99,41 +73,22 @@
     }
 }
 
-.nav-link.active:hover {
+#sidebar .active {
+    color: var(--midnight);
+    font-weight: bolder;
+}
+
+.nav-link.active svg {
+    fill: var(--midnight);
+}
+
+#sidebar .active:hover {
     background-color: var(--lightBlue);
-    color: white;
+    color: var(--darkblue);
     svg{
-        fill:white;
+        fill: var(--darkblue);
     }
 }
 
-/* 
-#sidebar.close {
-    width: 10vmin;
-    white-space: nowrap;
-    overflow: visible;
-}
 
-#sidebar.close>ul {
-    margin: 0;
-    padding: 0;
-}
 
-#sidebar.close a span {
-    display: none;
-}
-
-#sidebar.close a {
-    display: flex;
-    justify-content: center;
-}
-
-#sidebar.close a svg {
-    margin: auto;
-    display: block;
-}
-
-#sidebar.close button {
-    display: block;
-    margin-left: 0;
-} */

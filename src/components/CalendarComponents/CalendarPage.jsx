@@ -3,6 +3,7 @@ import EventForm from "./EventForm"
 import './CalendarPage.css'
 import Activity from './Activity'
 import {useState} from 'react';
+import useLocalStorage from 'use-local-storage';
 
 function CalendarPage(){
     const [click, clicked]=useState(false);

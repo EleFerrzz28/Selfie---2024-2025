@@ -1,0 +1,43 @@
+.pomodoro {
+    width: 100%;
+    height: 90%;
+    background-color: var(--white);
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 2rem 3rem 2rem var(--color-light);
+    transition: all 300ms ease;
+    overflow: hidden;
+}
+
+
+.pomodoro:hover {
+    box-shadow: none;
+}
+
+.tomato{
+    margin-right: 2vmin ;
+    height: 18vmin;
+    width: 18vmin;
+}
+
+.icon img {
+    height: 18vmin;
+    width: 18vmin;
+}
+
+.task{
+    display: flex;
+}
+
+.task p{
+    margin: 1vmin;
+}
+
+.job{
+    font-size: 1.8vmin;
+    font-weight: bold;
+    background-color: transparent;
+}
+
+.data{
+    font-size: 1.7vmin;
+}

@@ -54,4 +54,7 @@
     background-color: var(--lightBlue);
     text-decoration: none;
 }
+#editNote{
+    color: black;
+}
 

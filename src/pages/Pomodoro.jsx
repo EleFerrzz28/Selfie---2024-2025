@@ -1,7 +1,7 @@
 import MainNavbar from '../components/MainNavbar';
 import BottomNavbar from "../components/BottomNavbar";
 import useMediaQuery from '../hooks/useMediaQuery';
-import PomodoroPage from '../components/PomodoroPage';
+import PomodoroPage from '../components/CalendarComponents/PomodoroPage';
 
 /* NOTA: la struttura per la renderizzazione è questa, cioè, per usare due navbar differenti
 è obbligatorio importare l'hook useMediaQuery e poi fare rendering condizionale; la

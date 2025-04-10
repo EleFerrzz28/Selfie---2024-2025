@@ -2,25 +2,8 @@
     height: 87vh;
     overflow: auto;
 }
-/* width */
-::-webkit-scrollbar {
-    width: 2vmin;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    background: whitesmoke;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: var(--lightBlue);
-    border-radius: 1vmin;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: var(--midnight);
+.noteListContainer{
+    min-width: 320px;
 }
 
 #searchButton, .orderButton{

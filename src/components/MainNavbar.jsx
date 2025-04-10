@@ -8,12 +8,6 @@ function MainNavbar() {
             <ul>
                 <li className="mb-5 pt-2 d-flex justify-content-end">
                     <span className="logo pt-4 ps-2" style={{display: "block"}}>SELFIE</span>
-                    <button id="toggle-btn" className="me-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fillRule="currentColor" className="bi bi-chevron-double-right" viewBox="0 0 16 16">
-                            <path fillRule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708" />
-                            <path fillRule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708" />
-                        </svg>
-                    </button>
                 </li>
                 <li>
                     <NavLink
