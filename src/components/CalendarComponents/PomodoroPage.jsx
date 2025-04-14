@@ -1,22 +1,25 @@
 import PomodoroAnimation from "./PomodoroAnimation"
 import "./PomodoroPage.css"
-import {startTimer, stopTimer, resetTimer} from './pomodoroTimer.js';
+import {startTimer, stopTimer, resetTimer, setTimer} from './pomodoroTimer.js';
 
 function PomodoroPage(){
     return(
         <>
             <PomodoroAnimation/>
-            <div class="card-body pomodoroCard d-flex align-items-center justify-content-around flex-wrap">
+            <div className="card-body pomodoroCard d-flex align-items-center justify-content-around flex-wrap">
                 <div>
-                    <h5 class="card-title">Get ready to concentrate!</h5>
-                    <form class="mt-3 mb-5">
+                    <h5 className="card-title">Get ready to concentrate!</h5>
+                    <form className="mt-3 mb-5">
                         <div>
                             <label className="mt-3">Period of productivity: (min)</label><br/>
-                            <input className="border" type="number" name="prod" value="30"/>
+                            <input id="input-prod" className="border p-2" type="number" name="prod" placeholder="30"/>
                         </div>
                         <div>
                             <label className="mt-3">Break: (min)</label><br/>
-                            <input className="border" type="number" name="break" value="5"/>
+                            <input id="input-break" className="border p-2" type="number" name="break" placeholder="5"/>
+                        </div>
+                        <div>
+                            <button className="button rounded border-0 p-3 mt-3" onClick={(e)=>{e.preventDefault();setTimer()}}>Change settings</button>
                         </div>
                     </form>
                 </div>
@@ -24,7 +27,7 @@ function PomodoroPage(){
                     <mark className="title p-3 m-3 fs-3 rounded">Timer Pomodoro</mark>
                     <div className="fs-2 mt-3 mb-3 text-center" id="timerDisplay">30:00</div>
                     <div className="buttons mt-3 d-flex justify-content-around">
-                        <button id="startBtn" className="button rounded border-0 p-3 m-1" onClick={startTimer}>START</button>
+                        <button id="startBtn" className="button rounded border-0 p-3 m-1" onClick={(e) => startTimer(e.currentTarget)}>START</button>
                         <button id="resetBtn" className="button rounded border-0 p-3 m-1" onClick={resetTimer}>RESET</button>
                         <button id="stopBtn" className="button rounded border-0 p-3 m-1" onClick={stopTimer}>STOP</button>
                     </div>

@@ -3,6 +3,7 @@ import {Info,DateTime,Interval,Settings} from "luxon"
 import {useState} from 'react'
 import classnames from "classnames"
 import SpecificDayModal from "./SpecificDayModal"
+import MonthSelection from './MonthSelection'
 
 function CalendarComponent({events}){
     const [slide, setSlide]=useState(0);
@@ -64,23 +65,33 @@ function CalendarComponent({events}){
         
     }
     //intervallo di 10 anni 
+    const [currentYear, setCurrentYear] = useState(firstDayOfActiveMonth.year); 
+
     const years=Interval.fromDateTimes(
-        DateTime.local(today.year-4),
-        DateTime.local(today.year+6)
+    DateTime.local(currentYear-4),
+    DateTime.local(currentYear+6)
     ).splitBy({year:1}).map((year)=>year.start)
 
     //array mesi
     const months=Info.months();
-    console.log(slide);
+
+    const selectSpecificMonth=(month)=>{
+        const specificMonth=DateTime.fromObject({year:today.year,month:month,day:1});
+        if(specificMonth){
+            setFirstDayOfActiveMonth(specificMonth.startOf("month"));
+            setActiveDay(specificMonth);
+        }
+    }
+    
     return(
         <>
             <div className="calendar-container">
-                <div className="calendar border rounded">
+                <div className="calendar rounded">
                     <div className="calendar-headline rounded-top">
                         <div className="shadow-lg calendar-headline-button specificDayButton text-center" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Select a <br/>specific date</div>
                         <div className="calendar-headline-control fivePrev" onClick={()=>fivePrevMonth()}>&#x27EA;</div>
                         <div className="calendar-headline-control prev" onClick={()=>goToPrevMonth()}>&#x27E8;</div>
-                        <div className="calendar-headline-month text-center h4">
+                        <div data-bs-toggle="modal" data-bs-target="#staticBackdropMonths" className="calendar-headline-month text-center h4">
                             {firstDayOfActiveMonth.monthLong} {firstDayOfActiveMonth.year}
                         </div>
                         <div className="calendar-headline-control next" onClick={()=>goToNextMonth()}>&#x27E9;</div>
@@ -137,7 +148,8 @@ function CalendarComponent({events}){
                     </div>
                 </div>
 
-                <SpecificDayModal months={months} years={years} goToSpecificDate={goToSpecificDate}></SpecificDayModal>
+                <MonthSelection months={months} selectSpecificMonth={selectSpecificMonth}></MonthSelection>
+                <SpecificDayModal months={months} years={years} currentYear={currentYear} setCurrentYear={setCurrentYear} goToSpecificDate={goToSpecificDate}></SpecificDayModal>
 
             </div>
         </>

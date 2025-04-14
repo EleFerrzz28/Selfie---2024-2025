@@ -30,7 +30,7 @@ function Calendar() {
           </div>
         </div>
       ) : (
-        <div className="mobile-layout pt-5 pb-5 m-3">
+        <div className="mobile-layout mt-5 mb-5">
           <BottomNavbar />
           <CalendarPage></CalendarPage>
         </div>

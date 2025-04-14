@@ -20,6 +20,10 @@
     position:absolute;
 }
 
+.calendar-headline-month:hover{
+    text-decoration: underline;
+}
+
 .calendar-grid-cell {
     padding: 2vmin 5vmin 3vmin 5vmin;
     display: flex;

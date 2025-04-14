@@ -31,14 +31,13 @@ function EventForm(){
             <div>
                 <div className='mb-3'>
                     <label htmlFor="exampleDataList" className="form-label">Category:</label>
-                    <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search..."/>
-                    <datalist id="datalistOptions">
-                        <option value="Lunch"/>
-                        <option value="Dinner"/>
-                        <option value="Work"/>
-                        <option value="Education"/>
-                        <option value="Chicago"/>
-                    </datalist>
+                    <select class="form-control" id="select">
+                        <option value="">Type to search...</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Dinner">Dinner</option>
+                        <option value="Work">Work</option>
+                        <option value="Education">Education</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                 <label htmlFor="exampleFormControlInput1" className="form-label">Want to add a new category?</label>
