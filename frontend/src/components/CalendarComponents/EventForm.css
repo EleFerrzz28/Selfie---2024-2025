@@ -1,0 +1,22 @@
+input:hover,select:hover, textarea:hover{
+    cursor:pointer;
+}
+.ActForm {
+  transform: translateX(-20px);
+  transition: transform 0.4s ease;
+  height: 0;
+  overflow: hidden;
+}
+
+.EventForm {
+  transform: translateX(20px);
+  transition: transform 0.4s ease;
+  height: 0;
+  overflow: hidden;
+}
+
+.form-slide.show {
+  transform: translateX(0);
+  pointer-events: auto;
+  height: auto;
+}

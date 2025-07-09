@@ -1,0 +1,60 @@
+import { apiSlice } from "../features/apiSlice";
+
+const NOTES_URL = '/api/notes';
+
+export const notesApiSlice = apiSlice.injectEndpoints({
+    endpoints: (builder) => ({
+        createNote: builder.mutation({
+            query: (newNote) => ({
+                url: `${NOTES_URL}/add-note`,
+                method: 'POST',
+                body: newNote,
+            }),
+            transformResponse: (response) => response.note,
+            invalidatesTags: ['Note'],
+        }),
+
+        editNote: builder.mutation({
+            query: ({ noteId, title, desc, tags }) => ({
+                url: `${NOTES_URL}/edit-note/${noteId}`,
+                method: 'PUT',
+                body: { title, desc, tags },
+            }),
+
+            invalidatesTags: ['Note'],
+        }),
+
+        getAllNotes: builder.query({
+            query: () => ({
+                url: `${NOTES_URL}/get-all-notes`,
+                method: 'GET',
+            }),
+            providesTags: ['Note'],
+        }),
+
+        deleteNote: builder.mutation({
+            query: (noteId) => ({
+                url: `${NOTES_URL}/delete-note/${noteId}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: ['Note'],
+        }),
+
+        copyNote: builder.mutation({
+            query: (noteId) => ({
+                url: `${NOTES_URL}/copy-note/${noteId}`,
+                method: 'POST',
+            }),
+            transformResponse: (response) => response.note,
+            invalidatesTags: ['Note'],
+        }),
+    }),
+});
+
+export const {
+    useCreateNoteMutation,
+    useEditNoteMutation,
+    useGetAllNotesQuery,
+    useDeleteNoteMutation,
+    useCopyNoteMutation
+} = notesApiSlice;

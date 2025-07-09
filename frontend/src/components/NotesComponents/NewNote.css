@@ -1,0 +1,30 @@
+.fullNoteCard input:focus, .fullNoteCard textarea:focus{
+    border-color: #e1e4de;
+    box-shadow: none;
+}
+
+.fullNoteCard textarea, .fullNoteCard input{
+    border-color: #e1e4de;
+}
+.saveNote{
+    background-color: var(--lightBlue);
+    transition: 0.4s;
+    font-weight: bold;
+}
+
+.saveNote:hover{
+    background-color: var(--midnight);
+    color: var(--lightBlue);
+    font-weight: bold;
+}
+
+#closeNote{
+    background-color: white;
+}
+#closeNote > svg{
+    width: 5vmin;
+}
+
+#closeNote span {
+    display: none;
+}

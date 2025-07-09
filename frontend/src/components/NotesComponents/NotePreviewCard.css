@@ -1,0 +1,116 @@
+.previewNota{
+    width: 60vmin;
+    max-width: 360px;
+    height: 45vmin;
+    max-height: 300px;
+}
+.previewNota p::selection{
+    background-color: var(--sageGreen);
+}
+.cardHeadingPreview{
+    position: relative;
+}
+
+.cardHeadingPreview > h5, .noteStuff {
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;  
+    font-optical-sizing: auto;
+}
+
+.tagStyle{
+    background-color: var(--panna);
+    width: auto;
+    cursor:pointer;
+    transition: 0.3s;
+}
+.tagStyle:hover{
+    background-color: var(--marigold);
+    color: var(--panna) !important;
+}
+#noteMenu{
+    width: 4vmin;
+    max-width: 30px;
+    height: auto;
+    transition: 0.4s;
+}
+#noteMenu:hover{
+    color: var(--darkblue);
+}
+.cardHeadingPreview button{
+    border-radius: 30vmin;
+    transition: 0.4s;
+}
+.cardHeadingPreview button:hover{
+    border-radius: 30vmin;
+    border: solid 1px var(--darkblue);
+}
+
+#noteOption{
+    height: auto;
+    width: 45vmin;
+    max-width: 300px;
+    min-width: 150px;
+    transition: 0.4s;
+    position: absolute;
+    right: 0;
+    top: 100%; 
+    z-index: 10; 
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;  
+    font-optical-sizing: auto;
+}
+#noteOption div{
+    transition: 0.4s;
+    color: black;
+}
+#noteOption div:hover{
+    background-color: var(--lightBlue);
+    text-decoration: none;
+}
+#editNote{
+    color: black;
+}
+
+#textpreview {
+    overflow: auto;
+    height: 30vmin; 
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7); 
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glass-card:hover {
+  transform: scale(1.02);
+}
+
+
+@media screen and (max-width: 960px) {
+    .previewNota{
+        width: 100vmin;
+    }
+    #noteOption{
+        width: 50%;
+        padding: 0px 0px 0px 0px;
+    }
+    #noteMenu{
+        width: 5vmin;
+    }
+    .cardHeadingPreview button{
+        width: 8vmin;
+        height: 8vmin;
+        border-radius: 4vmin;
+        transition: 0.4s;
+    }   
+    .cardHeadingPreview button:hover{
+        border-radius: 4vmin;
+        border: solid 0px var(--darkblue); 
+    }   
+}
+

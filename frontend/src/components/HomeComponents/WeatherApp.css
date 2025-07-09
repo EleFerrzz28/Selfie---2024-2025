@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap');
+
+.weather-app {
+    width: 100%;
+    height: 30vh;
+    /*background-image: linear-gradient(45deg, var(--lightBlue), var(--midnight));
+    box-shadow: var(--box-shadow);
+    */
+    transition: all 300ms ease;
+}
+
+.current-day {
+    width: fit-content;
+    height: fit-content;
+    background-color: white;
+}
+
+.day-date p {
+    font-size: 1.5vh;
+    color: var(--color-info-dark);
+}
+
+.day-number h6 {
+    font-weight: bold;
+    font-size: 4vh;
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+
+}
+
+#hi {
+    color: white;
+    font-weight: bold;
+    font-size: 3vh;
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+    margin-bottom: 0;
+}
+
+#hi-user {
+    color: white;
+    font-weight: bold;
+    font-size: 3vh;
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+
+}
+
+.degree {
+    font-size: 9vh;
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+}
+
+
+.weather-description {
+    font-size: 3vh;
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+
+}
+
+.weather-info p {
+    color: white;
+}
+
+.location h6 {
+    font-size: 1.8vh;
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: white;
+}
+
+.location svg {
+    fill: white;
+    width: 2vh;
+    height: 2vh;
+    min-width: 12px;
+    min-height: 12px;
+    transition: 0.4s;
+
+}
+
+/*
+@media (min-width: 768px) {
+    p {
+      font-size: 1.1rem;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    p {
+      font-size: 1.25rem;
+    }
+  }
+
+  */

@@ -1,0 +1,19 @@
+#dismissChanges{
+    background-color: var(--lightBlue);
+    color: var(--midnight);
+    transition: 0.4s;
+}
+#dismissChanges:hover{
+    background-color: var(--midnight);
+    color: var(--lightBlue);
+}
+
+#saveChanges{
+    background-color: var(--sageGreen);
+    color: white;
+    transition: 0.4s;
+}
+#saveChanges:hover{
+    background-color: var(--herb);
+    color: var(--lionsmane);
+}

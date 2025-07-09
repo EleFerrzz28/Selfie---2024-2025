@@ -1,0 +1,120 @@
+.actContainer{
+    font-size:2vmin;
+}
+
+.actContainer .card-title{
+    font-size:2.4vmin;
+    color: var(--sageGreen)
+}
+
+.actContainer .act-title{
+    font-size:2.5vmin;
+}
+
+.slider-activity{
+    background-color: rgba(255, 255, 255, 0.485);
+    min-width: 27vh;
+    height: 50vh;
+    transition: all 0.3s ease;
+    overflow-y:auto;
+}
+
+.not-main-slider{
+    opacity:0.4;
+}
+
+.main-slider{
+    transition: all 0.3s ease;
+}
+
+#changeSlideButtonsAct{
+    display: flex;
+    justify-content: center;
+    gap:2vmin;
+    margin:2vmin;
+    align-items: flex-end;
+}
+  
+.slider-activity-container {
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+
+@media (max-width:500px){
+    .actContainer .card-title{
+        font-size:3vmin;
+    }
+    .actContainer .act-title{
+        font-size:3.5vmin;
+    }
+}
+
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.checkbox-container input{
+    position:absolute;
+    cursor:pointer;
+    opacity:0;
+    right: 0;
+    height: 25px;
+    width: 25px;
+    z-index:1;
+}
+
+.checkmark {
+  position: absolute;
+  right: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #e3e3e3;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+  background-color: #dddddd;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: var(--sageGreen);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-container .checkmark:after {
+  left: 10px;
+  top: 7px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+.button-modDel-act:hover, .button-modMod-act:hover{
+    transform: scale(1.2);
+}
+
+.button-modDel-act, .button-modMod-act{
+    transition: transform 0.2s ease;
+}

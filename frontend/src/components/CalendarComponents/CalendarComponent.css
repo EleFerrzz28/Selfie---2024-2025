@@ -1,0 +1,241 @@
+.category-none::after, .category-work::after, .category-lunch::after, .category-dinner::after, .category-education::after{
+    content:attr(data-title);
+    font-size: 1vmin;
+    width:10vmin;
+    position:absolute;
+    height:1.5vmin;
+    text-align: center;
+    color:white;
+    background-color: var(--marigold);
+    z-index:0;
+    transform: translate(0,150%);
+    overflow: hidden;
+    padding-left: 0.5vmin;
+    padding-right: 0.5vmin;
+    white-space: nowrap;/*one line*/
+    text-overflow: ellipsis;/*Suspension dots at the end*/
+}
+
+.category-work::after{
+    background-color: var(--lightBlue);
+}
+
+.category-lunch::after{
+    background-color: rgb(101, 235, 219);
+}
+
+.category-dinner::after{
+    background-color: rgb(119, 222, 147);
+}
+
+.category-education::after{
+    background-color: rgb(236, 144, 236);
+}
+
+.calendar-headline-button{
+    cursor: pointer;
+    padding:1vmin;
+    border-top: solid 1px white;
+    border-bottom:solid 1px white;
+    position:absolute;
+    
+}
+
+.calendar-grid-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    height:12vmin;
+    width:100%;
+    z-index:0;
+    position: relative;
+}
+
+@media (min-width: 500px){/*pc*/
+    .calendar-headline-month {
+        font-size: xx-large;
+    }
+    .calendar-headline-control{
+        font-size:4vmin;
+    }
+    .calendar-headline-button{
+        font-size:2vmin;
+    }
+    .fivePrev{
+        left:20vh;
+    }
+    .prev{
+        left: 25vh;
+    }
+    
+    .fiveNext{
+       right:20vh;
+    }
+    
+    .next{
+        right: 25vh;
+    }
+    .event-card-width{
+        min-width: 20vw;
+    }
+}
+
+@media (max-width: 500px){/*telefono*/
+    .day-with-events:after{
+        width:1vmin;
+        height:1vmin;
+        transform: translate(0,190%);
+    }
+    .calendar-headline-control{
+        font-size:4vmin;
+    }
+    .calendar-grid-cell {
+        font-size:x-small;
+    }
+    .calendar-headline-button{
+        font-size:2vmin;
+    }
+    .calendar-headline-month{
+        font-size:medium;
+    }
+    .dropdown-menu{
+        font-size: small;
+    }
+    .fivePrev{
+        left:15vh;
+    }
+    
+    .prev{
+        left: 18vh;
+    }
+    
+    .fiveNext{
+       right:15vh;
+    }
+    
+    .next{
+        right: 18vh;
+    }
+
+    .event-card-width{
+        min-width: 30vw;
+    }
+}
+
+.calendar-headline {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-wrap: wrap;
+    color:white;
+    position:relative;
+    background-color:var(--sunrise);
+    padding:3vmin 0 3vmin 0;
+    will-change: transform;
+}
+
+.calendar{
+    vertical-align: middle;
+}
+
+.calendar-headline-control{
+    cursor: pointer;
+    position:absolute;
+}
+
+.calendar-headline-control:hover,.calendar-headline-month:hover{
+    transform: scale(1.05);
+}
+
+.specificDayButton{
+    left:2vh;
+}
+
+#todayButton{
+    right: 2vh;
+}
+
+.calendar-weeks-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    padding:3vmin 0vmin;
+    color:var(--sunrise);
+    border-bottom: solid 1px var(--sunrise);
+}
+  
+.calendar-weeks-grid-cell {
+    text-align: center;
+}
+
+.calendar-grid-cell-inactive {
+    color: #aaa;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+  
+.calendar-grid-cell::before{
+    content:"";
+    width:8vmin;
+    position:absolute;
+    height:8vmin;
+    border-radius: 20%;
+    background-color:#bdd3ce1b;
+    z-index:-1;
+}
+
+.calendar-grid-cell-active{
+    color:white;
+}
+
+.calendar-grid-cell-active::before{
+    width:8vmin;
+    height:8vmin;
+    content:"";
+    position:absolute;
+    border-radius: 20%;
+    background: var(--lightOrange);
+    z-index:-1;
+}
+
+.dropdown-menu{
+    padding: 2vmin;
+    background-color: white;
+    color:black;
+}
+
+#changeSlideButtons{
+    display: flex;
+    justify-content: center;
+    margin-top: 1vmin;
+}
+
+.event-title{
+    color:var(--darkblue);
+    background-color: var(--lightBlue);
+    padding:2px 7px;
+}
+
+.arrow-icon:hover{
+    transform:scale(1.2);
+}
+
+.arrow-icon {
+    transition: transform 0.2s ease;
+}
+ 
+.holiday::before{
+    content: "🎉";
+}
+
+.holidaysDay small, .holidaysDay p{
+    display: none;
+}
+
+.holidaysDay .event-title{
+    color:var(--marigold);
+    background-color: var(--lightOrange);
+}

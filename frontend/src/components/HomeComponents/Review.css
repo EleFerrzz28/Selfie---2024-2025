@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap');
+
+.review header {
+    text-align: start;
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;  
+    font-optical-sizing: auto;
+    font-size: 2.5vh;
+    color: white;
+    margin-bottom: 2vh;
+}
+
+.box-eventsDone {
+    height: 13vh;
+    width: 13vh;
+    margin-right: 0.5vh;
+    margin-bottom: 1vh;
+    border-radius: 1rem;
+    background-color: var(--sunrise);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+
+    /* Sfondo trasparente */
+    background-color: rgba(255, 255, 255, 0.2); 
+
+
+    /* Effetto blur */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* per Safari */
+}
+
+.box-eventsToDo {
+    height: 10vh;
+    width: 15vh;
+    margin-right: 0.5vh;
+    border-radius: 1rem;
+    background-color: var(--sunrise);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+
+
+    /* Sfondo trasparente */
+    background-color: rgba(255, 255, 255, 0.2); 
+
+
+    /* Effetto blur */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* per Safari */
+}
+
+
+.box-activityInProgress {
+    height: 10vh;
+    width: 15vh;
+    margin-left: 0.5vh;
+    border-radius: 1rem;
+    background-color: var(--sunrise);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+
+
+    /* Sfondo trasparente */
+    background-color: rgba(255, 255, 255, 0.2); 
+
+
+    /* Effetto blur */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* per Safari */
+}
+
+
+
+.box-activityScheduled {
+   height: 13vh;
+    width: 13vh;
+    margin-left: 0.5vh;
+        margin-top: 1vh;
+    border-radius: 1rem;
+    background-color: var(--sunrise);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+
+
+    /* Sfondo trasparente */
+    background-color: rgba(255, 255, 255, 0.2); 
+
+
+    /* Effetto blur */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* per Safari */
+}
+
+.review-number {
+    margin: 0;
+    font-size: 3vh;
+    font-weight: bold;
+    color: white;
+}
+
+.review-description {
+    margin: 0;
+    color: var(--color-info-light);
+    font-size: 2vh;
+}

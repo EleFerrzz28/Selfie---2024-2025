@@ -1,0 +1,5 @@
+#noteCardtext {
+    height: 50vmin;
+    overflow: auto;
+    padding: 0.5rem;
+}
