@@ -4,8 +4,7 @@ import { useDeleteNoteMutation, useCopyNoteMutation } from "../../redux/notes/no
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
-function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_date, openMenuId, setOpenMenuId, setEditingNoteId }) {
-    const [openModal, setOpenModal] = useState(false);
+function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_date, openMenuId, setOpenMenuId, setEditingNoteId, setPreviewNoteModal }) {
     const [deleteNote, { isLoading }] = useDeleteNoteMutation();
     const [copyNote, { isLoading2 }] = useCopyNoteMutation();
     const maxLength = 200;
@@ -45,20 +44,10 @@ function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_dat
         }
     }
     return (
-        <div className="card previewNota glass-card shadow rounded p-3 mb-3 d-flex flex-column" style={{ height: "100%", maxHeight: "300px" }} onClick={() => { setOpenMenuId(null); setOpenModal(true); }}>
-            <AnimatePresence>
-                {openModal && (
-                    <NoteCard
-                        setOpenModal={setOpenModal}
-                        id={id}
-                        title={title}
-                        desc={desc}
-                        tags={tags}
-                        creation_date={creation_date}
-                        last_update_date={last_update_date}
-                    />
-                )}
-            </AnimatePresence>
+        <div className="card previewNota glass-card shadow rounded p-3 mb-3 d-flex flex-column"
+            style={{ height: "100%", maxHeight: "300px" }}
+            onClick={() => { setOpenMenuId(null); setPreviewNoteModal(id) }}>
+            
             <div className="cardHeadingPreview d-flex justify-content-between align-items-center p-0 m-0 border-bottom">
                 <h5 className="card-title">{titleTruncated}</h5>
                 <div className="d-flex">

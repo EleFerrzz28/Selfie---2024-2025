@@ -1,5 +1,6 @@
 import "./NotesList.css";
 import NotePreviewCard from "./NotePreviewCard.jsx"
+import NoteCard from "./NoteCard.jsx";
 import NewNote from "./NewNote.jsx"
 import TagsModal from "./TagsModal.jsx";
 import { AnimatePresence } from "framer-motion";
@@ -16,6 +17,7 @@ function NotesList() {
 
     const [openMenuId, setOpenMenuId] = useState(null);
     const [openModal, setOpenModal] = useState(false);
+    const [previewNoteModal, setPreviewNoteModal] = useState(null);
     const [tagsSelected, setTagsSelected] = useState([]);
     const [isCreatingNote, setIsCreatingNote] = useState(false);
     const [editingNoteId, setEditingNoteId] = useState(null);
@@ -106,8 +108,19 @@ function NotesList() {
                                     openMenuId={openMenuId}
                                     setOpenMenuId={setOpenMenuId}
                                     setEditingNoteId={setEditingNoteId}
+                                    setPreviewNoteModal={setPreviewNoteModal}
                                 />
                             ))}
+                            <AnimatePresence>
+                                {previewNoteModal && (
+                                    <NoteCard
+                                        {...filteredNotes.find(note => note.id === previewNoteModal)}
+                                        setPreviewNoteModal={() => setPreviewNoteModal(null)
+                                        }
+                                    />
+                                )}
+                            </AnimatePresence>
+
                         </div>
                         <button type="button" onClick={() => setIsCreatingNote(true)} className="btn newNote">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-plus" viewBox="0 0 16 16">

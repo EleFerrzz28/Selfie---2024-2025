@@ -13,7 +13,6 @@ function TagsModal({ setOpenModal, tagsSelected, setTagsSelected }) {
     }
 
     useEffect(() => {
-        console.log("Tags selezionati aggiornati:", tagsSelected);
     }, [tagsSelected]);
 
     return (
