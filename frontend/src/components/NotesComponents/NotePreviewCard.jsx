@@ -1,5 +1,4 @@
 import "./NotePreviewCard.css";
-import NoteCard from "./NoteCard.jsx"
 import { useDeleteNoteMutation, useCopyNoteMutation } from "../../redux/notes/notesApiSlice";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
@@ -64,15 +63,15 @@ function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_dat
                 </div>
             </div>
             <div className="d-flex flex-column flex-grow-1 p-1 mt-1 noteStuff">
-                <div className="row pt-1" style={{ height: "10vmin", overflowY: "auto" }}>
+                <div className="row pt-1 mb-2" style={{ height: "10vmin", maxHeight: "40px", overflowY: "auto" }}>
                     {
                         tags.map((tag, index) => (
                             <h6 key={index} className="tagStyle card-subtitle rounded mb-2 ms-2 p-1 text-muted">{tag}</h6>
                         ))
                     }
                 </div>
-                <p id="textpreview" className="card-text h-100 w-100">{truncated}</p>
-                <div className="mt-auto">
+                <p id="textpreview" className="card-text">{truncated}</p>
+                <div className="mt-auto mb-2">
                     <h6 className="card-subtitle mb-2 text-muted">
                         Created on date: {formattedCreationDate}
                     </h6>

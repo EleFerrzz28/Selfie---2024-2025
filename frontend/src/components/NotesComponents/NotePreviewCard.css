@@ -1,8 +1,8 @@
 .previewNota{
     width: 60vmin;
-    max-width: 360px;
+    max-width: 400px;
     height: 45vmin;
-    max-height: 300px;
+    max-height: 375px;
 }
 .previewNota p::selection{
     background-color: var(--sageGreen);
@@ -20,7 +20,7 @@
 .tagStyle{
     background-color: var(--panna);
     width: auto;
-    cursor:pointer;
+    cursor: pointer;
     transition: 0.3s;
 }
 .tagStyle:hover{

@@ -36,8 +36,8 @@ function Notes() {
             ) : (
                 <div className="mobile-layout">
                     <BottomNavbar/>
-                    <div className="mobilerow row ps-1 pe-2">
-                        <div className="pe-2 col-12">
+                    <div className="mobilerow row">
+                        <div className="col-12">
                             <NotesList/>
                         </div>
                     </div>
