@@ -67,8 +67,21 @@ img {
     display: none;
     font-size: x-small;
     color: var(--midnight);
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;  
+    font-optical-sizing: auto;
+}
+
+.activeB{
+    background-color: rgb(230, 170, 149);
+    color: var(--darkPurple);
+    width: 20vmin;
+    height: 20vmin;
+    border-radius: 50%;
+    transition: 0.4s;
 }
 
 .activeB span{
     display: block;
+    padding-top: 5px;
 }

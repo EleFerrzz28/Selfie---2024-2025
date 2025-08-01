@@ -17,3 +17,9 @@
     background-color: var(--herb);
     color: var(--lionsmane);
 }
+
+.closeModal div {
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;  
+    font-optical-sizing: auto;
+}

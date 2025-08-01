@@ -32,9 +32,46 @@ function NotesList() {
             note.tags?.some(tag => tagsSelected.includes(tag))
         );
 
-
-    if (isLoading) return <p>Loading...</p>;
-    if (error) return <p>Error occurred</p>;
+    if (isLoading) return (
+        <div className="noteListContainer d-flex justify-content-center align-items-center" style={{
+            backgroundImage: 'linear-gradient(60deg, var(--sunrise), var(--darkPurple)',
+            transition: 'background-color 0.25s ease-in-out',
+            overflow: 'hidden'
+        }}>
+            <div class="card glass-card shadow border-0"
+                style={{
+                    width: "50vmin",
+                    height: "10vmin"
+                }}>
+                <div class="card-body d-flex justify-content-around mt-2 p-1">
+                    <div className="spinner-border" role="status" />
+                    <h5 className="card-title mt-1" style={{
+                        fontFamily: '"Cal Sans", sans-serif',
+                        fontStyle: "normal",
+                        fontOpticalSizing: "auto",
+                    }}>Your Notes Are Loading...</h5>
+                </div>
+            </div>
+        </div>);
+    if (error) return (<div className="noteListContainer d-flex justify-content-center align-items-center" style={{
+        backgroundImage: 'linear-gradient(60deg, var(--sunrise), var(--darkPurple)',
+        transition: 'background-color 0.25s ease-in-out',
+        overflow: 'hidden'
+    }}>
+        <div class="card glass-card shadow border-0"
+            style={{
+                width: "50vmin",
+                height: "10vmin"
+            }}>
+            <div class="card-body d-flex justify-content-around mt-2 p-1">
+                <h5 className="card-title mt-1" style={{
+                    fontFamily: '"Cal Sans", sans-serif',
+                    fontStyle: "normal",
+                    fontOpticalSizing: "auto",
+                }}>Ops, Something went wrong...</h5>
+            </div>
+        </div>
+    </div>);
 
     return (
         <div className="noteListContainer ps-1 pe-1" data-theme={mode ? "dark" : "light"}
@@ -111,7 +148,7 @@ function NotesList() {
                                     setPreviewNoteModal={setPreviewNoteModal}
                                 />
                             ))}
-                            <AnimatePresence>
+                            {/* <AnimatePresence>
                                 {previewNoteModal && (
                                     <NoteCard
                                         {...filteredNotes.find(note => note.id === previewNoteModal)}
@@ -119,7 +156,7 @@ function NotesList() {
                                         }
                                     />
                                 )}
-                            </AnimatePresence>
+                            </AnimatePresence> */}
 
                         </div>
                         <button type="button" onClick={() => setIsCreatingNote(true)} className="btn newNote">

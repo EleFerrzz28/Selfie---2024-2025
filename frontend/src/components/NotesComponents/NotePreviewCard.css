@@ -75,8 +75,11 @@
 }
 
 #textpreview {
-    overflow: auto;
-    height: 30vmin; 
+    flex: 1 1 auto;
+    overflow-y: auto;
+    height: auto; /* lascia che il flex gestisca l'altezza */
+    margin-bottom: 0.5rem;
+    padding-right: 4px; /* spazio per scrollbar */
 }
 
 .glass-card {

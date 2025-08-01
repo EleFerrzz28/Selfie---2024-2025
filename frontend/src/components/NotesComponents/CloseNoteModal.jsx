@@ -17,7 +17,7 @@ function CloseNoteModal({ setOpenModal, handleSubmit, onClose }) {
                 exit={{ scale: 0.8 }}
                 transition={{ duration: 0.3 }}
                >
-                <div className="modal-content border-0">
+                <div className="modal-content closeModal border-0">
                     <div className="modal-header">
                         <h5 className = "modal-title">Save changes?</h5>
                         <button type="button" className="btn-close" onClick={() => setOpenModal(false)} aria-label="Close"></button>

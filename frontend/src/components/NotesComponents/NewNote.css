@@ -1,10 +1,30 @@
 .fullNoteCard input:focus, .fullNoteCard textarea:focus{
-    border-color: #e1e4de;
-    box-shadow: none;
+    border-color: white;
+    box-shadow: none
+}
+
+.fullNoteCard {
+  background: rgba(255, 255, 255, 0.7); 
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.fullNoteCard label, .fullNoteCard p, .fullNoteCard h5, .fullNoteCard .tagStyle   {
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;  
+    font-optical-sizing: auto;
+}
+
+.fullNoteCard .cardHeading > h5 {
+    color: black;
+    font-weight: normal;
 }
 
 .fullNoteCard textarea, .fullNoteCard input{
-    border-color: #e1e4de;
+    border-color: white;
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;  
+    font-optical-sizing: auto;
 }
 .saveNote{
     background-color: var(--lightBlue);
@@ -18,9 +38,6 @@
     font-weight: bold;
 }
 
-#closeNote{
-    background-color: white;
-}
 #closeNote > svg{
     width: 5vmin;
 }

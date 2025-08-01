@@ -1,7 +1,7 @@
 import "./NotePreviewCard.css";
 import { useDeleteNoteMutation, useCopyNoteMutation } from "../../redux/notes/notesApiSlice";
-import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
+import { toast } from "react-toastify";
 
 function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_date, openMenuId, setOpenMenuId, setEditingNoteId, setPreviewNoteModal }) {
     const [deleteNote, { isLoading }] = useDeleteNoteMutation();
@@ -27,9 +27,10 @@ function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_dat
         try {
             await deleteNote(id).unwrap();
             setOpenMenuId(null);
+            toast.success("Note deleted successfully!");
         } catch (err) {
             console.error('Failed to delete note:', err);
-            // You could add error handling UI here
+            toast.error("Failed to delete note");
         }
     };
 
@@ -37,9 +38,10 @@ function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_dat
         try {
             await copyNote(id).unwrap();
             setOpenMenuId(null);
+            toast.success("Note copied successfully!");
         } catch (err) {
             console.error('Failed to copy note:', err);
-            // You could add error handling UI here
+            toast.error("Failed to copy note");
         }
     }
     return (
@@ -63,7 +65,7 @@ function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_dat
                 </div>
             </div>
             <div className="d-flex flex-column flex-grow-1 p-1 mt-1 noteStuff">
-                <div className="row pt-1 mb-2" style={{ height: "10vmin", maxHeight: "40px", overflowY: "auto" }}>
+                <div className="row pt-1 mb-2" style={{ maxHeight: "40px", overflowY: "auto" }}>
                     {
                         tags.map((tag, index) => (
                             <h6 key={index} className="tagStyle card-subtitle rounded mb-2 ms-2 p-1 text-muted">{tag}</h6>
