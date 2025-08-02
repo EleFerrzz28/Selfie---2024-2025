@@ -45,3 +45,7 @@
 #closeNote span {
     display: none;
 }
+
+.previewParagraph {
+    font-size: small;
+}

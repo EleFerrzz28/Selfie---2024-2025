@@ -7,6 +7,8 @@ npm i react-router-dom
 npm install @reduxjs/toolkit
 npm i framer-motion
 npm i react-markdown
+npm i remark-gfm
+npm i rehype-starry-night
 
 BACK-END: 
 npm init -y oppure npm install

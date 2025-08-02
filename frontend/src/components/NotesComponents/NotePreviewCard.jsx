@@ -2,6 +2,7 @@ import "./NotePreviewCard.css";
 import { useDeleteNoteMutation, useCopyNoteMutation } from "../../redux/notes/notesApiSlice";
 import { AnimatePresence } from "framer-motion";
 import { toast } from "react-toastify";
+import ReactMarkdown from "react-markdown";
 
 function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_date, openMenuId, setOpenMenuId, setEditingNoteId, setPreviewNoteModal }) {
     const [deleteNote, { isLoading }] = useDeleteNoteMutation();
@@ -72,7 +73,7 @@ function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_dat
                         ))
                     }
                 </div>
-                <p id="textpreview" className="card-text">{truncated}</p>
+                <p id="textpreview" className="card-text"><ReactMarkdown>{truncated}</ReactMarkdown></p>
                 <div className="mt-auto mb-2">
                     <h6 className="card-subtitle mb-2 text-muted">
                         Created on date: {formattedCreationDate}

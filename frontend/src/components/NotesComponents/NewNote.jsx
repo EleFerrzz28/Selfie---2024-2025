@@ -1,15 +1,14 @@
 import "./NewNote.css"
-import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"
-import ReactMarkdown from "react-markdown"
 import "./NotePreviewCard.css"
 import "./CloseNoteModal.jsx"
 import CloseNoteModal from "./CloseNoteModal.jsx";
+
+import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
+import rehypeStarryNight from 'rehype-starry-night'
+
 import { AnimatePresence } from "framer-motion";
-import rehypeHighlight from 'rehype-highlight';
-import 'highlight.js/styles/github.css';
 import { useEditNoteMutation, useCreateNoteMutation } from "../../redux/notes/notesApiSlice.js"
 import { toast } from "react-toastify";
 
@@ -17,6 +16,17 @@ function NewNote({ mode = "edit", note, onClose }) {
     const [openModal, setOpenModal] = useState(false)
     const [editNote, { isLoading, error }] = useEditNoteMutation();
     const [createNote, { isLoading2, error2 }] = useCreateNoteMutation();
+
+    const [rehypePlugins, setRehypePlugins] = useState([]);
+
+    // Initialize the plugin
+    useEffect(() => {
+        async function setup() {
+            const starryNight = await rehypeStarryNight();
+            setRehypePlugins([starryNight]);
+        }
+        setup();
+    }, []);
 
     const notes = useSelector((state) => state.notes.value || []);
     const noteToEdit = mode === "edit" ? notes.find(n => n.id === note.id) : null;
@@ -163,7 +173,8 @@ function NewNote({ mode = "edit", note, onClose }) {
                                         <h6 key={index} className="tagStyle card-subtitle rounded mb-2 ms-2 p-1 text-muted">{tag}</h6>
                                     ))}
                                 </div>
-                                <p className="card-text previewParagraph ps-1" style={{ overflow: "auto" }}><ReactMarkdown rehypePlugins={[rehypeHighlight]}>{formData.desc}</ReactMarkdown></p>
+                                <p className="card-text previewParagraph ps-1" style={{ overflow: "auto" }}><ReactMarkdown >
+                                    {formData.desc}</ReactMarkdown></p>
                             </div>
 
                         </div>
