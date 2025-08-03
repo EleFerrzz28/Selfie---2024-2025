@@ -1,8 +1,11 @@
 import "./NotePreviewCard.css";
+import "./NewNote.css"
 import { useDeleteNoteMutation, useCopyNoteMutation } from "../../redux/notes/notesApiSlice";
 import { AnimatePresence } from "framer-motion";
 import { toast } from "react-toastify";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks"
 
 function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_date, openMenuId, setOpenMenuId, setEditingNoteId, setPreviewNoteModal }) {
     const [deleteNote, { isLoading }] = useDeleteNoteMutation();
@@ -66,14 +69,14 @@ function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_dat
                 </div>
             </div>
             <div className="d-flex flex-column flex-grow-1 p-1 mt-1 noteStuff">
-                <div className="row pt-1 mb-2" style={{ maxHeight: "40px", overflowY: "auto" }}>
+                <div className="row pt-1 mb-1" style={{ maxHeight: "40px", overflowY: "auto" }}>
                     {
                         tags.map((tag, index) => (
                             <h6 key={index} className="tagStyle card-subtitle rounded mb-2 ms-2 p-1 text-muted">{tag}</h6>
                         ))
                     }
                 </div>
-                <p id="textpreview" className="card-text"><ReactMarkdown>{truncated}</ReactMarkdown></p>
+                <div id="textpreview" className="card-text previewParagraph"><ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>{truncated}</ReactMarkdown></div>
                 <div className="mt-auto mb-2">
                     <h6 className="card-subtitle mb-2 text-muted">
                         Created on date: {formattedCreationDate}

@@ -9,6 +9,7 @@ npm i framer-motion
 npm i react-markdown
 npm i remark-gfm
 npm i rehype-starry-night
+npm install remark-breaks
 
 BACK-END: 
 npm init -y oppure npm install

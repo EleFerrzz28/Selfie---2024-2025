@@ -132,7 +132,7 @@ function NotesList() {
                         </div>
                     </div>
                     <div className="card-body p-0">
-                        <div id="noteList" className="card-body p-1 ps-2 d-flex col flex-wrap justify-content-between align-items-center flex-row">
+                        <div id="noteList" className="card-body p-1 ps-2 d-flex col flex-wrap justify-content-between align-items-center">
                             {filteredNotes.map((note) => (
                                 <NotePreviewCard key={note.id}
                                     id={note.id}

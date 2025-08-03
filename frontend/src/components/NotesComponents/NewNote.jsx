@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeStarryNight from 'rehype-starry-night'
+import remarkGfm from "remark-gfm"
+import remarkBreaks from "remark-breaks"
 
 import { AnimatePresence } from "framer-motion";
 import { useEditNoteMutation, useCreateNoteMutation } from "../../redux/notes/notesApiSlice.js"
@@ -173,8 +175,8 @@ function NewNote({ mode = "edit", note, onClose }) {
                                         <h6 key={index} className="tagStyle card-subtitle rounded mb-2 ms-2 p-1 text-muted">{tag}</h6>
                                     ))}
                                 </div>
-                                <p className="card-text previewParagraph ps-1" style={{ overflow: "auto" }}><ReactMarkdown >
-                                    {formData.desc}</ReactMarkdown></p>
+                                <div className="card-text previewParagraph ps-1" style={{ overflow: "auto" }}><ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>
+                                    {formData.desc}</ReactMarkdown></div>
                             </div>
 
                         </div>

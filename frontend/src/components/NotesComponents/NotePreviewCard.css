@@ -77,9 +77,10 @@
 #textpreview {
     flex: 1 1 auto;
     overflow-y: auto;
-    height: auto; /* lascia che il flex gestisca l'altezza */
+    height: 20vmin; 
+    max-height: 120px;
     margin-bottom: 0.5rem;
-    padding-right: 4px; /* spazio per scrollbar */
+    padding-right: 4px; 
 }
 
 .glass-card {
