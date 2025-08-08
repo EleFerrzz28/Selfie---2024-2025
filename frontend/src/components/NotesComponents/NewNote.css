@@ -1,53 +1,59 @@
-.fullNoteCard input:focus, .fullNoteCard textarea:focus{
-    border-color: white;
-    box-shadow: none
+.fullNoteCard input:focus,
+.fullNoteCard textarea:focus {
+  border-color: white;
+  box-shadow: none
 }
 
 .fullNoteCard {
-  background: rgba(255, 255, 255, 0.7); 
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.fullNoteCard label, .fullNoteCard p, .fullNoteCard h5, .fullNoteCard .tagStyle   {
-    font-family: "Cal Sans", sans-serif;
-    font-style: normal;  
-    font-optical-sizing: auto;
+.fullNoteCard label,
+.fullNoteCard p,
+.fullNoteCard h5,
+.fullNoteCard .tagStyle {
+  font-family: "Cal Sans", sans-serif;
+  font-style: normal;
+  font-optical-sizing: auto;
 }
 
-.fullNoteCard .cardHeading > h5 {
-    color: black;
-    font-weight: normal;
+.fullNoteCard .cardHeading>h5 {
+  color: black;
+  font-weight: normal;
 }
 
-.fullNoteCard textarea, .fullNoteCard input{
-    border-color: white;
-    font-family: "Cal Sans", sans-serif;
-    font-style: normal;  
-    font-optical-sizing: auto;
-}
-.saveNote{
-    background-color: var(--lightBlue);
-    transition: 0.4s;
-    font-weight: bold;
+.fullNoteCard textarea,
+.fullNoteCard input {
+  border-color: white;
+  font-family: "Cal Sans", sans-serif;
+  font-style: normal;
+  font-optical-sizing: auto;
 }
 
-.saveNote:hover{
-    background-color: var(--midnight);
-    color: var(--lightBlue);
-    font-weight: bold;
+.saveNote {
+  background-color: var(--lightBlue);
+  transition: 0.4s;
+  font-weight: bold;
 }
 
-#closeNote > svg{
-    width: 5vmin;
+.saveNote:hover {
+  background-color: var(--midnight);
+  color: var(--lightBlue);
+  font-weight: bold;
+}
+
+#closeNote>svg {
+  width: 5vmin;
 }
 
 #closeNote span {
-    display: none;
+  display: none;
 }
 
 .previewParagraph {
-    font-size: normal;
+  font-size: normal;
 }
 
 .previewParagraph ul {
@@ -63,7 +69,7 @@
 }
 
 .previewParagraph li {
-  margin-bottom: 0.4rem; 
+  margin-bottom: 0.4rem;
 }
 
 .previewParagraph table {
@@ -76,7 +82,7 @@
 .previewParagraph td {
   border: 1px solid #ccc;
   padding: 0.5rem;
-  text-align: left;
+  text-align: left !important;
   background-color: rgba(217, 218, 219, 0.26);
 }
 
@@ -85,9 +91,19 @@
   font-weight: bold;
 }
 
-.previewParagraph code { 
-  background: rgba(255, 255, 255, 0.7); 
+.previewParagraph code {
+  background: rgba(255, 255, 255, 0.7);
   font-family: monospace;
   color: var(--darkPurple);
-  padding: 2px 4px; 
+  padding: 2px 4px;
+}
+
+@media screen and (max-width: 960px) {
+   .newNoteHeading {
+        height: 10vmin;
+    }
+
+    .newNoteHeading h5 {
+        font-size: 7vmin;
+    }
 }

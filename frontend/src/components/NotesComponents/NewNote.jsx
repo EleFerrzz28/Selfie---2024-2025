@@ -6,7 +6,6 @@ import CloseNoteModal from "./CloseNoteModal.jsx";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
-import rehypeStarryNight from 'rehype-starry-night'
 import remarkGfm from "remark-gfm"
 import remarkBreaks from "remark-breaks"
 
@@ -18,17 +17,6 @@ function NewNote({ mode = "edit", note, onClose }) {
     const [openModal, setOpenModal] = useState(false)
     const [editNote, { isLoading, error }] = useEditNoteMutation();
     const [createNote, { isLoading2, error2 }] = useCreateNoteMutation();
-
-    const [rehypePlugins, setRehypePlugins] = useState([]);
-
-    // Initialize the plugin
-    useEffect(() => {
-        async function setup() {
-            const starryNight = await rehypeStarryNight();
-            setRehypePlugins([starryNight]);
-        }
-        setup();
-    }, []);
 
     const notes = useSelector((state) => state.notes.value || []);
     const noteToEdit = mode === "edit" ? notes.find(n => n.id === note.id) : null;
@@ -60,10 +48,29 @@ function NewNote({ mode = "edit", note, onClose }) {
         });
     };
 
+    const checkClose = () => {
+        if (mode === "edit") {
+            if ( formData.title !== noteToEdit.title || formData.desc !== noteToEdit.desc || JSON.stringify(formData.tags) !== JSON.stringify(noteToEdit.tags)) {
+                setOpenModal(true);
+            } else {
+                onClose();
+            }
+        } else {
+            const hasChanges = formData.title.trim() !== "" || formData.desc.trim() !== "" || formData.tags.length > 0;
+            if (hasChanges) {
+                setOpenModal(true);
+            } else {
+                onClose();
+            }
+        }
+    };
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!formData.title.trim() || !formData.desc.trim()) {
+            toast.error("Title and Text are required!");
             console.warn("Titolo e descrizione sono obbligatori.");
             return;
         }
@@ -72,14 +79,16 @@ function NewNote({ mode = "edit", note, onClose }) {
             let result;
 
             if (mode === "edit") {
-                result = await editNote({
-                    noteId: noteToEdit.id,
-                    title: formData.title,
-                    desc: formData.desc,
-                    tags: formData.tags
-                }).unwrap();
-                console.log("Note updated:", result);
-                toast.success("Note updated successfully!");
+                if ((formData.title != noteToEdit.title) || (formData.desc != noteToEdit.desc) || (formData.tags != noteToEdit.tags)) {
+                    result = await editNote({
+                        noteId: noteToEdit.id,
+                        title: formData.title,
+                        desc: formData.desc,
+                        tags: formData.tags
+                    }).unwrap();
+                    console.log("Note updated:", result);
+                    toast.success("Note updated successfully!");
+                }
             } else {
                 result = await createNote({
                     title: formData.title,
@@ -110,9 +119,9 @@ function NewNote({ mode = "edit", note, onClose }) {
                 <div className="col-lg-7 p-2 m-0">
                     <div className="card w-100 shadow fullNoteCard border-0 mt-2" style={{ height: "97vh" }}>
                         <div className="card-body">
-                            <div className="cardHeading d-flex justify-content-between align-items-center p-1" style={{ borderBottom: "solid 1px rgb(192, 192, 192)" }}>
+                            <div className="cardHeading newNoteHeading d-flex justify-content-between align-items-center p-1" style={{ borderBottom: "solid 1px rgb(192, 192, 192)" }}>
                                 <h5 className="card-title">New Note</h5>
-                                <button id="closeNote" onClick={() => { setOpenModal(true) }} className="openaModal d-flex btn p-0 m-0">
+                                <button id="closeNote" onClick={checkClose} className="openaModal d-flex btn p-0 m-0">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-x-circle m-0" viewBox="0 0 16 16">
                                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
                                         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />

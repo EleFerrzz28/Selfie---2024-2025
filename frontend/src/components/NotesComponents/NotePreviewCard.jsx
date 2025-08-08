@@ -49,7 +49,7 @@ function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_dat
         }
     }
     return (
-        <div className="card previewNota glass-card shadow rounded p-3 mb-3 d-flex flex-column"
+        <div className="card previewNota glass-card shadow rounded p-3 m-1 d-flex flex-column"
             style={{ height: "100%", maxHeight: "300px" }}
             onClick={() => { setOpenMenuId(null); setPreviewNoteModal(id) }}>
             

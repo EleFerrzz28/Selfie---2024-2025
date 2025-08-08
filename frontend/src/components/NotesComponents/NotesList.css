@@ -119,7 +119,7 @@
 
 @media screen and (max-width: 960px) {
     .noteListButtons {
-        height: max-content
+        height: max-content;
     }
 
     .cardHeading {

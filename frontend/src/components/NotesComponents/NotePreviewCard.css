@@ -1,11 +1,29 @@
+@keyframes entrance {
+  0% {
+    opacity: 0;
+    transform: translateX(10px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
 .previewNota{
     width: 60vmin;
     max-width: 400px;
     height: 45vmin;
     max-height: 375px;
+    animation: entrance 0.4s ease-out;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.previewNota p::selection{
-    background-color: var(--sageGreen);
+
+.previewNota:hover {
+  transform: translate(0) scale(1.02);
+}
+
+
+.previewNota div::selection{
+    background-color: var(--marigold);
 }
 .cardHeadingPreview{
     position: relative;
@@ -89,11 +107,6 @@
   border: 1px solid rgba(255, 255, 255, 0.18);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
-.glass-card:hover {
-  transform: scale(1.02);
-}
-
 
 @media screen and (max-width: 960px) {
     .previewNota{
