@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 import "./NoteCard.css"
 import "./NotePreviewCard.css"
+import "./NewNote.css"
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks"
 
 function NoteCard({ setPreviewNoteModal, id, title, desc, tags, creation_date, last_update_date }) {
     return (
@@ -11,21 +15,22 @@ function NoteCard({ setPreviewNoteModal, id, title, desc, tags, creation_date, l
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={(e) => { setPreviewNoteModal(null); e.stopPropagation() }}>
+            onClick={(e) => { setPreviewNoteModal(null); }}>
             <motion.div
                 className="modal-dialog modal-lg modal-dialog-centered"
                 initial={{ scale: 0.8 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.8 }}
                 transition={{ duration: 0.3 }}
+                onClick={(e) => e.stopPropagation()}
             >
                 <div className="modal-content mcNoteCard border-0">
                     <div className="modal-header border-bottom">
                         <h5 className="modal-title">{title}</h5>
-                        <button type="button" className="btn-close" onClick={() => { setPreviewNoteModal(null) }} aria-label="Close"></button>
+                        <button type="button" className="btn-close" onClick={() => setPreviewNoteModal(null)} aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
-                        <div id="noteCardtext" className="p-1"><p>{desc}</p></div>
+                        <div id="noteCardtext" className="p-1 previewParagraph"><ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>{desc}</ReactMarkdown></div>
                     </div>
                     <div className="row p-3 pb-0 mb-0 pt-1" >
                         {

@@ -79,13 +79,15 @@
     font-family: "Cal Sans", sans-serif;
     font-style: normal;  
     font-optical-sizing: auto;
+
+    animation: entrance 0.4s ease-out;
 }
 #noteOption div{
     transition: 0.4s;
     color: black;
 }
 #noteOption div:hover{
-    background-color: var(--lightBlue);
+    background-color: var(--sunrise);
     text-decoration: none;
 }
 #editNote{
@@ -106,6 +108,21 @@
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.18);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.viewNote{
+    font-family: "Cal Sans", sans-serif;
+    font-style: italic;  
+    font-optical-sizing: auto;
+    text-decoration: underline;
+    text-decoration-color: var(--darkPurple);
+    color: var(--darkPurple);
+    transition: 0.2s ease
+}
+
+.viewNote:hover{
+    color: var(--sunrise);
+    text-decoration-color: var(--sunrise);
 }
 
 @media screen and (max-width: 960px) {

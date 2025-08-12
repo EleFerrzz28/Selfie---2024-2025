@@ -1,7 +1,6 @@
 import "./NotePreviewCard.css";
 import "./NewNote.css"
 import { useDeleteNoteMutation, useCopyNoteMutation } from "../../redux/notes/notesApiSlice";
-import { AnimatePresence } from "framer-motion";
 import { toast } from "react-toastify";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -51,7 +50,7 @@ function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_dat
     return (
         <div className="card previewNota glass-card shadow rounded p-3 m-1 d-flex flex-column"
             style={{ height: "100%", maxHeight: "300px" }}
-            onClick={() => { setOpenMenuId(null); setPreviewNoteModal(id) }}>
+            onClick={() => { setOpenMenuId(null); }}>
             
             <div className="cardHeadingPreview d-flex justify-content-between align-items-center p-0 m-0 border-bottom">
                 <h5 className="card-title">{titleTruncated}</h5>
@@ -76,7 +75,8 @@ function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_dat
                         ))
                     }
                 </div>
-                <div id="textpreview" className="card-text previewParagraph"><ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>{truncated}</ReactMarkdown></div>
+                <div id="textpreview" className="card-text previewParagraph"><ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>{truncated}</ReactMarkdown>
+                    <div className = "viewNote p-0 m-0" onClick = { () => { setPreviewNoteModal(id) }}>see more...</div> </div>
                 <div className="mt-auto mb-2">
                     <h6 className="card-subtitle mb-2 text-muted">
                         Created on date: {formattedCreationDate}
@@ -85,7 +85,6 @@ function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_dat
                         Last modified on date: {formattedUpdatedDate}
                     </h6>
                 </div>
-
             </div>
         </div>
     );

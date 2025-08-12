@@ -79,7 +79,8 @@ function NotesList() {
                 backgroundImage: 'linear-gradient(60deg, var(--sunrise), var(--darkPurple)',
                 transition: 'background-color 0.25s ease-in-out',
                 overflow: 'hidden'
-            }}>
+            }}
+            onClick={() => { setOpenMenuId(null); }}>
             {isCreatingNote || editingNoteId ? (
                 <NewNote
                     mode={isCreatingNote ? "create" : "edit"}
@@ -90,7 +91,7 @@ function NotesList() {
                     }}
                 />
             ) : (
-                <div className="card border shadow border-0 mt-2 blur-background">
+                <div className="card border shadow border-0 mt-2 blur-background" onClick={() => { setOpenMenuId(null); }}>
                     <div className="cardHeading d-flex justify-content-between align-items-center pb-1 pt-1" style={{ borderBottom: "solid 1px rgb(192, 192, 192)" }}>
                         <h5 className="card-title px-3 pt-2 mb-0">All Notes</h5>
                         <div className="d-flex">
@@ -148,16 +149,15 @@ function NotesList() {
                                     setPreviewNoteModal={setPreviewNoteModal}
                                 />
                             ))}
+                            <AnimatePresence>
+                                {previewNoteModal && (
+                                    <NoteCard
+                                        {...filteredNotes.find(note => note.id == previewNoteModal)}
+                                        setPreviewNoteModal={setPreviewNoteModal}
+                                    />
+                                )}
+                            </AnimatePresence>
                         </div>
-                        {/* <AnimatePresence>
-                            {previewNoteModal && (
-                                <NoteCard
-                                    {...filteredNotes.find(note => note.id === previewNoteModal)}
-                                    setPreviewNoteModal={() => setPreviewNoteModal(null)
-                                    }
-                                />
-                            )}
-                        </AnimatePresence> */}
                         <button type="button" onClick={() => setIsCreatingNote(true)} className="btn newNote">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-plus" viewBox="0 0 16 16">
                                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />

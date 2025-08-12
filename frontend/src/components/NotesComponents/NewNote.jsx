@@ -18,6 +18,7 @@ function NewNote({ mode = "edit", note, onClose }) {
     const [editNote, { isLoading, error }] = useEditNoteMutation();
     const [createNote, { isLoading2, error2 }] = useCreateNoteMutation();
 
+    const txt = "You're going back to rapid note mode: do you wish to dismiss the changes you've done?"
     const notes = useSelector((state) => state.notes.value || []);
     const noteToEdit = mode === "edit" ? notes.find(n => n.id === note.id) : null;
 
@@ -112,7 +113,7 @@ function NewNote({ mode = "edit", note, onClose }) {
         <div className="container-fluid">
             <AnimatePresence>
                 {openModal && (
-                    <CloseNoteModal setOpenModal={setOpenModal} handleSubmit={handleSubmit} onClose={onClose} />
+                    <CloseNoteModal setOpenModal={setOpenModal} handleSubmit={handleSubmit} onClose={onClose} title = {"Save Changes?"} txt={txt} yes={"Save"} no={"Dismiss Changes"}/>
                 )}
             </AnimatePresence>
             <div className="row">

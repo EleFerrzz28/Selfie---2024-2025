@@ -3,3 +3,13 @@
     overflow: auto;
     padding: 0.5rem;
 }
+
+.mcNoteCard {
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;  
+    font-optical-sizing: auto;
+}
+
+.mcNoteCard h5 {
+    font-size: 4vh;
+}
