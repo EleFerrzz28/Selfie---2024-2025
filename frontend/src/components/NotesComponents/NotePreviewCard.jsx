@@ -1,13 +1,12 @@
 import "./NotePreviewCard.css";
 import "./NewNote.css"
-import { useDeleteNoteMutation, useCopyNoteMutation } from "../../redux/notes/notesApiSlice";
+import { useCopyNoteMutation } from "../../redux/notes/notesApiSlice";
 import { toast } from "react-toastify";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkBreaks from "remark-breaks"
 
-function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_date, openMenuId, setOpenMenuId, setEditingNoteId, setPreviewNoteModal }) {
-    const [deleteNote, { isLoading }] = useDeleteNoteMutation();
+function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_date, openMenuId, setOpenMenuId, setEditingNoteId, setPreviewNoteModal, setDeleteNoteModal }) {
     const [copyNote, { isLoading2 }] = useCopyNoteMutation();
     const maxLength = 200;
     const truncated = desc ? (desc.length > maxLength ? desc.substr(0, maxLength) + "..." : desc) : "No text available";
@@ -22,20 +21,6 @@ function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_dat
         e.stopPropagation();
         setOpenMenuId(openMenuId === id ? null : id);
     }
-    const handleDeleteNote = async () => {
-        // if (isLoading2) return;
-        // if (!window.confirm('Are you sure you want to delete this note?')) {
-        //     return;
-        // }
-        try {
-            await deleteNote(id).unwrap();
-            setOpenMenuId(null);
-            toast.success("Note deleted successfully!");
-        } catch (err) {
-            console.error('Failed to delete note:', err);
-            toast.error("Failed to delete note");
-        }
-    };
 
     const handleCopyNote = async () => {
         try {
@@ -50,7 +35,7 @@ function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_dat
     return (
         <div className="card previewNota glass-card shadow rounded p-3 m-1 d-flex flex-column"
             style={{ height: "100%", maxHeight: "300px" }}
-            onClick={() => { setOpenMenuId(null); }}>
+            onClick={() => { setOpenMenuId(null); setDeleteNoteModal(null) }}>
             
             <div className="cardHeadingPreview d-flex justify-content-between align-items-center p-0 m-0 border-bottom">
                 <h5 className="card-title">{titleTruncated}</h5>
@@ -58,7 +43,7 @@ function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_dat
                     <div id="noteOption" className="rounded-2 border border-secondary p-2 mb-2 border-opacity-25" style={{ display: openMenuId === id ? "block" : "none" }}>
                         <div className="p-2 border-bottom border-secondary p-2 border-opacity-50" onClick={handleCopyNote}>Copy</div>
                         <div className="p-2 border-bottom border-secondary p-2 border-opacity-50" onClick={() => setEditingNoteId({ id, title, desc, tags, creation_date, last_update_date })}>Edit</div>
-                        <div className="p-2" onClick={handleDeleteNote}>Delete</div>
+                        <div className="p-2" onClick={(e) => {e.stopPropagation(); setDeleteNoteModal(id)}}>Delete</div>
                     </div>
                     <button className="btn p-0" onClick={openNoteMenu}>
                         <svg style={{ transform: openMenuId === id ? "rotate(90deg)" : "rotate(0)" }} xmlns="http://www.w3.org/2000/svg" id="noteMenu" fill="currentColor" className="bi bi-three-dots p-0 m-0" viewBox="0 0 16 16">

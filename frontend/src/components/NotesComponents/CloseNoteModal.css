@@ -1,19 +1,19 @@
-#dismissChanges{
+#dismissChanges, #NDELETE{
     background-color: var(--lightBlue);
     color: var(--midnight);
     transition: 0.4s;
 }
-#dismissChanges:hover{
+#dismissChanges:hover, #NDELETE:hover{
     background-color: var(--midnight);
     color: var(--lightBlue);
 }
 
-#saveChanges{
+#saveChanges, #YDELETE{
     background-color: var(--sageGreen);
     color: white;
     transition: 0.4s;
 }
-#saveChanges:hover{
+#saveChanges:hover, #YDELETE:hover{
     background-color: var(--herb);
     color: var(--lionsmane);
 }
@@ -22,4 +22,8 @@
     font-family: "Cal Sans", sans-serif;
     font-style: normal;  
     font-optical-sizing: auto;
+}
+
+#YDELETE, #NDELETE {
+    width: 45%;
 }

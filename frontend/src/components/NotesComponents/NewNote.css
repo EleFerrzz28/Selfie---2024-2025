@@ -98,6 +98,17 @@
   padding: 2px 4px;
 }
 
+.previewParagraph h1, 
+.previewParagraph h2,
+.previewParagraph h3,
+.previewParagraph h4,
+.previewParagraph h5,
+.previewParagraph h6 {
+  font-family: "Cal Sans", sans-serif;
+  font-style: normal;
+  font-optical-sizing: auto;
+}
+
 @media screen and (max-width: 960px) {
    .newNoteHeading {
         height: 10vmin;

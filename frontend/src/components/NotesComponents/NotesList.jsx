@@ -1,6 +1,7 @@
 import "./NotesList.css";
 import NotePreviewCard from "./NotePreviewCard.jsx"
 import NoteCard from "./NoteCard.jsx";
+import DeleteNoteModal from "./DeleteNoteModal.jsx";
 import NewNote from "./NewNote.jsx"
 import TagsModal from "./TagsModal.jsx";
 import { AnimatePresence } from "framer-motion";
@@ -15,12 +16,13 @@ import { useGetAllNotesQuery } from "../../redux/notes/notesApiSlice.js";
 function NotesList() {
     const { mode } = useSelector((state) => state.theme);
 
-    const [openMenuId, setOpenMenuId] = useState(null);
-    const [openModal, setOpenModal] = useState(false);
-    const [previewNoteModal, setPreviewNoteModal] = useState(null);
-    const [tagsSelected, setTagsSelected] = useState([]);
-    const [isCreatingNote, setIsCreatingNote] = useState(false);
-    const [editingNoteId, setEditingNoteId] = useState(null);
+    const [openMenuId, setOpenMenuId] = useState(null); // Modale per il menu Edit - Copy - Delete
+    const [openModal, setOpenModal] = useState(false); // Modale per i tags
+    const [previewNoteModal, setPreviewNoteModal] = useState(null); // Modale per la preview
+    const [deleteNoteModal, setDeleteNoteModal] = useState(null); // Modale per fare il check della delete
+    const [tagsSelected, setTagsSelected] = useState([]); // Stato per i tags
+    const [isCreatingNote, setIsCreatingNote] = useState(false); // Stato per selezionare modalità creazione
+    const [editingNoteId, setEditingNoteId] = useState(null); // Stato per selezionare modalità editing
 
     const dispatch = useDispatch();
     const { data: notesData, isLoading, error } = useGetAllNotesQuery();
@@ -147,17 +149,28 @@ function NotesList() {
                                     setOpenMenuId={setOpenMenuId}
                                     setEditingNoteId={setEditingNoteId}
                                     setPreviewNoteModal={setPreviewNoteModal}
+                                    setDeleteNoteModal={setDeleteNoteModal}
                                 />
                             ))}
-                            <AnimatePresence>
-                                {previewNoteModal && (
-                                    <NoteCard
-                                        {...filteredNotes.find(note => note.id == previewNoteModal)}
-                                        setPreviewNoteModal={setPreviewNoteModal}
-                                    />
-                                )}
-                            </AnimatePresence>
                         </div>
+                        <AnimatePresence>
+                            {previewNoteModal && (
+                                <NoteCard
+                                    {...filteredNotes.find(note => note.id == previewNoteModal)}
+                                    setPreviewNoteModal={setPreviewNoteModal}
+                                />
+                            )}
+                        </AnimatePresence>
+                        <AnimatePresence>
+                            {deleteNoteModal && (
+                                console.log("Found note:", filteredNotes.find(note => note.id == deleteNoteModal)), 
+                                <DeleteNoteModal
+                                    {...filteredNotes.find(note => note.id == deleteNoteModal)}
+                                    setDeleteNoteModal={setDeleteNoteModal}
+                                    setOpenMenuId={setOpenMenuId}
+                                />
+                            )}
+                        </AnimatePresence>
                         <button type="button" onClick={() => setIsCreatingNote(true)} className="btn newNote">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-plus" viewBox="0 0 16 16">
                                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
