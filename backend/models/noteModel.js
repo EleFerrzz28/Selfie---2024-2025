@@ -27,6 +27,10 @@ const noteSchema = new Schema({
     last_update_date: {
         type: Date,
         default: () => Date.now()
+    },
+    pinned: {
+        type: Boolean,
+        default: false
     }
 })
 

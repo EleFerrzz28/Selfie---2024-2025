@@ -17,6 +17,10 @@ export const selectFilteredSortedNotes = createSelector(
             )
 
             .sort((a, b) => {
+                if (a.pinned !== b.pinned) {
+                    return b.pinned - a.pinned; 
+                }
+
                 if (sortBy === "alphabetical") return a.title.localeCompare(b.title);
                 if (sortBy === "last_update_date") return new Date(b.last_update_date) - new Date(a.last_update_date);
                 if (sortBy === "length") return b.desc.length - a.desc.length;

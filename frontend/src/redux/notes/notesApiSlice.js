@@ -24,6 +24,15 @@ export const notesApiSlice = apiSlice.injectEndpoints({
             invalidatesTags: ['Note'],
         }),
 
+        pinNote: builder.mutation ({
+            query: ({ noteId }) => ({
+                url: `${NOTES_URL}/pinunpin-note/${noteId}`,
+                method: 'PATCH',
+            }),
+
+            invalidatesTags: ['Note'],
+        }),
+
         getAllNotes: builder.query({
             query: () => ({
                 url: `${NOTES_URL}/get-all-notes`,
@@ -54,6 +63,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
 export const {
     useCreateNoteMutation,
     useEditNoteMutation,
+    usePinNoteMutation,
     useGetAllNotesQuery,
     useDeleteNoteMutation,
     useCopyNoteMutation

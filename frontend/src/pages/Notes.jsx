@@ -7,7 +7,7 @@ import BottomNavbar from "../components/BottomNavbar.jsx"
 
 import useMediaQuery from "../hooks/useMediaQuery.jsx"
 import { useState, useEffect } from "react"
-import { ToastContainer } from "react-toastify"
+import { ToastContainer, Bounce } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 
 function Notes() {
@@ -25,7 +25,7 @@ function Notes() {
         <>
             {isDesktop ? (
                 <div className="container-fluid p-0 m-0">
-                    <ToastContainer position="top-right" autoClose={3000} />
+                    <ToastContainer />
                     <div className="container-fluid justify-content-center">
                         <div className="row">
                             <div className="p-0 m-0 col-lg-2">
@@ -39,7 +39,7 @@ function Notes() {
                 </div >
             ) : (
                 <div className="mobile-layout">
-                    <ToastContainer position="top-right" autoClose={3000} />
+                    <ToastContainer />
                     <BottomNavbar />
                     <div className="mobilerow row">
                         <div className="col-12">

@@ -1,14 +1,16 @@
 @keyframes entrance {
-  0% {
-    opacity: 0;
-    transform: translateX(10px) scale(0.98);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
+    0% {
+        opacity: 0;
+        transform: translateX(10px) scale(0.98);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
 }
-.previewNota{
+
+.previewNota {
     width: 60vmin;
     max-width: 400px;
     height: 45vmin;
@@ -18,52 +20,59 @@
 }
 
 .previewNota:hover {
-  transform: translate(0) scale(1.02);
+    transform: translate(0) scale(1.02);
 }
 
 
-.previewNota div::selection{
+.previewNota div::selection {
     background-color: var(--marigold);
 }
-.cardHeadingPreview{
+
+.cardHeadingPreview {
     position: relative;
 }
 
-.cardHeadingPreview > h5, .noteStuff {
+.cardHeadingPreview>h5,
+.noteStuff {
     font-family: "Cal Sans", sans-serif;
-    font-style: normal;  
+    font-style: normal;
     font-optical-sizing: auto;
 }
 
-.tagStyle{
+.tagStyle {
     background-color: var(--panna);
     width: auto;
     cursor: pointer;
     transition: 0.3s;
 }
-.tagStyle:hover{
+
+.tagStyle:hover {
     background-color: var(--marigold);
     color: var(--panna) !important;
 }
-#noteMenu{
+
+#noteMenu {
     width: 4vmin;
     max-width: 30px;
     height: auto;
     transition: 0.4s;
 }
-#noteMenu:hover{
+
+#noteMenu:hover {
     color: var(--darkblue);
 }
-.cardHeadingPreview button{
+
+.cardHeadingPreview button {
     border-radius: 30vmin;
     transition: 0.4s;
 }
-.cardHeadingPreview button:hover{
+
+.cardHeadingPreview button:hover {
     border-radius: 30vmin;
     border: solid 1px var(--darkblue);
 }
 
-#noteOption{
+#noteOption {
     height: auto;
     width: 45vmin;
     max-width: 300px;
@@ -71,48 +80,51 @@
     transition: 0.4s;
     position: absolute;
     right: 0;
-    top: 100%; 
-    z-index: 10; 
+    top: 100%;
+    z-index: 10;
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(5px);
 
     font-family: "Cal Sans", sans-serif;
-    font-style: normal;  
+    font-style: normal;
     font-optical-sizing: auto;
 
     animation: entrance 0.4s ease-out;
 }
-#noteOption div{
+
+#noteOption div {
     transition: 0.4s;
     color: black;
 }
-#noteOption div:hover{
+
+#noteOption div:hover {
     background-color: var(--sunrise);
     text-decoration: none;
 }
-#editNote{
+
+#editNote {
     color: black;
 }
 
 #textpreview {
     flex: 1 1 auto;
     overflow-y: auto;
-    height: 20vmin; 
+    height: 20vmin;
     max-height: 120px;
     margin-bottom: 0.5rem;
-    padding-right: 4px; 
+    padding-right: 4px;
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.7); 
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.viewNote{
+.viewNote {
     font-family: "Cal Sans", sans-serif;
-    font-style: italic;  
+    font-style: italic;
     font-optical-sizing: auto;
     text-decoration: underline;
     text-decoration-color: var(--darkPurple);
@@ -120,31 +132,50 @@
     transition: 0.2s ease
 }
 
-.viewNote:hover{
+.viewNote:hover {
     color: var(--sunrise);
     text-decoration-color: var(--sunrise);
 }
 
+#pinUnpin {
+    background: none;
+    border: none;
+
+    svg {
+        width: 4vmin;
+        height: auto;
+        transition: 0.2s ease
+    }
+}
+
+#pinUnpin>svg:hover {
+    width: 5vmin;
+    height: auto
+}
+
 @media screen and (max-width: 960px) {
-    .previewNota{
+    .previewNota {
         width: 100vmin;
     }
-    #noteOption{
+
+    #noteOption {
         width: 50%;
         padding: 0px 0px 0px 0px;
     }
-    #noteMenu{
+
+    #noteMenu {
         width: 5vmin;
     }
-    .cardHeadingPreview button{
+
+    .cardHeadingPreview button {
         width: 8vmin;
         height: 8vmin;
         border-radius: 4vmin;
         transition: 0.4s;
-    }   
-    .cardHeadingPreview button:hover{
-        border-radius: 4vmin;
-        border: solid 0px var(--darkblue); 
-    }   
-}
+    }
 
+    .cardHeadingPreview button:hover {
+        border-radius: 4vmin;
+        border: solid 0px var(--darkblue);
+    }
+}

@@ -144,6 +144,7 @@ function NotesList() {
                                     tags={note.tags}
                                     creation_date={note.creation_date}
                                     last_update_date={note.last_update_date}
+                                    pinned = {note.pinned}
 
                                     openMenuId={openMenuId}
                                     setOpenMenuId={setOpenMenuId}

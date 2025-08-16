@@ -61,7 +61,6 @@ const editNote = asyncHandler(async (req, res) => {
         }
         if (title) note.title = title;
         if (desc) note.desc = desc;
-        console.log("prima del tags")
         if (tags) note.tags = tags;
         note.last_update_date = Date.now();
 
@@ -72,6 +71,37 @@ const editNote = asyncHandler(async (req, res) => {
             note,
             message: "Note updated successfully",
         })
+    } catch (error) {
+        return res.status(500).json({
+            error: true,
+            message: "Internal Server Error"
+        })
+    }
+});
+
+// Pin/Unpin
+const pinNote = asyncHandler(async (req, res) => {
+    const noteId = req.params.noteId;
+    const user = req.user;
+
+    try {
+        const note = await Note.findOne({ _id: noteId, userId: user._id });
+
+        if (!note) {
+            return res.status(404).json({ error: true, message: "Note not found" });
+        }
+        note.pinned = !note.pinned 
+
+        await note.save();
+
+        return res.json({
+            error: false,
+            pinned: note.pinned,
+            note,
+            message: note.pinned
+                ? "Note pinned successfully"
+                : "Note unpinned successfully",
+        });
     } catch (error) {
         return res.status(500).json({
             error: true,
@@ -122,6 +152,8 @@ const deleteNote = asyncHandler(async (req, res) => {
         });
     }
 });
+
+// Copy Note
 const copyNote = asyncHandler(async (req, res) => {
     const { noteId } = req.params;
     const user = req.user;
@@ -161,4 +193,4 @@ const copyNote = asyncHandler(async (req, res) => {
 
 
 
-export { createNote, editNote, getAllNotes, deleteNote, copyNote }
+export { createNote, editNote, pinNote, getAllNotes, deleteNote, copyNote }

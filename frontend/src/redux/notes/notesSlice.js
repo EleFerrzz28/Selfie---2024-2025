@@ -44,7 +44,7 @@ export const notesSlice = createSlice({
         builder.addMatcher(
             notesApiSlice.endpoints.getAllNotes.matchFulfilled,
             (state, action) => {
-                state.value = action.payload.notes || []; 
+                state.value = action.payload.notes || [];
             }
         );
     },
