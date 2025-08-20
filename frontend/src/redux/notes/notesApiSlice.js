@@ -41,6 +41,14 @@ export const notesApiSlice = apiSlice.injectEndpoints({
             providesTags: ['Note'],
         }),
 
+        getLastUpdatedNote: builder.query({
+            query: () => ({
+                url: `${NOTES_URL}/get-last-updated-note`,
+                method: 'GET'
+            }),
+            providesTags: ['Note'],
+        }),
+
         deleteNote: builder.mutation({
             query: (noteId) => ({
                 url: `${NOTES_URL}/delete-note/${noteId}`,
@@ -65,6 +73,7 @@ export const {
     useEditNoteMutation,
     usePinNoteMutation,
     useGetAllNotesQuery,
+    useGetLastUpdatedNoteQuery,
     useDeleteNoteMutation,
     useCopyNoteMutation
 } = notesApiSlice;

@@ -1,14 +1,25 @@
 import React from 'react';
 import './NoteCard.css';
-import { useSelector } from 'react-redux';
-import { displayLastModifiedNote } from '../../redux/notes/selectors';
+import { useGetLastUpdatedNoteQuery } from '../../redux/notes/notesApiSlice';
 
 const NoteCard = () => {
- // const lastNote = useSelector(displayLastModifiedNote);
-  const lastNote = {
-    title: "okay",
-    desc: "ciao",
-  }
+  const { data: lastNote, isLoading, error } = useGetLastUpdatedNoteQuery(undefined, { refetchOnMountOrArgChange: true });
+  // const lastNote = {
+  //   title: "ciao",
+  //   desc: "sigma"
+  // }
+
+  if (isLoading) return <div class="card-body d-flex justify-content-around mt-2 p-1">
+    <div className="spinner-border" role="status" />
+    <h5 className="card-title mt-1" style={{
+      fontFamily: '"Cal Sans", sans-serif',
+      fontStyle: "normal",
+      fontOpticalSizing: "auto",
+    }}>Loading...</h5>
+  </div>;
+  if (!lastNote) return <h1>Nessuna nota trovata</h1>;
+  if (error) return <h1>Errore nel caricamento</h1>;
+
 
   const maxLength = 200;
   const truncated = lastNote.desc ? (lastNote.desc.length > maxLength ? lastNote.desc.substr(0, maxLength) + "..." : lastNote.desc) : "No text available";
