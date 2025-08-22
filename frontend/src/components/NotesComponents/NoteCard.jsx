@@ -7,6 +7,8 @@ import remarkGfm from "remark-gfm";
 import remarkBreaks from "remark-breaks"
 
 function NoteCard({ setPreviewNoteModal, id, title, desc, tags, creation_date, last_update_date }) {
+    const countWords = desc.trim() ? desc.trim().split(/\s+/).length : 0;
+    const countChars = desc.length;
     return (
         <motion.div
             className="modal d-block"
@@ -39,9 +41,15 @@ function NoteCard({ setPreviewNoteModal, id, title, desc, tags, creation_date, l
                             ))
                         }
                     </div>
-                    <div className="modal-footer d-flex justify-content-start">
-                        <p className="w-100 mb-0"><i>Created on date: {new Intl.DateTimeFormat('en-US').format(new Date(creation_date))}</i></p>
-                        <p><i>Last updated on date: {new Intl.DateTimeFormat('en-US').format(new Date(last_update_date))}</i></p>
+                    <div className="modal-footer">
+                        <div className="d-flex justify-content-between w-100">
+                            <p className=" mb-0"><i>Created on date: {new Intl.DateTimeFormat('en-US').format(new Date(creation_date))}</i></p>
+                            <p className=" mb-0"><i>Words: {countWords}</i></p>
+                        </div>
+                        <div className = "d-flex justify-content-between w-100">
+                            <p className=" mb-0"><i>Last updated on date: {new Intl.DateTimeFormat('en-US').format(new Date(last_update_date))}</i></p>
+                            <p className=" mb-0"><i>Characters: {countChars}</i></p>
+                        </div>
                     </div>
                 </div>
             </motion.div>

@@ -2,6 +2,7 @@ import "./NewNote.css"
 import "./NotePreviewCard.css"
 import "./CloseNoteModal.jsx"
 import CloseNoteModal from "./CloseNoteModal.jsx";
+import TestualInput from "./TestualInput.jsx";
 
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
@@ -120,7 +121,7 @@ function NewNote({ mode = "edit", note, onClose }) {
                 <div className="col-lg-7 p-2 m-0">
                     <div className="card w-100 shadow fullNoteCard border-0 mt-2" style={{ height: "97vh" }}>
                         <div className="card-body">
-                            <div className="cardHeading newNoteHeading d-flex justify-content-between align-items-center p-1" style={{ borderBottom: "solid 1px rgb(192, 192, 192)" }}>
+                            <div className="cardHeading newNoteHeading d-flex justify-content-between align-items-center p-1 pb-0" style={{ borderBottom: "solid 1px rgb(192, 192, 192)" }}>
                                 <h5 className="card-title">New Note</h5>
                                 <button id="closeNote" onClick={checkClose} className="openaModal d-flex btn p-0 m-0">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-x-circle m-0" viewBox="0 0 16 16">
@@ -130,8 +131,8 @@ function NewNote({ mode = "edit", note, onClose }) {
                                 </button>
                             </div>
                             <div className="editNoteContainer mt-1">
-                                <div className="mb-3">
-                                    <label htmlFor="title" className="form-label ">Title</label>
+                                <div className="mb-2">
+                                    <label htmlFor="title" className="form-label m-0">Title</label>
                                     <input
                                         type="text"
                                         className="form-control"
@@ -142,8 +143,8 @@ function NewNote({ mode = "edit", note, onClose }) {
                                         onChange={handleInputChange}
                                     />
                                 </div>
-                                <div className="mb-3">
-                                    <label htmlFor="desc" className="form-label">Your Note</label>
+                                <div className="mb-2">
+                                    <label htmlFor="desc" className="form-label m-0">Your Note</label>
                                     <textarea
                                         style={{ resize: "none" }}
                                         placeholder="Add Note..."
@@ -155,8 +156,9 @@ function NewNote({ mode = "edit", note, onClose }) {
                                         onChange={handleInputChange}
                                     ></textarea>
                                 </div>
-                                <div className="mb-3">
-                                    <label htmlFor="tags" className="form-label">Tags</label>
+                                <TestualInput txt = {formData.desc} />
+                                <div className="mb-3 mt-0">
+                                    <label htmlFor="tags" className="form-label m-0">Tags</label>
                                     <input
                                         type="text"
                                         className="form-control"
