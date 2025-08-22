@@ -1,13 +1,13 @@
 import React from 'react';
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm"
+import remarkBreaks from "remark-breaks"
 import './NoteCard.css';
+import "../NotesComponents/NewNote.css"
 import { useGetLastUpdatedNoteQuery } from '../../redux/notes/notesApiSlice';
 
 const NoteCard = () => {
   const { data: lastNote, isLoading, error } = useGetLastUpdatedNoteQuery(undefined, { refetchOnMountOrArgChange: true });
-  // const lastNote = {
-  //   title: "ciao",
-  //   desc: "sigma"
-  // }
 
   if (isLoading) return <div class="card-body d-flex justify-content-around mt-2 p-1">
     <div className="spinner-border" role="status" />
@@ -43,8 +43,9 @@ const NoteCard = () => {
             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
           </svg>
         </div>
-        <div className='note-text mt-2 mb-2'>
-          <p>{truncated}</p>
+        <div className='note-text previewParagraph mt-2 mb-2'>
+          <ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>
+            {truncated}</ReactMarkdown>
         </div>
         <div className='note-footer d-flex align-items-center'>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fillRule="currentColor" className="bi bi-clock-history" viewBox="0 0 16 16">
