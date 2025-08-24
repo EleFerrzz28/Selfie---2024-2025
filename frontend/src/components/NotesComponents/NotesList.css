@@ -88,6 +88,8 @@
     height: 10vmin;
     max-width: 150px;
     max-height: 150px;
+    min-width: 70px;
+    min-height: 70px;
     border-radius: 50%;
     transition: transform 0.5s ease, background-color 0.5s ease;
     font-weight: bold;
@@ -136,12 +138,7 @@
     .cardHeading {
         height: 85px;
     }
-
-    .newNoteMobile {
-        display: block;
-    }
-
     .newNote {
-        display: none;
+        top: 60%;
     }
 }

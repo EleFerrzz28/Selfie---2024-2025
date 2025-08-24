@@ -27,7 +27,7 @@ function Notes() {
                 <div className="container-fluid p-0 m-0">
                     <ToastContainer />
                     <div className="container-fluid justify-content-center">
-                        <div className="row">
+                        <div className="row" >
                             <div className="p-0 m-0 col-lg-2">
                                 <MainNavbar />
                             </div>

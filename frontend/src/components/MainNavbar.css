@@ -14,11 +14,11 @@
 
     color: var(--white);
     font-family: "Cal Sans", sans-serif;
-    font-style: normal;  
+    font-style: normal;
     font-optical-sizing: auto;
 }
 
-#sidebar > ul > li:first-child .logo {
+#sidebar>ul>li:first-child .logo {
     font-weight: bold;
 }
 
@@ -32,6 +32,7 @@
 #sidebar ul {
     list-style: none;
 }
+
 #sidebar .nav-link,
 #sidebar .logo {
     transition: 0.4s;
@@ -46,7 +47,8 @@
         fill: var(--darkblue)
     }
 }
-.logo{
+
+.logo {
     width: 100%;
     position: absolute;
     top: 0;
@@ -90,10 +92,8 @@
 #sidebar .active:hover {
     background-color: var(--lightBlue);
     color: var(--darkblue);
-    svg{
+
+    svg {
         fill: var(--darkblue);
     }
 }
-
-
-
