@@ -84,3 +84,6 @@ img{
   --toggle-fg:rgb(41, 97, 182);
 }
 
+html, body, #root {
+  height: 100%;
+}

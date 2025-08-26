@@ -28,10 +28,10 @@ function Notes() {
                     <ToastContainer />
                     <div className="container-fluid justify-content-center">
                         <div className="row" >
-                            <div className="p-0 m-0 col-lg-2">
+                            <div className="p-0 m-0 col-auto">
                                 <MainNavbar />
                             </div>
-                            <div className="p-0 m-0 col-lg-10">
+                            <div className="p-0 m-0 col flex-grow-1">
                                 <NotesList /> 
                             </div>
                         </div>

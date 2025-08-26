@@ -12,9 +12,9 @@
 
 .previewNota {
     width: 60vmin;
-    max-width: 400px;
+    max-width: 360px;
     height: 45vmin;
-    max-height: 375px;
+    max-height: 335px;
     animation: entrance 0.4s ease-out;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }

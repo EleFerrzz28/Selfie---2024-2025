@@ -4,7 +4,7 @@ import Note from '../models/noteModel.js';
 
 // Add Note
 const createNote = asyncHandler(async (req, res) => {
-    const { title, desc, tags } = req.body;
+    const { title, desc, tags, creation_date } = req.body;
     const user = req.user;
 
     if (!title) {
@@ -23,6 +23,7 @@ const createNote = asyncHandler(async (req, res) => {
             title,
             desc,
             tags: tags || [],
+            creation_date,
             userId: user._id,
         });
 

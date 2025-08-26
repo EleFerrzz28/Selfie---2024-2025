@@ -1,4 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit"
+import { DateTime} from "luxon"
 
 const selectNotes = state => state.notes.value;
 const selectQuery = state => state.notes.query;
@@ -26,6 +27,21 @@ export const selectFilteredSortedNotes = createSelector(
                 if (sortBy === "length") return b.desc.length - a.desc.length;
                 return 0;
             })
+    }
+);
+
+export const selectTimeData = createSelector(
+    (state) => state.time.value,
+    (timeValue) => DateTime.fromISO(timeValue) 
+);
+
+export const selectFilteredSortedNotesByTime = createSelector(
+    [selectFilteredSortedNotes, selectTimeData],
+    (notes, timeData) => {
+        if (!notes) return [];
+        return notes.filter(note => 
+            DateTime.fromISO(note.creation_date) <= timeData
+        );
     }
 );
 

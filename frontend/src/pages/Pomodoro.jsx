@@ -23,10 +23,10 @@ function Pomodoro() {
     <div className="container-fluid">
       {isDesktop ? (
         <div className="row">
-          <div className="col p-0 m-0 col-lg-2 col-md-3">
+          <div className="col p-0 m-0 col-auto">
             <MainNavbar />
           </div>
-          <div className="col col-lg-10 col-md-9 col-sm-12">
+          <div className="col col flex-grow-1">
             <PomodoroPage />
           </div>
         </div>

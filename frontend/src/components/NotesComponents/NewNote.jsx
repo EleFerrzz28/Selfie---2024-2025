@@ -3,7 +3,7 @@ import "./NotePreviewCard.css"
 import "./CloseNoteModal.jsx"
 import CloseNoteModal from "./CloseNoteModal.jsx";
 import TestualInput from "./TestualInput.jsx";
-
+import {DateTime} from "luxon"
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
@@ -18,6 +18,7 @@ function NewNote({ mode = "edit", note, onClose }) {
     const [openModal, setOpenModal] = useState(false)
     const [editNote, { isLoading, error }] = useEditNoteMutation();
     const [createNote, { isLoading2, error2 }] = useCreateNoteMutation();
+    const timeData = DateTime.fromISO(useSelector((state) => state.time.value));
 
     const txt = "You're going back to rapid note mode: do you wish to dismiss the changes you've done?"
     const notes = useSelector((state) => state.notes.value || []);
@@ -95,7 +96,8 @@ function NewNote({ mode = "edit", note, onClose }) {
                 result = await createNote({
                     title: formData.title,
                     desc: formData.desc,
-                    tags: formData.tags
+                    tags: formData.tags,
+                    creation_date: timeData.toJSDate()
                 }).unwrap();
                 console.log("Note created:", result);
                 toast.success("Note created successfully!");

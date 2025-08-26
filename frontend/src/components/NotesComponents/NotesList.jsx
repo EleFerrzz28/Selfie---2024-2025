@@ -9,7 +9,7 @@ import { AnimatePresence } from "framer-motion";
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { setSortBy, setQuery } from "../../redux/notes/notesSlice.js";
-import { selectFilteredSortedNotes } from "../../redux/notes/selectors.js";
+import {  selectFilteredSortedNotesByTime } from "../../redux/notes/selectors.js";
 import { useGetAllNotesQuery } from "../../redux/notes/notesApiSlice.js";
 
 
@@ -26,13 +26,13 @@ function NotesList() {
 
     const dispatch = useDispatch();
     const { data: notesData, isLoading, error } = useGetAllNotesQuery();
-    const allFilteredSortedNotes = useSelector(selectFilteredSortedNotes);
+    const allFilteredSortedNotes = useSelector(selectFilteredSortedNotesByTime);
 
     const filteredNotes = tagsSelected.length === 0
         ? allFilteredSortedNotes
         : allFilteredSortedNotes.filter(note =>
             note.tags?.some(tag => tagsSelected.includes(tag))
-        );
+        )
 
     if (isLoading) return (
         <div className="noteListContainer d-flex justify-content-center align-items-center" style={{
@@ -40,12 +40,12 @@ function NotesList() {
             transition: 'background-color 0.25s ease-in-out',
             overflow: 'hidden'
         }}>
-            <div class="card glass-card shadow border-0"
+            <div className="card glass-card shadow border-0"
                 style={{
                     width: "50vmin",
                     height: "10vmin"
                 }}>
-                <div class="card-body d-flex justify-content-around mt-2 p-1">
+                <div className="card-body d-flex justify-content-around mt-2 p-1">
                     <div className="spinner-border" role="status" />
                     <h5 className="card-title mt-1" style={{
                         fontFamily: '"Cal Sans", sans-serif',
