@@ -1,7 +1,20 @@
+@keyframes entrance-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 ul {
     list-style: none;
 }
-a, li{
+
+a,
+li {
     text-decoration: none;
 }
 
@@ -16,20 +29,22 @@ img {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: white;
+    background-color: var(--navbar);
+    border-radius: 0 0 1.25rem 1.25rem;
     box-shadow: 0px 0px 10px rgb(172, 167, 167);
     transition: 0.4s;
 
-    svg{
+    svg {
         fill: var(--midnight);
         width: 8vmin;
     }
+
 }
 
 .navContainer svg {
     width: 8vmin;
     height: auto;
-    
+
     fill: var(--midnight);
     font-weight: 600;
 }
@@ -53,14 +68,19 @@ img {
     position: fixed;
     bottom: 0;
     left: 0;
-    background-color:white;
+    background-color: var(--navbar);
     box-shadow: 0px 0px 10px rgb(109, 107, 107);
     height: 15vmin;
     border-radius: 1.25rem 1.25rem 0 0;
     transition: 0.4s;
-    svg{
+
+    svg {
         width: 10vmin;
     }
+}
+
+.navList li {
+    animation: entrance-bottom 0.4s ease-out;
 }
 
 .navList span {
@@ -68,20 +88,19 @@ img {
     font-size: x-small;
     color: var(--midnight);
     font-family: "Cal Sans", sans-serif;
-    font-style: normal;  
+    font-style: normal;
     font-optical-sizing: auto;
 }
 
-.activeB{
+.activeB {
     background-color: rgb(230, 170, 149);
     color: var(--darkPurple);
     width: 20vmin;
     height: 20vmin;
-    border-radius: 50%;
     transition: 0.4s;
 }
 
-.activeB span{
+.activeB span {
     display: block;
     padding-top: 5px;
 }

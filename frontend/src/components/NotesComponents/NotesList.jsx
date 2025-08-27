@@ -9,7 +9,7 @@ import { AnimatePresence } from "framer-motion";
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { setSortBy, setQuery } from "../../redux/notes/notesSlice.js";
-import {  selectFilteredSortedNotesByTime } from "../../redux/notes/selectors.js";
+import { selectFilteredSortedNotesByTime } from "../../redux/notes/selectors.js";
 import { useGetAllNotesQuery } from "../../redux/notes/notesApiSlice.js";
 
 
@@ -42,16 +42,11 @@ function NotesList() {
         }}>
             <div className="card glass-card shadow border-0"
                 style={{
-                    width: "50vmin",
+                    width: "10vmin",
                     height: "10vmin"
                 }}>
-                <div className="card-body d-flex justify-content-around mt-2 p-1">
+                <div className="card-body d-flex justify-content-around align-items-center p-1">
                     <div className="spinner-border" role="status" />
-                    <h5 className="card-title mt-1" style={{
-                        fontFamily: '"Cal Sans", sans-serif',
-                        fontStyle: "normal",
-                        fontOpticalSizing: "auto",
-                    }}>Your Notes Are Loading...</h5>
                 </div>
             </div>
         </div>);
@@ -77,11 +72,6 @@ function NotesList() {
 
     return (
         <div className="noteListContainer ps-1 pe-1" data-theme={mode ? "dark" : "light"}
-            style={{
-                backgroundImage: 'linear-gradient(60deg, var(--sunrise), var(--darkPurple)',
-                transition: 'background-color 0.25s ease-in-out',
-                overflow: 'hidden'
-            }}
             onClick={() => { setOpenMenuId(null); }}>
             {isCreatingNote || editingNoteId ? (
                 <NewNote
@@ -95,7 +85,7 @@ function NotesList() {
             ) : (
                 <div className="card border shadow border-0 mt-2 blur-background" onClick={() => { setOpenMenuId(null); }}>
                     <div className="cardHeading d-flex justify-content-between align-items-center pb-1 pt-1" style={{ borderBottom: "solid 1px rgb(192, 192, 192)" }}>
-                        <h5 className="card-title px-3 pt-2 mb-0">All Notes</h5>
+                        <h5 className="card-title px-3 pt-2 mb-0">Notes</h5>
                         <div className="d-flex">
                             <button onClick={() => { setOpenModal(true) }} className="noteListButtons btn rounded me-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-filter headingIcon" viewBox="0 0 16 16">
@@ -139,7 +129,7 @@ function NotesList() {
                                     tags={note.tags}
                                     creation_date={note.creation_date}
                                     last_update_date={note.last_update_date}
-                                    pinned = {note.pinned}
+                                    pinned={note.pinned}
 
                                     openMenuId={openMenuId}
                                     setOpenMenuId={setOpenMenuId}
@@ -159,7 +149,7 @@ function NotesList() {
                         </AnimatePresence>
                         <AnimatePresence>
                             {deleteNoteModal && (
-                                console.log("Found note:", filteredNotes.find(note => note.id == deleteNoteModal)), 
+                                console.log("Found note:", filteredNotes.find(note => note.id == deleteNoteModal)),
                                 <DeleteNoteModal
                                     {...filteredNotes.find(note => note.id == deleteNoteModal)}
                                     setDeleteNoteModal={setDeleteNoteModal}
@@ -167,11 +157,11 @@ function NotesList() {
                                 />
                             )}
                         </AnimatePresence>
-                        <button type="button" onClick={() => setIsCreatingNote(true)} className="btn newNote">
+                        {openMenuId === null && (<button type="button" onClick={() => setIsCreatingNote(true)} className="btn newNote">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-plus" viewBox="0 0 16 16">
                                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
                             </svg>
-                        </button>
+                        </button>)}
                     </div>
                 </div>)}
         </div>

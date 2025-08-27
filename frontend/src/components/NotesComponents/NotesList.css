@@ -135,10 +135,17 @@
         height: max-content;
     }
 
+    .noteListButtons svg {
+        width: 24px;
+    }
+
     .cardHeading {
-        height: 85px;
+        height: 70px;
     }
     .newNote {
-        top: 60%;
+        top: 70%;
+    }
+    .cardHeading > .card-title {
+        font-size: 24px;
     }
 }

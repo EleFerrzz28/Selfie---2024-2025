@@ -9,7 +9,7 @@ import { useGetLastUpdatedNoteQuery } from '../../redux/notes/notesApiSlice';
 const NoteCard = () => {
   const { data: lastNote, isLoading, error } = useGetLastUpdatedNoteQuery(undefined, { refetchOnMountOrArgChange: true });
 
-  if (isLoading) return <div class="card-body d-flex justify-content-around mt-2 p-1">
+  if (isLoading) return <div class="card-body d-flex justify-content-around align-items-center p-1">
     <div className="spinner-border" role="status" />
     <h5 className="card-title mt-1" style={{
       fontFamily: '"Cal Sans", sans-serif',

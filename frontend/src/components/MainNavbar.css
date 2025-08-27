@@ -28,6 +28,7 @@
     font-family: "Cal Sans", sans-serif;
     font-style: normal;
     font-optical-sizing: auto;
+    border-radius: 0 1.00rem 0 0;
 }
 
 #sidebar>nav {

@@ -178,4 +178,13 @@
         border-radius: 4vmin;
         border: solid 0px var(--darkblue);
     }
+
+    #pinUnpin {
+
+        svg {
+            width: 24px;
+            height: auto;
+            transition: 0.2s ease
+        }
+    }
 }
