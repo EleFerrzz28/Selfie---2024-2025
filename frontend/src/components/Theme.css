@@ -1,0 +1,44 @@
+.theme-toggler{
+    position: absolute;
+    top: 1vmin;
+    right: 4vmin;
+}
+
+.toggle{
+    visibility: hidden;
+}
+
+.toggle + label{
+    display: flex;
+    align-items: center;
+    font-size: 2vmin;
+    cursor: pointer;
+    color: var(--color-dark);
+}
+
+.toggle + label::before {
+    content: "";
+    height: 2vmin;
+    width: 4vmin;
+    border-radius: 1vmin;
+    background-color: var(--toggle-bg);
+    margin-right: 1vmin;
+    transition: background-color 150ms ease-in-out, transform 150ms ease-in-out;
+
+}
+
+.toggle + label::after{
+    content: "";
+    height: 1.8vmin;
+    width: 1.8vmin;
+    border-radius: 1vmin ;
+    background-color: var(--toggle-fg);
+    position: absolute;
+    left: 0.3vmin;
+
+}
+
+
+.toggle:checked +label::after{
+    transform: translateX(100%);
+}

@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+@keyframes entrance {
+    0% {
+        opacity: 0;
+        transform: translateX(10px) scale(0.98);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+.tMachineContainer{
+    width: 35vmin;
+    height: 30vmin;
+    max-width:fit-content;
+    max-height: fit-content;
+    background-color: var(--sageGreen);
+    font-family:'Anton', sans-serif;
+    animation: entrance 0.4s ease-out, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tMachineContainer {
+    transform: translate(0) scale(1.02);
+}
+.tMachineContainer h5{
+    font-size: normal;
+}

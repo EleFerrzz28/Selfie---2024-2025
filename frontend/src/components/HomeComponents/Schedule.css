@@ -1,0 +1,68 @@
+
+
+.undo-popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--darkPurple);
+  color: white;
+  padding: 1rem;
+  z-index: 9000;
+  gap: 1rem;
+}
+
+
+
+.undo-popup button {
+  margin-left: 1rem;
+  background: #eee;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+.schedule {
+    max-height: 92vh; 
+    width: 100%;
+
+    padding: 20px;
+    padding-top: 5px;
+    margin: 0 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.schedule__header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+   
+}
+
+.schedule__header h4{
+    font-weight: 600;
+    color: #fff;
+}
+
+#schedule__categories-button{
+    background-color: transparent;
+    border: none;
+}
+
+
+#schedule__categories-button i{
+    color: #fff;
+}
+
+
+
+
+
+
+
+
+

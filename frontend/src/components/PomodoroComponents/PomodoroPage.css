@@ -1,0 +1,22 @@
+.pomodoroCard button{
+    background:linear-gradient(60deg, var(--sunrise), var(--darkPurple));
+    color:var(--lionsmane);
+}
+#general-title{
+    background:linear-gradient(60deg, var(--sunrise), var(--darkPurple));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color:transparent;
+}
+
+.last-session-div h4{
+    color:var(--sunrise);
+}
+.last-session-div {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    line-height: 1;
+    z-index: 5;
+    font-size: smaller;
+}

@@ -1,0 +1,71 @@
+/*BoxIcons*/
+@import url('https://cdn.boxicons.com/fonts/basic/boxicons.min.css');
+@import url('https://cdn.boxicons.com/fonts/transformations.min.css');
+
+.event__box {
+    display: block;
+    position: relative;
+    max-height: 120px;
+    height: 8rem;
+    width: 100%;
+   
+    padding: clamp(0.8rem, 1.5vw, 1.5rem); 
+    margin: clamp(0.8rem, 1.5vw, 2rem) auto; 
+    gap: clamp(0.4rem, 0.8vw, 1rem);
+
+    border-left: 2px solid rgba(183, 187, 195, 0.35);
+    box-sizing: border-box;
+
+    background: linear-gradient(150deg, rgba(135, 135, 135, 0.1) 40%, rgba(187, 185, 255, 0.2) 110%);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(4px);
+    border-radius: 12px;
+}
+
+.event__box::before {
+    content: '';
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    left: -8px;
+    top: 20px;
+    
+    background: #dcdce1;
+    border-radius: 50%;
+}
+
+.event__start-time {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.done {
+    border-radius: 20%;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: none;
+}
+
+.event__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-bottom: 10px;
+    margin-bottom: 0.5rem;
+}
+
+.event__start-time {
+    font-size: 0.9rem;
+    color: #ffffff;
+}
+
+.event__title {
+    font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #fff;
+}
+

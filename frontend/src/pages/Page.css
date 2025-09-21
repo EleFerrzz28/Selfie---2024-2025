@@ -1,0 +1,19 @@
+.mobilerow {
+    padding-top: 14vmin;
+    padding-bottom: 16vmin;
+}
+
+.mobile-layout {
+    background: transparent;
+}
+
+.timecontainer {
+    height: 100vh;
+    overflow: auto;
+}
+
+.calendar-font {
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+}

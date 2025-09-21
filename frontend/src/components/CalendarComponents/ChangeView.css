@@ -1,0 +1,31 @@
+.bottom-preview-container {
+  position: fixed;
+  top: 0;
+  right: 250px;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+.modal-preview-select-struct {
+  width: 100%;
+  max-width: 200px;
+  height: 54px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: height 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+.modal-preview-select-struct:hover {
+  height: 15vh;
+}
+
+.modal-preview-select-struct.open {
+  height: 40vh;
+}
+
+img:hover{
+  transform: scale(1.05);
+}

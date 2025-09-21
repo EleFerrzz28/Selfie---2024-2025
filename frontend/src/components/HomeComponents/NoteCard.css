@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap');
+
+.NoteCard-container header {
+    text-align: start;
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+    font-size: 2.5vh;
+    color: white;
+    margin-bottom: 2vh;
+}
+
+.note-card {
+    z-index: 1;
+    min-width: 30vh;
+    height: 32vh;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 2rem 4rem -2rem var(--color-light);
+    background-color: var(--white);
+    transition: all 300ms ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.note-card:hover {
+    box-shadow: none;
+    transform: scale(1.05);
+    transition: 0.5s ease-in-out;
+}
+
+.note-card::before {
+    content: '';
+    position: absolute;
+    bottom:  0;
+    right: 0;
+    width: 100%;
+    height: 0;
+    background: var(--sunrise) ;
+    z-index: -1;
+    transition: 0.3s ease-in-out;
+}
+
+.note-card:hover::before {
+    height: 100%;
+}
+
+
+
+/*
+.note-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+.tags-container{
+    display: flex;
+    justify-content: center;
+    gap: 2vmin;
+    overflow-x: auto ;
+}
+
+.tag{
+    padding: 3px;
+    text-align: center;
+    border-radius: var(--card-border-radius);
+    width: fit-content;
+}
+    */
+
+
+.note-title {
+    color: var(--color-dark);
+    font-weight: bold;
+}
+
+.note-text {
+    z-index: 2;
+    font-size: 1.9vh;
+    color: var(--color-dark);
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    overflow: hidden;
+}
+
+
+.note-footer {
+    z-index: 2;
+    font-size: 0.5vw;
+    color: lightslategray;
+}
+
+.note-icon {
+    fill: gray;
+    z-index: 0;
+    width: 25vh;
+    height: 25vh;
+    position: absolute;
+    bottom: -30px;
+    right: 0;
+    transform: rotate(-20deg);
+    opacity: 15%;
+}
+
+.note-card:hover .note-icon {
+    fill: var(--darkPurple); 
+    transition: fill 0.3s ease-in-out;
+}

@@ -1,0 +1,19 @@
+
+.settings{
+    overflow-y: scroll;
+}
+
+.option-category{
+    width: 100%;
+}
+
+.toModal{
+    width: 25%;
+    height: 40%;
+}
+
+.chivron-icon{
+    width: 100%;
+    height: 100%;
+}
+

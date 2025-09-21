@@ -1,0 +1,21 @@
+.previewTitle {
+    word-wrap: break-word; /* spezza parole lunghe se necessario */
+    overflow-wrap: anywhere; /* gestione migliore di parole lunghe o URL */
+    white-space: normal; /* consente di andare a capo */
+}
+
+#noteCardtext {
+    height: 50vmin;
+    overflow: auto;
+    padding: 0.5rem;
+}
+
+.mcNoteCard {
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;  
+    font-optical-sizing: auto;
+}
+
+.mcNoteCard h5 {
+    font-size: 4vh;
+}
