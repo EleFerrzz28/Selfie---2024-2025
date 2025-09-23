@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import {  useEffect } from "react";
 import { getAllTags } from "../../redux/notes/selectors";
+import "./NotePreviewCard.css"
 import "./TagsModal.css"
 import ReactDOM from "react-dom";
 
@@ -39,7 +40,7 @@ function TagsModal({ setOpenModal, tagsSelected, setTagsSelected }) {
                     <div className="modal-body">
                         <div id="tagList" className="d-flex p-0 m-0 flex-wrap justify-content-around align-items-center flex-row">
                             {tags.map((tag, index) => (
-                                <div key={index} className={`tagListStyle m-1 p-2 rounded ${tagsSelected.includes(tag) ? 'isSelected' : ''}`}
+                                <div key={index} className={`badge rounded-pill tagStyle mb-2 ms-2 p-2 text-muted ${tagsSelected.includes(tag) ? 'isSelected' : ''}`}
                                     onClick={() => selectTag(tag)}>{tag}</div>
                             ))}
                         </div>

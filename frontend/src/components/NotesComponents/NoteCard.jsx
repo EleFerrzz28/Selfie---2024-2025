@@ -35,10 +35,10 @@ function NoteCard({ setPreviewNoteModal, id, title, desc, tags, creation_date, l
                     <div className="modal-body">
                         <div id="noteCardtext" className="p-1 previewParagraph"><ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>{desc}</ReactMarkdown></div>
                     </div>
-                    <div className="row p-3 pb-0 mb-0 pt-1" >
+                    <div className="row tagsRow ms-3 me-3 pb-0 mb-0 pt-1" >
                         {
                             tags.map((tag, index) => (
-                                <h6 key={index} className="tagStyle card-subtitle shadow rounded mb-2 ms-2 p-1 text-muted">{tag}</h6>
+                                <h6 key={index} className="badge rounded-pill tagStyle mb-2 ms-2 p-2 text-muted">{tag}</h6>
                             ))
                         }
                     </div>

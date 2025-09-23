@@ -2,6 +2,7 @@ import "./MainNavbar.css"
 import { NavLink } from "react-router-dom"
 import TimeMachine from "./TimeMachineComponents/TimeMachine.jsx"
 import TimeFlow from "./TimeMachineComponents/TimeFlow.jsx"
+import logo from "../assets/logo.svg"
 import { useState } from "react"
 
 
@@ -12,11 +13,11 @@ function MainNavbar() {
         <TimeFlow>
             <nav id="sidebar" className="pt-3 shadow h-100">
                 <ul className={`m-0 p-0 ${isOpen ? "open" : "closed"}`}>
-                    <li className="mb-5 p-0 d-flex justify-content-start">
-                        <span className="logo pt-4 ps-2">SELFIE</span>
+                    <li className="p-0 mb-4 me-2 d-flex justify-content-between align-items-center">
                         <button onClick={() => setIsOpen(!isOpen)} type="button" id="openButton" className="btn pt-0"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">
                             <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
                         </svg></button>
+                        <span className="logo me-1"><img src={logo} alt="Logo" className="w-auto" /></span>
                     </li>
                     <li>
                         <NavLink
@@ -52,8 +53,8 @@ function MainNavbar() {
                                 <path d="M13.997 5.17a5 5 0 0 0-8.101-4.09A5 5 0 0 0 1.28 9.342a5 5 0 0 0 8.336 5.109 3.5 3.5 0 0 0 5.201-4.065 3.001 3.001 0 0 0-.822-5.216zm-1-.034a1 1 0 0 0 .668.977 2.001 2.001 0 0 1 .547 3.478 1 1 0 0 0-.341 1.113 2.5 2.5 0 0 1-3.715 2.905 1 1 0 0 0-1.262.152 4 4 0 0 1-6.67-4.087 1 1 0 0 0-.2-1 4 4 0 0 1 3.693-6.61 1 1 0 0 0 .8-.2 4 4 0 0 1 6.48 3.273z" />
                             </svg><span>Pomodoro</span></NavLink>
                     </li>
-                    <li className={`${isOpen ? "ms-0 d-flex justify-content-center" : "timeMachine p-2 m-2 mb-2"}`}>
-                        {isOpen ? <TimeMachine /> :  <button onClick={() => setIsOpen(!isOpen)} type="button" id="openButton" className="btn border-0 p-0 m-0"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-clock" viewBox="0 0 16 16">
+                    <li style = {{zIndex: "2"}}className={`${isOpen ? "ms-0 d-flex justify-content-center" : "timeMachine p-2 m-2 mb-2"}`}>
+                        {isOpen ? <TimeMachine /> : <button onClick={() => setIsOpen(!isOpen)} type="button" id="openButton" className="btn border-0 p-0 m-0"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-clock" viewBox="0 0 16 16">
                             <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0" />
                         </svg></button>

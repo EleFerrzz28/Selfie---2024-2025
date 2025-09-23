@@ -55,10 +55,40 @@
 
 .tagStyle {
     background-color: var(--panna);
-    width: auto;
+    max-width: 100px;
+    display: inline-block;
+    font-size: 0.9rem;
+    padding: 0.25rem 0.5rem;
+    margin: 0.1rem;
     cursor: pointer;
     transition: 0.3s;
+
+    white-space: nowrap;       
+    overflow: hidden;         
+    text-overflow: ellipsis;   
 }
+
+
+.tagsRow {
+    display: flex;
+    flex-wrap: nowrap;
+    height: auto;
+    gap: 0.25rem;
+    overflow-x: auto;
+}
+
+.tagsRow::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.tagsRow {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
 
 .tagStyle:hover {
     background-color: var(--marigold);

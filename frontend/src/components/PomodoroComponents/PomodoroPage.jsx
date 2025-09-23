@@ -4,8 +4,12 @@ import {startTimer, stopTimer, resetTimer, setTimer} from './pomodoroTimer.js';
 import { useAddSessionMutation, useGetLastSessionQuery } from '../../redux/pomodoro/pomodoroApiSlice.js'
 import { toast, ToastContainer } from "react-toastify";
 import 'animate.css'
+import { DateTime } from "luxon"
+import { useSelector } from "react-redux";
 
 function PomodoroPage(){
+    const timeData = DateTime.fromISO(useSelector((state) => state.time.value)); // TM
+
     const [addSession] = useAddSessionMutation();
     const {data: sessionData=[], isLoading, refetch: refetchSession } = useGetLastSessionQuery();
 
@@ -14,7 +18,7 @@ function PomodoroPage(){
     const saveSession = async(duration, nCycles)=>{
         try{
             const newSession={
-                date: new Date().toISOString(),
+                date: timeData.toJSDate(), // TM
                 prodPeriod: duration,
                 cycles: nCycles
             };

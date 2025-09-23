@@ -1,7 +1,10 @@
 .previewTitle {
-    word-wrap: break-word; /* spezza parole lunghe se necessario */
-    overflow-wrap: anywhere; /* gestione migliore di parole lunghe o URL */
-    white-space: normal; /* consente di andare a capo */
+    word-wrap: break-word;
+    /* spezza parole lunghe se necessario */
+    overflow-wrap: anywhere;
+    /* gestione migliore di parole lunghe o URL */
+    white-space: normal;
+    /* consente di andare a capo */
 }
 
 #noteCardtext {
@@ -12,7 +15,7 @@
 
 .mcNoteCard {
     font-family: "Cal Sans", sans-serif;
-    font-style: normal;  
+    font-style: normal;
     font-optical-sizing: auto;
 }
 

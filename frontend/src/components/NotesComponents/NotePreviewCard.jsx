@@ -108,10 +108,10 @@ function NotePreviewCard({ id, title, desc, tags, creation_date, last_update_dat
                 </div>
             </div>
             <div className="d-flex flex-column flex-grow-1 p-1 mt-1 noteStuff">
-                <div className="row pt-1 mb-1" style={{ maxHeight: "40px", overflowY: "auto" }}>
+                <div className="row pt-1 mb-1 tagsRow">
                     {
                         tags.map((tag, index) => (
-                            <h6 key={index} className="tagStyle card-subtitle rounded mb-2 ms-2 p-1 text-muted">{tag}</h6>
+                            <h6 key={index} className="badge rounded-pill tagStyle mb-2 ms-2 p-2 text-muted">{tag}</h6>
                         ))
                     }
                 </div>

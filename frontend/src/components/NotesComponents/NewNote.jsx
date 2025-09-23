@@ -1,5 +1,6 @@
 import "./NewNote.css"
 import "./NotePreviewCard.css"
+import "./NoteCard.css"
 import "./CloseNoteModal.jsx"
 import CloseNoteModal from "./CloseNoteModal.jsx";
 import NoteCard from "./NoteCard.jsx"
@@ -214,9 +215,9 @@ function NewNote({ mode = "edit", note, onClose }) {
                             </div>
                             <div className="card rounded p-2 mt-2" style={{ height: "80vh" }}>
                                 <h5 className="card-title ps-1" style={{ fontSize: "medium" }}>{formData.title}</h5>
-                                <div className="row ps-1">
+                                <div className="row tagsRow ms-3 me-3 pb-0 mb-0 pt-1">
                                     {formData.tags.map((tag, index) => (
-                                        <h6 key={index} className="tagStyle card-subtitle rounded mb-2 ms-2 p-1 text-muted">{tag}</h6>
+                                        <h6 key={index} className="badge rounded-pill tagStyle mb-2 ms-2 p-2 text-muted">{tag}</h6>
                                     ))}
                                 </div>
                                 <div className="card-text previewParagraph ps-1" style={{ overflow: "auto" }}><ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>

@@ -24,40 +24,38 @@ function Notes() {
     return (
         <>
             {isDesktop ? (
-                <div className="container-fluid p-0 m-0" style={{
+                <div className="container-fluid justify-content-center" style={{
                     backgroundImage: 'linear-gradient(60deg, var(--sunrise), var(--darkPurple))',
                     transition: 'background-color 0.25s ease-in-out',
                     overflow: 'hidden'
                 }}>
                     <ToastContainer />
-                    <div className="container-fluid justify-content-center">
-                        <div className="row" >
-                            <div className="p-0 m-0 col-auto">
-                                <MainNavbar />
-                            </div>
-                            <div className="p-0 m-0 col flex-grow-1">
-                                <NotesList />
-                            </div>
+                    <div className="row" >
+                        <div className="p-0 m-0 col-auto">
+                            <MainNavbar />
                         </div>
-                    </div>
-                </div >
-            ) : (
-                <div className="mobile-layout"
-                    style={{
-                        backgroundImage: 'linear-gradient(60deg, var(--sunrise), var(--darkPurple)',
-                        transition: 'background-color 0.25s ease-in-out',
-                        overflow: 'hidden'
-                    }}>
-                    <ToastContainer />
-                    <BottomNavbar />
-                    <div className="mobilerow row">
-                        <div className="col-12">
+                        <div className="p-0 m-0 col flex-grow-1">
                             <NotesList />
                         </div>
                     </div>
                 </div>
-            )
-            }
+            ) : (
+        <div className="mobile-layout"
+            style={{
+                backgroundImage: 'linear-gradient(60deg, var(--sunrise), var(--darkPurple)',
+                transition: 'background-color 0.25s ease-in-out',
+                overflow: 'hidden'
+            }}>
+            <ToastContainer />
+            <BottomNavbar />
+            <div className="mobilerow row">
+                <div className="col-12">
+                    <NotesList />
+                </div>
+            </div>
+        </div>
+    )
+}
         </>
     );
 
