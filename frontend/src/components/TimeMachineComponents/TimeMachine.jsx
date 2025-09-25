@@ -2,14 +2,24 @@ import "./TimeMachine.css"
 import { DateTime } from "luxon"
 import { setTime, resetTime } from "../../redux/timemachine/timemachineSlice.js"
 import { useDispatch, useSelector } from "react-redux"
+import { useState, useEffect } from "react"
 
 function TimeMachine() {
     const timeValue = useSelector((state) => state.time.value);
-    const timeData = DateTime.fromISO(timeValue);
+    const [timeData, setTimeData] = useState(DateTime.fromISO(timeValue));
+    const [isEditing, setIsEditing] = useState(false);
 
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        if (!isEditing) {
+            const dt = DateTime.fromISO(timeValue);
+            setTimeData(dt.isValid ? dt : DateTime.now().set({ second: 0, millisecond: 0 }));
+        }
+    }, [timeValue, isEditing]);
+
     const handleInputChange = (e) => {
+        setIsEditing(true);
         const { name, value } = e.target;
         let updated = timeData;
 
@@ -23,16 +33,16 @@ function TimeMachine() {
             updated = updated.set({ hour, minute, second: 0, millisecond: 0 });
         }
 
-        dispatch(setTime(updated.toISO()));
+        setTimeData(updated);
     };
 
-
     const handleTravel = async () => {
-        // usa direttamente l'oggetto aggiornato
+        setIsEditing(false);
         const updated = timeData.set({ second: 0, millisecond: 0 });
         const isoTime = updated.toISO();
 
-        dispatch(setTime(isoTime)); // aggiorno lato frontend
+        dispatch(setTime(isoTime));
+        console.log(isoTime);
 
         try {
             await fetch("/timemachine/set", {
@@ -45,24 +55,20 @@ function TimeMachine() {
         }
     };
 
-
     const handleToday = async () => {
-        dispatch(resetTime()); // aggiorno lato frontend
-
-        // aggiorno lato backend
+        setIsEditing(false);
+        dispatch(resetTime());
         try {
-            await fetch("/timemachine/reset", {
-                method: "POST",
-            });
+            await fetch("/timemachine/reset", { method: "POST" });
         } catch (err) {
             console.error("Errore nel today:", err);
         }
     };
 
     return (
-        <div className="card tMachineContainer ms-1 p-0 border-0">
+        <div className="card tMachineContainer shadow-lg p-0 border-0">
             <div className="card-body m-0">
-                <h5 className="card-title mb-1 p-0 text-center">TIME MACHINE</h5>
+                <h5 className="card-title mb-1 p-0 text-center" style = {{color: "antiquewhite"}}>TIME MACHINE</h5>
                 <div className="input-group flex-nowrap mb-1">
                     <input
                         type="date"

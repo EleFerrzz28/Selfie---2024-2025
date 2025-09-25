@@ -113,6 +113,13 @@ img {
     transition: 0.4s;
 } */
 
+.logo img {
+    height: 45px;
+    width: auto;
+    display: block;
+    max-width: 120px;
+}
+
 @media screen and (max-width: 960px) {
     .navMenu {
         max-height: 50px;

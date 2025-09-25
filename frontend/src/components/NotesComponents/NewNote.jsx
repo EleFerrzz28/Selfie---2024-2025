@@ -113,7 +113,8 @@ function NewNote({ mode = "edit", note, onClose }) {
                     title: formData.title,
                     desc: formData.desc,
                     tags: formData.tags,
-                    creation_date: timeData.toJSDate()
+                    creation_date: timeData.toJSDate(),
+                    last_update_date: timeData.toJSDate()
                 }).unwrap();
                 console.log("Note created:", result);
                 toast.success("Note created successfully!");
@@ -130,6 +131,7 @@ function NewNote({ mode = "edit", note, onClose }) {
 
     return (
         <div className="container-fluid">
+
             <AnimatePresence>
                 {openModal && (
                     <CloseNoteModal setOpenModal={setOpenModal} handleSubmit={handleSubmit} onClose={onClose} />
@@ -145,7 +147,6 @@ function NewNote({ mode = "edit", note, onClose }) {
                         last_update_date={note?.last_update_date || new Date()}
                     />
                 )}
-
             </AnimatePresence>
             <div className="row">
                 <div className="col-lg-7 p-2 m-0">
@@ -208,19 +209,19 @@ function NewNote({ mode = "edit", note, onClose }) {
                     </div>
                 </div>
                 {isDesktop && <div className="col-lg-5 p-2 ps-1 m-0">
-                    <div className="card w-100 shadow fullNoteCard border-0 mt-2" style={{ height: "97vh" }}>
+                    <div className="card w-100 shadow fullNoteCard border-0 mt-2">
                         <div className="card-body">
                             <div className="cardHeading d-flex justify-content-between align-items-center p-1" style={{ borderBottom: "solid 1px rgb(192, 192, 192)" }}>
                                 <h5 className="card-title">Preview</h5>
                             </div>
-                            <div className="card rounded p-2 mt-2" style={{ height: "80vh" }}>
+                            <div className="card rounded p-2 mt-2">
                                 <h5 className="card-title ps-1" style={{ fontSize: "medium" }}>{formData.title}</h5>
                                 <div className="row tagsRow ms-3 me-3 pb-0 mb-0 pt-1">
                                     {formData.tags.map((tag, index) => (
                                         <h6 key={index} className="badge rounded-pill tagStyle mb-2 ms-2 p-2 text-muted">{tag}</h6>
                                     ))}
                                 </div>
-                                <div className="card-text previewParagraph ps-1" style={{ overflow: "auto" }}><ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>
+                                <div className="card-text previewParagraph ps-1" style={{ height: "68vh", overflow: "auto" }}><ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>
                                     {formData.desc}</ReactMarkdown></div>
                             </div>
 

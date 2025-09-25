@@ -124,11 +124,27 @@
   font-optical-sizing: auto;
 }
 
+.fullNoteCard::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.fullNoteCard {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+
 @media screen and (max-width: 960px) {
 
   .fullNoteCard {
-    height: 70vh;
-    max-height: 800px;
+    height: 80vh;
+    max-height: 470px;
+  }
+  .fullNoteCard textarea {
+    height: 20vh;
   }
 
   .newNoteHeading {

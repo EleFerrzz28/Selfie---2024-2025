@@ -63,7 +63,7 @@ function NotesList() {
     </div>);
 
     return (
-        <div className="noteListContainer ps-1 pe-1" data-theme={mode ? "dark" : "light"}
+        <div className="noteListContainer ps-1 pe-1"  data-theme={mode ? "dark" : "light"}
             onClick={() => { setOpenMenuId(null); }}>
             {isCreatingNote || editingNoteId ? (
                 <NewNote
@@ -75,7 +75,7 @@ function NotesList() {
                     }}
                 />
             ) : (
-                <div className="card border shadow border-0 mt-2 blur-background vh-100" onClick={() => { setOpenMenuId(null); }}>
+                <div className="card border shadow border-0 mt-2 blur-background" onClick={() => { setOpenMenuId(null); }}>
                     <div className="cardHeading d-flex justify-content-between align-items-center pb-1 pt-1" style={{ borderBottom: "solid 1px rgb(192, 192, 192)" }}>
                         <h5 className="card-title px-3 pt-2 mb-0">Notes</h5>
                         <div className="d-flex">

@@ -5,28 +5,36 @@ import { DateTime } from "luxon";
 
 import { setTime, resetTime } from "../../redux/timemachine/timemachineSlice.js";
 import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from "react"
 
 import "../NotesComponents/NotePreviewCard.css";
 import "./TimeMobile.css";
 
 function TimeMobile() {
   const timeValue = useSelector((state) => state.time.value);
-  const timeData = DateTime.fromISO(timeValue);
   const dispatch = useDispatch();
 
-  // quando selezioni una nuova data/ora dal datepicker
-  const handleDateChange = async (date) => {
+  const [timeData, setTimeData] = useState(DateTime.fromISO(timeValue))
+  const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    if (!isEditing) {
+      const dt = DateTime.fromISO(timeValue);
+      setTimeData(dt.isValid ? dt : DateTime.now().set({ second: 0, millisecond: 0 }));
+    }
+  }, [timeValue, isEditing]);
+
+  const handleDateChange = (date) => {
     if (!date) return;
+    setIsEditing(true);
 
-    const updated = DateTime.fromJSDate(date).set({ second: 0, millisecond: 0 });
-    const isoTime = updated.toISO();
-
-    // aggiorna lo store frontend
-    dispatch(setTime(isoTime));
+    let updated = DateTime.fromJSDate(date).set({ second: 0, millisecond: 0 });
+    setTimeData(updated);
   };
 
-  // Travel button (puoi usarlo anche per confermare la TM attuale)
   const handleTravel = async () => {
+    setIsEditing(false);
+
     const updated = timeData.set({ second: 0, millisecond: 0 });
     const isoTime = updated.toISO();
 
@@ -45,6 +53,7 @@ function TimeMobile() {
 
   // Today button: resetta la TimeMachine all'ora reale
   const handleToday = async () => {
+    setIsEditing(false);
     dispatch(resetTime());
 
     try {
@@ -57,7 +66,7 @@ function TimeMobile() {
   };
 
   return (
-    <div className="container-fluid timecontainer vh-100 d-flex justify-content-center">
+    <div className="container-fluid timecontainer vh-100 d-flex justify-content-center" >
       <div className="card glass-card shadow" style={{ width: "fit-content", height: "fit-content" }}>
         <div className="card-body">
           <h5 className="card-title d-flex justify-content-center">TIME MACHINE</h5>

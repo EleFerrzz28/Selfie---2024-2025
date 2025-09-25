@@ -63,9 +63,9 @@
     cursor: pointer;
     transition: 0.3s;
 
-    white-space: nowrap;       
-    overflow: hidden;         
-    text-overflow: ellipsis;   
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
@@ -240,5 +240,17 @@
         width: 24px;
         height: auto;
         transition: 0.2s ease
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    #textpreview {
+        height: 90px;
+        font-size: 15px;
+    }
+    .previewNota {
+        h5 {
+            font-size: 20px;
+        }
     }
 }

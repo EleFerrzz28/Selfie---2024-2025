@@ -40,22 +40,22 @@ function Notes() {
                     </div>
                 </div>
             ) : (
-        <div className="mobile-layout"
-            style={{
-                backgroundImage: 'linear-gradient(60deg, var(--sunrise), var(--darkPurple)',
-                transition: 'background-color 0.25s ease-in-out',
-                overflow: 'hidden'
-            }}>
-            <ToastContainer />
-            <BottomNavbar />
-            <div className="mobilerow row">
-                <div className="col-12">
-                    <NotesList />
+                <div className="mobile-layout h-100"
+                    style={{
+                        backgroundImage: 'linear-gradient(60deg, var(--sunrise), var(--darkPurple)',
+                        transition: 'background-color 0.25s ease-in-out',
+                        overflow: 'hidden'
+                    }}>
+                    <ToastContainer />
+                    <BottomNavbar />
+                    <div className="mobilerow row h-100">
+                        <div className="col-12">
+                            <NotesList />
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    )
-}
+            )
+            }
         </>
     );
 

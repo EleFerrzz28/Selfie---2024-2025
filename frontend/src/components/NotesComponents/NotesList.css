@@ -28,12 +28,6 @@
     /* Firefox */
 }
 
-
-/* .noteListContainer {
-    min-width: 320px;
-    height: 100vh;
-} */
-
 .cardHeading {
     height: 8vmin;
 }
@@ -160,10 +154,14 @@
     }
 
     .newNote {
-        top: 70%;
+        top: 60%;
     }
 
     .cardHeading>.card-title {
         font-size: 24px;
+    }
+
+    #noteList {
+        margin-bottom: calc(max(42vmin, 160px));
     }
 }

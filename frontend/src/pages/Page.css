@@ -3,6 +3,15 @@
     padding-bottom: 16vmin;
 }
 
+/* Regola per tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .mobilerow {
+        padding-top: 6vmin;   /* valore tablet */
+        padding-bottom: 8vmin; /* valore tablet */
+    }
+}
+
+
 .mobile-layout {
     background: transparent;
 }

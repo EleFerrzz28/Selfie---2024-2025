@@ -4,7 +4,7 @@ import Note from '../models/noteModel.js';
 
 // Add Note
 const createNote = asyncHandler(async (req, res) => {
-    const { title, desc, tags, creation_date } = req.body;
+    const { title, desc, tags, creation_date, last_update_date } = req.body;
     const user = req.user;
 
     if (!title) {
@@ -19,11 +19,16 @@ const createNote = asyncHandler(async (req, res) => {
     }
 
     try {
+        const cleanTags = (tags || [])
+            .map(tag => tag.trim())
+            .filter(tag => tag.length > 0);
+
         const note = new Note({
             title,
             desc,
-            tags: tags || [],
+            tags: cleanTags,
             creation_date,
+            last_update_date,
             userId: user._id,
         });
 
@@ -63,14 +68,17 @@ const editNote = asyncHandler(async (req, res) => {
 
         if (title) note.title = title;
         if (desc) note.desc = desc;
-        if (tags) note.tags = tags;
+        if (tags) {
+            note.tags = tags
+                .map(tag => tag.trim())
+                .filter(tag => tag.length > 0); 
+        }
 
-        // gestisci date se arrivano dal frontend
         if (creation_date) note.creation_date = creation_date;
         if (last_update_date) {
             note.last_update_date = last_update_date;
         } else {
-            note.last_update_date = Date.now(); // fallback
+            note.last_update_date = Date.now(); 
         }
 
         await note.save();

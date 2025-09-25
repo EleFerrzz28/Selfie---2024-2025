@@ -16,8 +16,8 @@ function Notes() {
 
     return (
         <>
-            <div className="mobile-layout" style={{
-                backgroundImage: 'linear-gradient(60deg, var(--sageGreen), rgba(33, 126, 33, 1)',
+            <div className="mobile-layout h-100" style={{
+                backgroundImage: 'linear-gradient(60deg, var(--sageGreen), rgba(23, 57, 61, 1)',
                 transition: 'background-color 0.25s ease-in-out',
                 overflow: 'hidden'
             }}>
