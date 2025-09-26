@@ -10,25 +10,62 @@ import { DateTime, Interval, Settings } from "luxon"
 import CategoryList from "./CategoryList"
 import ChangeView from "./ChangeView"
 import useMediaQuery from '../../hooks/useMediaQuery';
+import { useAddSessionMutation, useGetAllSessionQuery } from '../../redux/pomodoro/pomodoroApiSlice'
 
 function CalendarPage(){
     Settings.defaultLocale="it"
-    const today=DateTime.local()
+    
+    const today=DateTime.local();
+    const todayISO = today.toISODate();
+    const [activeDay,setActiveDay]=useState(todayISO);
 
-    const [newEvent, setNewEvent] = useState({});
-    const [newAct, setNewAct] = useState({});
-    const [formType, changeFormType] = useState(0); // 0 = event, 1 = activity
-    const [activeDay,setActiveDay]=useState(today)
+    const [date, setDate] = useState(activeDay ? activeDay : todayISO);
+    //pads the beginning of a string with another string until it reaches a certain length.
+
+    useEffect(() => {
+        setDate(activeDay);
+    }, [activeDay]);
+
+
+    const notifications = { 
+        'oneDay':'1 day earlier, 4 times.', 
+        'oneHour':'1 hour earlier, 3 times.', 
+        '30min':'30 minutes earlier, 2 times.', 
+        '15min':'15 minutes earlier.', 
+        '5min':'5 minutes earlier.' 
+    };
+
+    const [newEvent, setNewEvent] = useState({
+        date: todayISO,
+    });
+    const [newAct, setNewAct] = useState({
+        deadline: todayISO,
+    });
+    const [newPomo, setNewPomo] = useState({
+        date: todayISO,
+        originalDate: '',
+        description: '',
+        prodPeriod: 120,
+        breakPeriod: 5,
+        longBreakPeriod: 15,
+        cycles: 4,
+        planned: true,
+        completed: false
+    });
+    const [formType, changeFormType] = useState(0); // 0 = event, 1 = activity, //2 = pomodoro
     const [normalizedEvents, setNormalizedEvents] = useState({});
     const [open, setOpen] = useState(false);
     const [bigView, setBigView] = useState(false);
+    const [reset, setReset] = useState(false);
     
     const { data: eventsData = [], refetch: refetchEvents  } = useGetEventsQuery();
     const { data: actData = [], refetch: refetchAct  } = useGetActQuery();
+    const { refetch: refetchPomo } = useGetAllSessionQuery();
 
     const [addEvent] = useAddEventMutation();
     const [addAct] = useAddActMutation();
-    
+    const [addPomo] = useAddSessionMutation();
+
     // Convert events array in format { "YYYY-MM-DD": [title1, title2, ...] }
     const events = eventsData.reduce((acc, event) => {
         const date = DateTime.fromISO(event.day).toFormat("yyyy-MM-dd");
@@ -63,18 +100,30 @@ function CalendarPage(){
         return acc;
     }, {});
 
+    useEffect(() => {
+        setNewPomo(prev => ({...prev, originalDate: newPomo.date}));
+    },[newPomo.date]);
+
+    useEffect(() => {
+        setNewAct(prev => ({...prev, originalDeadline: newAct.deadline}));
+    },[newAct.deadline]);
+
     const saveChanges = async (e) => {
         e.preventDefault();
         try {
             if (formType === 0) {
                 await addEvent(newEvent).unwrap();
                 //dispatch(setCredentials({ ...res }));
-                toast.success("Event added successfully!");
+                toast.success("Event added successfully!", {toastId: 'event-added'});
                 refetchEvents();
             } else if (formType === 1) {
                 await addAct(newAct).unwrap();
-                toast.success("Activity added successfully!");
+                toast.success("Activity added successfully!", {toastId: 'act-added'});
                 refetchAct();
+            } else if(formType === 2){
+                await addPomo(newPomo).unwrap();
+                toast.success("Pomodoro added successfully!", {toastId: 'act-added'});
+                refetchPomo();
             }
         } catch (err) {
             toast.error(err?.data?.message || err.error);
@@ -147,25 +196,27 @@ function CalendarPage(){
         setNormalizedEvents(normalized);
     }, [eventsData]);
 
-    /*
-    useEffect(() => {
-        const handleModalClose = () => {setNewEvent({}); setNewAct({})}
-
-        const modal = document.getElementById('exampleModal');
-        modal?.addEventListener('hidden.bs.modal', handleModalClose);
-        //hidden.bs.modal → bootstrap event that signals the closure of the modal
-    }, []);*/
-
-    const year=today.year;
-    const month=today.month;
-    const day=today.day;
-
-    const todayCorrectFormat = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-    const [date, setDate] = useState(activeDay ? DateTime.fromISO(activeDay).toISODate() : todayCorrectFormat);
-    //pads the beginning of a string with another string until it reaches a certain length.
 
     const isDesktop = useMediaQuery("(min-width: 960px)");
 
+    useEffect(()=>{
+        if(reset){
+            setNewAct({});
+            setNewEvent({});
+            setNewPomo({
+                date: date,
+                originalDate: '',
+                description: '',
+                prodPeriod: 120,
+                breakPeriod: 5,
+                longBreakPeriod: 15,
+                cycles: 4,
+                planned: true,
+                completed: false
+            });
+            setReset(false);
+        }
+    }, [reset])
     return(
         <>
             <ToastContainer autoClose={3000}/>
@@ -177,13 +228,13 @@ function CalendarPage(){
                 {isDesktop &&
                     <div className={`${bigView ? 'd-none' : 'col-12 col-lg-4'}`}>
                         <div className="row">
-                            <Activity activities={activities}></Activity>
+                            <Activity activities={activities} notifications={notifications}></Activity>
                             <div>
                                 <div>
                                     <div className="d-flex justify-content-around">
                                         <div id="button-add-event-act" type="button" className={`mt-3 d-flex tooltip-element`} data-bs-toggle="modal"
                                             data-bs-target="#modal-event-act">
-                                            <span className="icon-button-add d-flex justify-content-center align-items-center">+</span>
+                                            <span className="icon-button-add d-flex justify-content-center align-items-center" onClick={()=>setReset(false)}>+</span>
                                             <div className="tooltip-element-text rounded">Add new events/activities</div>
                                         </div>
                                         <button className="btn text-light border m-2" data-bs-toggle="modal"
@@ -204,16 +255,16 @@ function CalendarPage(){
                         <div  id="modal-window" className="modal-content border border-white text-white">
                             <div className="modal-header">
                                 <h1 className="modal-title fs-5" id="modal-event">New event/activity</h1>
-                                <button type="button" className="btn-close btn-close-white" onClick={()=>setDate(todayCorrectFormat)} data-bs-dismiss="modal"
+                                <button type="button" className="btn-close btn-close-white" onClick={()=>setDate(todayISO)} data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div className="modal-body">
-                            <EventForm setNewEvent={setNewEvent} setNewAct={setNewAct} formType={formType} changeFormType={changeFormType} selectedDay={activeDay} date={date} setDate={setDate} todayCorrectFormat={todayCorrectFormat}/>
+                            <EventForm newPomo={newPomo} newAct={newAct} newEvent={newEvent} setNewEvent={setNewEvent} setNewAct={setNewAct} setNewPomo={setNewPomo} formType={formType} changeFormType={changeFormType} selectedDay={activeDay} date={date} setDate={setDate} todayCorrectFormat={todayISO} notifications={notifications}/>
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="buttonClose btn"
-                                    data-bs-dismiss="modal" onClick={()=>setDate(todayCorrectFormat)}>Close</button>
-                                <button type="button" className="buttonSave btn" data-bs-toggle="modal" data-bs-target="#modal-event-act" onClick={(e)=>{saveChanges(e);setDate(todayCorrectFormat)}}>Save changes</button>
+                                    data-bs-dismiss="modal" onClick={()=>{setDate(todayISO);setReset(true)}}>Close</button>
+                                <button type="button" className="buttonSave btn" onClick={(e)=>{saveChanges(e);setDate(todayISO);setReset(true)}}>Save changes</button>
                             </div>
                         </div>
                     </div>

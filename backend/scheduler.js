@@ -75,7 +75,7 @@ export const startScheduler = () => {
         });
 
         const diff = eventDateTime.toMillis() - now.toMillis();
-        const steps = NOTIFICATION_STEPS[event.notifications] || [];
+        const steps = NOTIFICATION_STEPS[event.notificationsEvent] || [];
 
         for (const step of steps) {
           if (event.reminderSentSteps?.includes(step.label)) continue;
@@ -128,7 +128,7 @@ export const startScheduler = () => {
         });
 
         const diff = deadlineDateTime.toMillis() - now.toMillis();
-        const steps = NOTIFICATION_STEPS[act.notifications] || [];
+        const steps = NOTIFICATION_STEPS[act.notificationsAct] || [];
 
         for (const step of steps) {
           if (act.reminderSentSteps?.includes(step.label)) continue;

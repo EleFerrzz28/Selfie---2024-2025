@@ -22,7 +22,7 @@ function PomodoroAnimation(){
             <div id="breakAnimationElement" className="d-none">
                 <div className="pomo-container d-flex align-items-center justify-content-center">
                     <div className="pianta d-flex align-items-end justify-content-center">
-                        <div className="bigPomoBreak"></div>
+                        <div id="bigPomoBreak"></div>
                         <div id="fogliaBigPomoBreak"></div>
                         <div id="terraPausa"></div>
                         <div id="terraPausa1"></div>

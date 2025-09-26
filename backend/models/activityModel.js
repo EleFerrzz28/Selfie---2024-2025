@@ -2,22 +2,25 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const activitiesSchema = new Schema({
-    title: {
-        type: String,
-        required: true
+    title: { 
+        type: String, 
+        required: true 
     },
-    description: {
-        type: String
+    description: { 
+        type: String 
     },
-    deadline: {
-        type: Date,
+    deadline: { 
+        type: Date, 
         required: true,
     },
-    category: {
-        type: mongoose.Schema.Types.ObjectId,
+    originalDeadline: {
+        type: Date,
+    },
+    category:  {
+        type: mongoose.Schema.Types.ObjectId, 
         ref: 'Category',
     },
-    notifications: {
+    notificationsAct: {
         type: String,
         default: '5min',
     },
@@ -33,10 +36,10 @@ const activitiesSchema = new Schema({
         type: Boolean,
         default: false
     },
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
+    user: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User', 
+        required: true 
     },
 })
 

@@ -13,6 +13,7 @@ import pomodoroRouter from './routes/pomodoroRoutes.js';
 import catRouter from './routes/categoryRoutes.js';
 import timemachineRoutes from "./routes/timemachineRoutes.js"
 import { startScheduler } from './scheduler.js';
+import { startReschedule } from './reschedulePomoAct.js';
 
 const port = process.env.PORT || 5000;
 const app = express();
@@ -22,6 +23,7 @@ const startServer = async() => {
     await connectDB();
     
     startScheduler();
+    startReschedule();
 
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));

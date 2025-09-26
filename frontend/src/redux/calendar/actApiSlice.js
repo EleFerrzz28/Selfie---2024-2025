@@ -36,7 +36,14 @@ export const actApiSlice = apiSlice.injectEndpoints({
         body: actData
       }),
       invalidatesTags: ['Activity'],
-    })
+    }),
+    setCompletedAct: builder.mutation({
+        query: (id)=>({
+        url: `/api/activities/${id}/complete`,
+            method: 'PATCH'
+        }),
+        invalidatesTags: ['Activity'],
+    }),
   }),
 });
 
@@ -45,5 +52,6 @@ export const {
   useGetActQuery,
   useDeleteActMutation,
   useEditActMutation,
-  useUpdateNotificationActMutation
+  useUpdateNotificationActMutation,
+  useSetCompletedActMutation
 } = actApiSlice;

@@ -10,7 +10,7 @@ const eventsSchema = new Schema({
         type: String 
     },
     time: { 
-        type: String  // formato "HH:mm"
+        type: String
     },
     endTime: {
         type: String
@@ -34,7 +34,7 @@ const eventsSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Category',
     },
-    notifications: {
+    notificationsEvent: {
         type: String,
         default: '5min'
     },
@@ -46,12 +46,16 @@ const eventsSchema = new Schema({
         type: Boolean,
         default: false
     },
+    reminderSent: {
+        type: Boolean,
+        default: false
+    },
     user: { 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User', 
         required: true 
     },
-});
+})
 
 const Event = mongoose.model('Event', eventsSchema);
 export default Event;

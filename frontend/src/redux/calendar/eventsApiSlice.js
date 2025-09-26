@@ -23,7 +23,7 @@ export const eventsApiSlice = apiSlice.injectEndpoints({
     }),
     editEvent: builder.mutation({
       query: (eventData) => ({
-        url: `/api/events/${eventData._id}`,
+        url:`/api/events/${eventData._id}`,
         method: 'PATCH',
         body: eventData
       }),
@@ -31,7 +31,7 @@ export const eventsApiSlice = apiSlice.injectEndpoints({
     }),
     updateNotifications: builder.mutation({
       query: (eventData) => ({
-        url: `/api/events`,
+        url:`/api/events`,
         method: 'PATCH',
         body: eventData
       }),

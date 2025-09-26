@@ -1,9 +1,6 @@
-input:hover,
-select:hover,
-textarea:hover {
-  cursor: pointer;
+input:hover,select:hover, textarea:hover{
+    cursor:pointer;
 }
-
 .ActForm {
   transform: translateX(-20px);
   transition: transform 0.4s ease;
@@ -18,23 +15,30 @@ textarea:hover {
   overflow: hidden;
 }
 
+.PomoForm {
+  transform: translateX(20px);
+  transition: transform 0.4s ease;
+  height: 0;
+  overflow: hidden;
+}
+
 .form-slide.show {
   transform: translateX(0);
   pointer-events: auto;
   height: auto;
 }
 
-.button-event-act-form {
-  color: white;
+.button-event-act-form{
+  color:white;
   border-color: white;
 }
 
-.button-event-act-form:hover {
-  color: white;
+.button-event-act-form:hover{
+  color:white;
   border-color: white;
 }
 
-.bg-event-act-form {
+.bg-event-act-form{
   background-color: #98b1d6;
 }
 
@@ -42,6 +46,6 @@ textarea:hover {
   background-color: #7da2d8;
 }
 
-div.form-check>input.radio-event-form:checked {
+div.form-check > input.radio-event-form:checked{
   background-color: #7da2d8;
 }

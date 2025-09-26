@@ -27,7 +27,7 @@ function Pomodoro() {
             <MainNavbar />
           </div>
           <div className="col flex-grow-1 m-0 p-0">
-            <PomodoroPage />
+            <PomodoroPage/>
           </div>
         </div>
       ) : (

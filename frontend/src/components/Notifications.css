@@ -1,4 +1,25 @@
 #notBG{
     background-color: rgba(255, 255, 255, 0.129);
     backdrop-filter:blur(5px);
+    overflow: hidden;
+}
+
+.decoration-not{
+    background-color: var(--lightBlue);
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    transform: translate(170%, -100%);
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+.decoration-not-under{
+    background-color: var(--lightBlue);
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    transform: translate(-100%, -10%);
+    border-radius: 50%;
+    opacity: 0.8;
 }

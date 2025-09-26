@@ -13,10 +13,22 @@ export const pomodoroApiSlice = apiSlice.injectEndpoints({
             query: ()=>'api/pomodoros/last',
             providesTags: ['Pomodoro'],
         }),
+        getAllSession: builder.query({
+            query: () => '/api/pomodoros',
+            providesTags: ['Pomodoro'],
+        }),
+        setCompleted: builder.mutation({
+            query: ({id})=>({
+            url: `/api/pomodoros/${id}`,
+                method: 'PATCH'
+            }),
+        }),
     }),
 });
 
 export const {
     useAddSessionMutation,
-    useGetLastSessionQuery
+    useGetLastSessionQuery,
+    useGetAllSessionQuery,
+    useSetCompletedMutation
 } = pomodoroApiSlice;

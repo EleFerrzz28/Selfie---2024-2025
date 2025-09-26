@@ -44,15 +44,23 @@ export function setTimer(){
     document.getElementById("fogliaBigPomo").style.animationDelay=`${timeForEachElement*3+1}s`
 }
 
-export function startTimer() {
+export function startTimer(saveSession=()=>{}) {
     if(isRunning) return ;
 
     isRunning=true;
+
+    document.getElementById("studyAnimationElement").classList.remove('animation-paused');
+    document.getElementById("breakAnimationElement").classList.remove('animation-paused');
+
+    document.getElementById("studyAnimationElement").classList.remove('d-none');
+    
     document.getElementById("studyAnimationElement").classList.add('animation');
     document.getElementById("breakAnimationElement").classList.remove('animationBreak');
     document.getElementById("prod-break").innerHTML="working period"
     document.getElementById("startBtn").disabled = true;
     document.getElementById("startBtn").style.opacity="0.5";
+    document.getElementById("resetBtn").disabled = true;
+    document.getElementById("resetBtn").style.opacity = "0.5";
 
     //setInterval(function, 1000) call function every 1000 milliseconds
     timer = setInterval(() => {
@@ -71,7 +79,11 @@ export function startTimer() {
                 document.getElementById("cycle-count").innerHTML=`${cycleCount} cycles`
                 
                 if(cycleCount===defaultMaxCycles) {
-                    resetTimer();
+                    document.getElementById("startBtn").disabled = false;
+                    document.getElementById("startBtn").style.opacity="1";
+                    document.getElementById("resetBtn").disabled = false;
+                    document.getElementById("resetBtn").style.opacity="1";
+                    resetTimer(saveSession, true);
                     document.getElementById("general-title").innerHTML="You did it!";
                     return;
                 } 
@@ -113,12 +125,18 @@ function setBreakAnimation(){
     document.getElementById("breakAnimationElement").classList.add('animationBreak');
     document.getElementById("breakAnimationElement").classList.remove('d-none');
     document.getElementById("studyAnimationElement").classList.add('d-none');
+    document.getElementById("bigPomoBreak").style.display = "block";
+    document.getElementById("fogliaBigPomoBreak").style.display = "block";
 }
 
 function setWorkAnimation(){
     document.getElementById("studyAnimationElement").classList.add('animation');
     document.getElementById("studyAnimationElement").classList.remove('d-none');
     document.getElementById("breakAnimationElement").classList.add('d-none');
+    const bigPomoBreak = document.getElementById("bigPomoBreak");
+    const fogliaBigPomoBreak = document.getElementById("fogliaBigPomoBreak");
+    bigPomoBreak.style.display = "none";
+    fogliaBigPomoBreak.style.display = "none";
 }
 
 function setTimerDisplay(){
@@ -127,32 +145,41 @@ function setTimerDisplay(){
     document.getElementById("timerDisplay").innerHTML=`${minutes}:${seconds<10 ? '0' : ''}${seconds}`
 }
 
-export function stopTimer(saveSession){
-    saveSession(totProductionTime, cycleCount);
+export function stopTimer(){
     isRunning=false;
     clearInterval(timer);
-    if(isWorkSession) document.getElementById("studyAnimationElement").classList.remove('animation');
-    else document.getElementById("breakAnimationElement").classList.remove('animationBreak');
+
+    if(isWorkSession){
+        document.getElementById("studyAnimationElement").classList.add('animation-paused');
+        document.getElementById("bigPomo").style.animationPlayState = "paused";
+        document.getElementById("fogliaBigPomo").style.animationPlayState = "paused";
+    } else {
+        document.getElementById("breakAnimationElement").classList.add('animation-paused');
+    }
+
     document.getElementById("startBtn").disabled = false;
     document.getElementById("startBtn").style.opacity="1";
+    document.getElementById("resetBtn").disabled = false;
+    document.getElementById("resetBtn").style.opacity="1";
     totProductionTime=0;
 }
 
-export function resetTimer(saveSession=()=>{}){
-    if(totProductionTime>0 || cycleCount>0){
-        saveSession(totProductionTime, cycleCount);
-    }
+export function resetTimer(saveSession=()=>{}, completed){
+    saveSession(totProductionTime, cycleCount, completed);
     isRunning=false;
     clearInterval(timer);
     timeLeft=defaultStudyTimer;
     cycleCount=0;
-    if(isWorkSession) document.getElementById("studyAnimationElement").classList.remove('animation');
-    else document.getElementById("breakAnimationElement").classList.remove('animationBreak');
     document.getElementById("cycle-count").innerHTML=`${cycleCount} cycles`
     document.getElementById("prod-break").innerHTML="start session"
     isWorkSession = true;
     setTimerDisplay();
-    document.getElementById("startBtn").disabled = false;
-    document.getElementById("startBtn").style.opacity="1";
     totProductionTime=0;
+
+    document.getElementById("studyAnimationElement").classList.remove("animation");
+    document.getElementById("breakAnimationElement").classList.remove("animationBreak");
+    const bigPomoBreak = document.getElementById("bigPomoBreak");
+    const fogliaBigPomoBreak = document.getElementById("fogliaBigPomoBreak");
+    bigPomoBreak.style.display = "none";
+    fogliaBigPomoBreak.style.display = "none";
 }

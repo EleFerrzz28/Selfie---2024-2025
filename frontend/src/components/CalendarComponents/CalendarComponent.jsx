@@ -6,6 +6,9 @@ import SpecificDayModal from "./SpecificDayModal"
 import MonthSelection from './MonthSelection'
 import EventModal from "./EventModal"
 import { useGetCatQuery } from "../../redux/calendar/catApiSlice";
+import { useGetAllSessionQuery } from '../../redux/pomodoro/pomodoroApiSlice';
+import { useGetActQuery } from '../../redux/calendar/actApiSlice'
+import { Link } from "react-router-dom"
 
 function CalendarComponent({events, activities, activeDay, setActiveDay, bigView}){
     const [slide, setSlide]=useState(0);
@@ -13,6 +16,9 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
     const totalDays=42;
     const {data: catData = []} = useGetCatQuery();
     const [weeklyView, setWeeklyView] = useState(false);
+
+    const {data: sessionData=[], refetch: refetchSessions } = useGetAllSessionQuery();
+    const {data: actData=[], refetch: refetchActs } = useGetActQuery();
 
     const containerRef = useRef([]);
     const [overflow, setOverflow] = useState([]);
@@ -55,8 +61,6 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
         daysOfMonth=[...daysOfMonth, ...additionalDays]
     }
 
-    const daysWithEvents = [...Object.keys(events), ...Object.keys(activities)].map((date) => DateTime.fromISO(date).toISODate())
-
     useEffect(() => {
         const newMonth = firstDayOfActiveWeek.month;
         const currentMonth = firstDayOfActiveMonth.month;
@@ -90,7 +94,7 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
         if(specificDate){
             setFirstDayOfActiveMonth(specificDate.startOf("month"));
             setFirstDayOfActiveWeek(specificDate.startOf("week"))
-            setActiveDay(specificDate);
+            setActiveDay(specificDate.toISODate());
         }
         
     }
@@ -98,8 +102,8 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
     const [currentYear, setCurrentYear] = useState(firstDayOfActiveMonth.year); 
 
     const years=Interval.fromDateTimes(
-    DateTime.local(currentYear-4),
-    DateTime.local(currentYear+6)
+        DateTime.local(currentYear-4),
+        DateTime.local(currentYear+6)
     ).splitBy({year:1}).map((year)=>year.start)
 
     //array mesi
@@ -109,7 +113,7 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
         const specificMonth=DateTime.fromObject({year:currentYear,month:month,day:1});
         if(specificMonth){
             setFirstDayOfActiveMonth(specificMonth);
-            setActiveDay(specificMonth);
+            setActiveDay(specificMonth.toISODate());
         }
     }
     
@@ -136,19 +140,35 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
     const holidaysNames = (date) => {
         return holidays.find(h => h.date === date)?.localName ?? null;
     };
-    
-    const [activeDayEvents, setActiveDayEvents] = useState(events[activeDay] ?? []);
+
+    const pomodoroData = sessionData.reduce((acc, pomodoro) => {
+        const date = DateTime.fromISO(pomodoro.date).toFormat("yyyy-MM-dd");
+        if (!acc[date]) acc[date] = [];
+        acc[date].push({
+            _id: pomodoro._id,
+            type: 'pomodoro',
+            prodPeriod: pomodoro.prodPeriod,
+            breakPeriod: pomodoro.breakPeriod,
+            longBreakPeriod: pomodoro.longBreakPeriod,
+            cycles: pomodoro.cycles,
+            planned: pomodoro.planned,
+            completed: pomodoro.completed,
+            title: 'Pomodoro session',
+        });
+        return acc;
+    }, {});
+
     const holidayName = holidaysNames(activeDay);
-    useEffect(()=> {
-        setActiveDayEvents([
-            ...(holidayName ? [{
-                type: "holiday",
-                title: holidayName
-            }] : []),
-            ...(events[activeDay ] ?? []), 
-            ...(activities[activeDay]?.map(act =>({...act, type:"activity"})) ?? [])
-        ]);
-    }, [activities, events])
+    
+    const activeDayEvents = [
+        ...(holidayName ? [{
+            type: "holiday",
+            title: holidayName
+        }] : []),
+        ...(events[activeDay] ?? []), 
+        ...(activities[activeDay] ?? []),
+        ...(pomodoroData[DateTime.fromISO(activeDay).toISODate()] ?? [])
+    ];
 
     useEffect(() => {
         const check = containerRef.current.map((el) =>{
@@ -157,6 +177,16 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
         });
         setOverflow(check);
     }, [activities, events, firstDayOfActiveWeek]);
+
+    const daysWithEvents = [...Object.keys(events), ...Object.keys(activities), ...Object.keys(pomodoroData)].map((date) => DateTime.fromISO(date).toISODate());
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            refetchSessions(); 
+            refetchActs();
+        }, 1000); // ogni secondo
+        return () => clearInterval(interval);
+    }, []);
 
     return(
         <>
@@ -190,7 +220,8 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
                             {daysOfMonth.map((dayOfMonth,dayOfMonthIndex)=>{
                                 const eventsOfDay = events[dayOfMonth.toISODate()] || []; 
                                 const activitiesOfDay = activities[dayOfMonth.toISODate()] || [];
-                                const dayEvAndAc = [...eventsOfDay, ...activitiesOfDay];
+                                const pomodoroOfDay = pomodoroData[dayOfMonth.toISODate()] || [];
+                                const dayEvAndAc = [...eventsOfDay, ...activitiesOfDay, ...pomodoroOfDay];
                                 let multiDaysEvent = eventsOfDay.some(ev => ev.endDay && (ev.repeat === null || ev.repeat === undefined || ev.repeat === ""));
                                 const dayCategory = categoryMap[dayEvAndAc[0]?.category];
                                 const categoryClass = daysWithEvents.includes(dayOfMonth.toISODate()) ? (dayCategory ? `category` : "category-none") : null;
@@ -203,15 +234,16 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
                                         "holiday":isHoliday(dayOfMonth),
                                         "multiDaysEvent": multiDaysEvent ,
                                         "big-view-calendar-days": bigView,})} 
-                                    data-title={eventsOfDay.find(ev => ev.firstDay)?.title || activitiesOfDay[0]?.title || ""}
+                                    data-title={eventsOfDay.find(ev => ev.firstDay)?.title || activitiesOfDay[0]?.title || pomodoroOfDay[0]?.title || ""}
                                     onClick={()=>{ setActiveDay(dayOfMonth.toISODate());setSlide(0);}}  
                                     data-bs-toggle="dropdown" 
                                     data-bs-auto-close="true"
                                     style={{'--color':dayCategory?.color}}
                                     >
                                         {dayOfMonth.day}
-                                    </div>
+                                    </div> 
                                 );
+                                
                             })}
                             
                             <div className="dropdown-menu border">
@@ -234,12 +266,13 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
                                                         'list-group':true, 
                                                         "d-none":eventIndex!==slide,
                                                         "holidaysDay": event.type==="holiday", 
-                                                        "deadlineAct": event.type==="activity"})}>
+                                                        "deadlineAct": event.type==="activity",
+                                                        "pomodoroSession": event.type === "pomodoro"})}>
                                                         <div className="d-flex event-card-width justify-content-between">
                                                             <h5 className="event-title rounded mb-1 fs-6 text-uppercase">{event.title}</h5>
                                                         </div>
-                                                        <p className="mb-1">{event.description}</p>
-                                                        <small className={event.type==="activity" ? "d-none" : ""}>
+                                                        <p className={`mb-1 ${event.type === "pomodoro" ? 'd-none' : ''}`}>{event.description}</p>
+                                                        <small className={event.type==="activity" || event.type === 'pomodoro' ? "d-none" : ""}>
                                                             Location: {event.location?.trim() ? event.location : "-"}<br />
                                                             Time: {event.time ? ` ${event.time}${event.endTime ? ` - ${event.endTime}` : ""}` : "00:00 - 23:59"}<br />
                                                             Category: {categoryMap[event.category]?.name ?? "-"}<br/>
@@ -247,7 +280,28 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
                                                         </small>
                                                         <small className={event.type==="activity" ? "" : "d-none"}>
                                                             Category: {categoryMap[event.category]?.name ?? "-"}<br/>
+                                                            {event.completed ? <small>Completato</small> : <small>Non completato</small>}<br/>
                                                         </small>
+                                                        <div className={event.type==="pomodoro" ? "" : "d-none"}>
+                                                            {event.planned ? 
+                                                            <small>
+                                                                Description: {event.description ? event.description : '-'}<br/>
+                                                                Scheduled production period: {event.prodPeriod / event.cycles} minutes.<br/>
+                                                                Scheduled break period: {event.breakPeriod} minutes.<br/>
+                                                                Scheduled long break period: {event.longBreakPeriod} minutes.<br/>
+                                                                Scheduled number of cycles: {event.cycles} {event.cycles === 1 ? "cycle." : "cycles."}<br/>
+                                                                {event.completed ? <small>Completato</small> : <small>Non completato</small>}<br/>
+                                                                <Link to='/Pomodoro' state={{
+                                                                    linkProdPeriod:(event.prodPeriod/event.cycles), 
+                                                                    linkBreakPeriod: event.breakPeriod,
+                                                                    linkLongBreak: event.longBreakPeriod,
+                                                                    linkCycles: event.cycles,
+                                                                    linkId: event._id
+                                                                }}>Let's start!</Link>                              
+                                                            </small>
+                                                            : <small>Production period: {event.prodPeriod} minutes.</small>
+                                                            }<br/>
+                                                        </div>
                                                         <div className='d-flex justify-content-end'>
                                                             <svg data-bs-toggle="modal" data-bs-target="#staticBackdropEvents" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrows-fullscreen arrow-icon" viewBox="0 0 16 16">
                                                                 <path fillRule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707m0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707m-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707"/>
@@ -257,7 +311,7 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
                                                 ))}
                                                 <div id='changeSlideButtons'>
                                                     {activeDayEvents.map((_, eventIndex) => (
-                                                        <input key={eventIndex} className="radio-button" type="radio" name="toggle" checked={eventIndex===slide} onClick={()=>setSlide(eventIndex)}/> 
+                                                        <input key={eventIndex} className="radio-button" type="radio" name="toggle" checked={eventIndex===slide} onChange={()=>setSlide(eventIndex)}/> 
                                                     ))}
                                                 </div>
                                             </div>
@@ -337,6 +391,14 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
                                                                     </svg>
                                                                 </div>
                                                             ) : ""}
+                                                            {/*{ev.type === "pomodoro" ? (
+                                                                <div className='d-flex justify-content-end mt-1'>
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="var(--color-week)" className="bi bi-check2-circle" viewBox="0 0 16 16">
+                                                                        <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0"/>
+                                                                        <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+                                                                    </svg>
+                                                                </div>
+                                                            ) : ""}*/}
                                                             </div>
                                                             <br/>
                                                         </>
@@ -345,7 +407,7 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
                                             ) : (
                                                 <small className='m-2'>No events</small>
                                             )}
-                                            <div id='add-btn-weekly' className='d-flex rounded align-items-center align-items-center justify-content-center' data-bs-toggle="modal" data-bs-target="#modal-event-act" onClick={()=>setActiveDay(day)}><div className='rounded-circle d-flex justify-content-center align-items-center'>+</div></div>
+                                            <div id='add-btn-weekly' className='d-flex rounded align-items-center align-items-center justify-content-center' data-bs-toggle="modal" data-bs-target="#modal-event-act" onClick={()=>setActiveDay(day.toISODate())}><div className='rounded-circle d-flex justify-content-center align-items-center'>+</div></div>
                                             {overflow[index] && (<p id="scrollMessage" className='p-1 text-center text-muted'>Scroll to see more ↓</p>)}
                                         </div>
                                     </div>

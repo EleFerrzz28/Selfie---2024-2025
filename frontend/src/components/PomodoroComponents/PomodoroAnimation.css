@@ -9,6 +9,7 @@
 
 .pianta{
     height:20vmin;
+    position:relative;
 }
 
 #terra, #terra1{
@@ -21,12 +22,13 @@
     background-color: rgb(167, 61, 61);
     transform: translate(0,50%);
     border-radius: 50% 0 0 0;
+    z-index: 2;
 }
 #terra1{
     background-color: rgb(187, 106, 106);
     transform: translate(0,30%);
     border-radius: 0 50% 0 0;
-    z-index:-1;
+    z-index:0;
 }
 #gambo{
     height: 0;
@@ -34,6 +36,7 @@
     background-color:var(--green);
     transform-origin: bottom;
     border-radius: 40%;
+    z-index: 1;
 }
 
 .animation #gambo{
@@ -67,9 +70,9 @@
     height:4vmin;
     background:linear-gradient(90deg, var(--green) 0%, rgb(17, 122, 17) 100%);
     border-radius: 50% 0;
-    z-index:-1;
     width: 5vmin; 
     transform: scale(0);
+    z-index:1;
 }
 
 .foglia-dx{
@@ -103,6 +106,7 @@
     width:2vmin;
     position:absolute;
     border-radius: 50%;
+    z-index: 1;;
 }
 
 #pomo1{
@@ -195,6 +199,7 @@
     transform: translate(57%,-200%);
     height:3vmin;
     width:3vmin;
+    z-index:6;
 }
 
 .animation #bigPomo{
@@ -209,6 +214,7 @@
     position:absolute;
     border-radius: 50% 0;
     transform: translate(50%, -260%) rotate(10deg);
+    z-index: 7;
 }
 
 .animation #fogliaBigPomo{
@@ -239,14 +245,14 @@
     }
 }
 
-.bigPomoBreak{
+#bigPomoBreak{
     position:absolute;
     background-color: red;
     transform: translate(0,20%);
     height:35vmin;
     width:35vmin;
     border-radius: 50%;
-    z-index:-1;
+    z-index:0;
 }
 
 @keyframes hideInstantly {
@@ -272,7 +278,7 @@
     transform: translate(50%, -260%) rotate(10deg);
 }
 
-.animationBreak .bigPomoBreak{
+.animationBreak #bigPomoBreak{
     animation: hideInstantly 1s forwards 0.2s;
 }
 .animationBreak #fogliaBigPomoBreak{
@@ -288,7 +294,7 @@
     width: 35vmin;
     transform: translate(-3%,-10%);
     background-repeat: no-repeat;
-    z-index:1;
+    z-index:8;
     background-image: radial-gradient(circle, red 20%, transparent 20%),
     radial-gradient(circle,red 20%, transparent 20%),
     radial-gradient(circle, red 20%, transparent 20%),
@@ -328,19 +334,19 @@
     height:5vmin;
     width:20vmin;
     position:absolute;
-    z-index:-2;
 }
 
 #terraPausa{
     background-color: rgb(167, 61, 61);
     transform: translate(0,50%);
     border-radius: 50% 0 0 0;
+    z-index:1;
 }
 #terraPausa1{
     background-color: rgb(187, 106, 106);
     transform: translate(0,30%);
     border-radius: 0 50% 0 0;
-    z-index:-3;
+    z-index:0;
 }
 
 .pioggia{
@@ -403,11 +409,15 @@
 
 @keyframes caduta {
     0% {
-    transform: translateY(-10vh);
-    opacity: 1;
+        transform: translateY(-10vh);
+        opacity: 1;
     }
     100% {
-    transform: translateY(53vh);
-    opacity: 0;
+        transform: translateY(53vh);
+        opacity: 0;
     }
+}
+
+.animation-paused * {
+  animation-play-state: paused !important;
 }

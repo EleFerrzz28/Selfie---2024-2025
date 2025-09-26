@@ -199,6 +199,7 @@
 }
  
 .holiday::before{
+    position: absolute;
     content: "🎉";
 }
 
@@ -214,6 +215,11 @@
 .deadlineAct .event-title{
     color:var(--darkPurple);
     background-color: rgb(220, 200, 220);
+}
+
+.pomodoroSession .event-title{
+    color:rgb(128, 0, 0);
+    background-color: var(--marigold);
 }
 
 .calendar-container{
@@ -399,9 +405,6 @@
         opacity: 0.2; 
         z-index: -1;
         pointer-events: none;
-    }
-    .holiday::before{
-        font-size: x-small;
     }
     .calendar-grid-cell::before{
         width:0;

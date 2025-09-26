@@ -57,14 +57,14 @@ function EventModal({activeDayEvents, activeDay, categoryMap}){
                         <div className='m-3 mt-1'>
                             <div className="list-group">
                                 {activeDayEvents.map((event, _) => (
-                                    <div key={event._id} className= {`list-group-item border-0 border-bottom p-3 ${event.type==="holiday" ? "holidaysDay": ""} ${event.type === "activity" ? "deadlineAct" : ""}`}>
+                                    <div key={event._id} className= {`list-group-item border-0 border-bottom p-3 ${event.type==="holiday" ? "holidaysDay": ""} ${event.type === "activity" ? "deadlineAct" : ""} ${event.type === "pomodoro" ? "pomodoroSession" : ""}`}>
                                         <div className="d-flex w-70  justify-content-between">
                                             <h5 className="event-title rounded mb-1 fs-6 text-uppercase">{event.title}</h5>
                                             <small className="button-modDel-event" data-bs-toggle="modal" data-bs-target="#updateModal" onClick={()=>setEventToUpdate(event)}>modify</small>
                                             <small className="button-modDel-event" data-bs-toggle="modal" data-bs-target="#deleteModal"  onClick={()=>setEventToDelete(event._id)}>delete</small>
                                         </div>
                                         <p className="mb-1">{event.description}</p>
-                                        <small className={event.type==="activity" ? "d-none" : ""}>
+                                        <small className={event.type==="event" ? "" : "d-none"}>
                                             Location: {event.location?.trim() ? event.location : "-"}<br />
                                             Time: {event.time ? event.time : "All day"}<br />
                                             Category: {[event.category]?.name ?? "-"}<br/>
@@ -73,6 +73,18 @@ function EventModal({activeDayEvents, activeDay, categoryMap}){
                                         <small className={event.type==="activity" ? "" : "d-none"}>
                                             Category: {categoryMap[event.category]?.name ?? "-"}<br/>
                                         </small>
+                                        <div className={event.type==="pomodoro" ? "" : "d-none"}>
+                                            {!event.planned ? 
+                                            <small>Production period: {event.prodPeriod} minutes.</small>
+                                            : <small>
+                                                Scheduled production period: {event.prodPeriod / event.cycles} minutes.<br/>
+                                                Scheduled break period: {event.breakPeriod} minutes.<br/>
+                                                Scheduled long break period: {event.longBreakPeriod} minutes.<br/>
+                                                Scheduled number of cycles: {event.cycles} {event.cycles === 1 ? "cycle." : "cycles."}<br/>
+                                                {/*<Link to='/Pomodoro'>Let's start!</Link>*/}                                
+                                            </small>
+                                            }<br/>
+                                        </div>
                                 </div>
                                 ))}
                             </div>
