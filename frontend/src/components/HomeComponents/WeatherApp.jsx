@@ -77,7 +77,7 @@ const WeatherApp = () => {
                         <p className='weather-description d-flex align-self-end m-0 '> {data.weather ? data.weather[0].main : null} </p>
                     </div>
                     <div className='location'>
-                        <i class='bx-sm  bx-location'></i>
+                        <i className='bx-sm  bx-location'></i>
                         <h6 id='city' className='ms-1'> {data.name ? data.name : null} </h6>
                     </div>
                 </div>

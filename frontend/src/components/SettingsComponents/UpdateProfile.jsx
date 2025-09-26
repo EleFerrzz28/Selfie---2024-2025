@@ -72,7 +72,7 @@ const UpdateProfile = () => {
                             className="change-avatar__button"
                             onClick={() => setShowSelected(true)}
                         >
-                            <i class='bx-sm  bx-pencil' ></i>
+                            <i className='bx-sm  bx-pencil' ></i>
                         </button>
                     </div>
 

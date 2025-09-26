@@ -47,12 +47,12 @@ function NotesList() {
             </div>
         </div>);
     if (error) return (<div className="noteListContainer d-flex justify-content-center align-items-center">
-        <div class="card glass-card shadow border-0"
+        <div className="card glass-card shadow border-0"
             style={{
                 width: "50vmin",
                 height: "10vmin"
             }}>
-            <div class="card-body d-flex justify-content-around mt-2 p-1">
+            <div className="card-body d-flex justify-content-around mt-2 p-1">
                 <h5 className="card-title mt-1" style={{
                     fontFamily: '"Cal Sans", sans-serif',
                     fontStyle: "normal",

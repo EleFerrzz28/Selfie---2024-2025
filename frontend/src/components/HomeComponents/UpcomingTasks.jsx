@@ -77,7 +77,7 @@ const UpcomingTasks = () => {
               style={{ '--status-color': statusBg[status] }}
               >
                 <div className="task-icon">
-                <i class='bx-sm bx-calendar-event'></i> 
+                <i className='bx-sm bx-calendar-event'></i> 
                 </div>
                 <div className="container d-flex justify-content-around align-items-center">
                   <div className="task-info">{truncateTitle(act.title)}</div>

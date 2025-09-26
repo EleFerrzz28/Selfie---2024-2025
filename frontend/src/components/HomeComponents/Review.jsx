@@ -17,19 +17,6 @@ const Review = () => {
   const eventsCount = Array.isArray(eventsData) ? eventsData.length : 0;
   const actsCount = Array.isArray(actData) ? actData.length : 0;
 
-  /*DA MODIFICARE CON TIME MACHINE */
-  const todayISO = DateTime.local().toISODate(); // es. "2025-09-11"
-  const todayEvents = Array.isArray(eventsData)
-    ? eventsData.filter(ev => {
-        if (!ev.day) return false;
-        const eventDate = DateTime.fromISO(ev.day).toISODate();
-        return eventDate === todayISO;
-      }).length
-    : 0;
-
-    /*--------------------------------------------------- */
-
-
   return (
     <div className='review'>
       <h2> Review </h2>
@@ -62,7 +49,7 @@ const Review = () => {
               <div className='review__box acts-counter'>
               <span className='circle-design'  id='acts-1'></span>
               <span className='circle-design'  id='acts-2'></span>
-                <i class='bx  bx-browser-activity review__icons'></i> 
+                <i className='bx  bx-browser-activity review__icons'></i> 
               <h6>{actsCount}</h6>
                <p>Activity in program</p>
               </div> 

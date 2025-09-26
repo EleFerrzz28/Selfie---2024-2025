@@ -44,9 +44,9 @@ const NoteCard = () => {
   return (
     <div className="notecard__container">
       <div className="header__box">
-        <h3 className="last_modified"> Last edited
+        <div className="last_modified"> Last edited
            <h3 id="note"> Note</h3>
-        </h3>
+        </div>
        <i className='bx  bx-clipboard-detail'  ></i> 
       </div>
       <div className="content__box">

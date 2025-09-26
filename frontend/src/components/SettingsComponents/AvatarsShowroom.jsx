@@ -18,7 +18,7 @@ const AvatarsShowroom = ({ isOpen, onClose, onSelect, selected }) => {
         <div className="avatars-showroom">
       <div className="avatar-modal">
         <button className="avatar_close-btn" onClick={onClose}>
-          <i class='bx  bx-x'></i> 
+          <i className='bx  bx-x'></i> 
         </button>
         <h5>Scegli il tuo avatar</h5>
         <div className="avatar-grid">

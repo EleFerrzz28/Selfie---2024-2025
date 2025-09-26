@@ -43,9 +43,9 @@ const PomoCard = () => {
   return (
     <div className="pomocard__container">
       <div className="title__box">
-        <h3 className="last_pomodoro"> Last Pomodoro
+        <div className="last_pomodoro"> Last Pomodoro
           <h3 id="session"> Session </h3>
-        </h3>
+        </div>
         <i className='bx  bx-cherry' ></i>
       </div>
       <div id="content__box">
