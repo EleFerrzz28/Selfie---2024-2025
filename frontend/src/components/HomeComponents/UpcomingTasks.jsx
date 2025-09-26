@@ -1,73 +1,107 @@
-import './UpcomingTasks.css';
+import { useEffect } from 'react';
 import { DateTime } from 'luxon';
 import { useGetActQuery } from '../../redux/calendar/actApiSlice';
+import "../NotesComponents/NotesList.css";
+import './UpcomingTasks.css';
+
 
 const UpcomingTasks = () => {
-  const { data: activitiesData = [], isLoading } = useGetActQuery();
+  const result = useGetActQuery(undefined, { refetchOnMountOrArgChange: true });
+  const activities = result.data !== undefined ? result.data : [];
+  const isLoading = result.isLoading;
+  const error = result.error;
 
-  if (isLoading) {
-    return <p className="text-light ms-3">Loading activities...</p>;
-  }
-
-  // Ordino per scadenza (deadline)
-  const sortedActivities = [...activitiesData].sort((a, b) =>
+  const sortedActivities = [...activities].sort((a, b) =>
     DateTime.fromISO(a.deadline) - DateTime.fromISO(b.deadline)
   );
 
-  // Prendo solo le prime 2
+  const maxLength = 12;
   const upcomingTwo = sortedActivities.slice(0, 2);
 
-  // Funzione per lo stato
+  const truncateTitle = (title) =>
+    title.length > maxLength ? 
+    title.substr(0, maxLength) + "..."
+      : title || "No title available";
+
+
+  /*DA MODIFICARE PER LA TIME MACHINE */
+
   const getStatus = (deadline) => {
-    const deadlineDate = DateTime.fromISO(deadline).endOf('day');
     const now = DateTime.now();
-    return deadlineDate < now ? "expired" : "ongoing";
+    const dl = DateTime.fromISO(deadline).endOf('day');
+
+  /*--------------------------------------------- */
+
+    if (dl < now) return 'expired';
+    if (dl <= now.plus({ weeks: 1 })) return 'red';          
+    if (dl <= now.plus({ weeks: 4 })) return 'orange';       
+    return 'green';                                          
   };
 
+
+  const statusLabel = {
+    expired: 'expired',
+    red: 'due soon',
+    orange: 'coming',
+    green: 'ongoing',
+  };
+
+  const statusColor = {
+    expired: 'text-muted',
+    red: 'text-danger',      
+    orange: 'text-warning',
+    green: 'text-success',
+  };
+
+
+  const statusBg = {
+    expired: 'rgb(216, 216, 216)',  
+    red: '#D63031',      
+    orange: '#FABE58',  
+    green: 'rgba(149, 215, 108, 1)',   
+  };
+
+
+
   return (
-    <div className="UpcomingTasks mt-4 ms-3">
+    <div className="UpcomingTasks mt-3 ms-3">
       <header className="tasks-header">Activities</header>
       <div className="tasks-wrapper">
         {upcomingTwo.length > 0 ? (
-          upcomingTwo.map((act) => (
-            <div key={act._id} className="task d-flex align-items-center">
-              <div className="task-icon d-flex justify-content-center align-items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fillRule="currentColor"
-                  className="bi bi-calendar-event"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
-                  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
-                </svg>
-              </div>
-              <div className="container d-flex ms-3 justify-content-around align-items-center">
-                <div className="task-info">{act.title}</div>
-                <div className="task-info">
-                  {DateTime.fromISO(act.deadline).toFormat("yyyy-MM-dd")}
+          upcomingTwo.map((act) => {
+            const status = getStatus(act.deadline);
+            return (
+              <div 
+              key={act._id} 
+              className="task"
+              style={{ '--status-color': statusBg[status] }}
+              >
+                <div className="task-icon">
+                <i class='bx-sm bx-calendar-event'></i> 
                 </div>
-                <div
-                  className={`task-info ${
-                    getStatus(act.deadline) === "expired"
-                      ? "text-danger"
-                      : "text-success"
-                  }`}
-                >
-                  {getStatus(act.deadline)}
+                <div className="container d-flex justify-content-around align-items-center">
+                  <div className="task-info">{truncateTitle(act.title)}</div>
+                  <div className="task-info">
+                    {DateTime.fromISO(act.deadline).toFormat('yyyy-MM-dd')}
+                  </div>
+                  <div className='status__wrapper'> 
+                    <div className={`task-info ${statusColor[status]}`}>
+                    {statusLabel[status]}
+                  </div>
+                  </div>
+                  
                 </div>
               </div>
-            </div>
-          ))
+            );
+          })
         ) : (
-          <p className="text-light ms-3">No upcoming activities.</p>
+          <p className="mt-4 ms-3">No upcoming activities.</p>
         )}
       </div>
     </div>
   );
 };
+
 
 export default UpcomingTasks;
 

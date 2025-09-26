@@ -50,6 +50,10 @@ img {
     font-weight: 600;
 }
 
+.pomoCiliegia {
+    color: var(--midnight);
+}
+
 .navContainer {
     height: 14vmin;
 }

@@ -4,13 +4,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useLogoutMutation } from '../redux/features/userApiSlice.js';
 import { logout } from '../redux/features/authSlice.js';
-import ThemeToggler from '../components/Theme';
+import ThemeToggler from '../components/SettingsComponents/Theme';
 import { toggleDarkMode } from '../redux/features/themeSlice';
-import UpdateProfile from '../components/UpdateProfile.jsx';
-import './SettingsPage.css';
-
+import UpdateProfile from '../components/SettingsComponents/UpdateProfile.jsx';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './SettingsPage.css';
+
 
 function Settings() {
 
@@ -21,12 +22,12 @@ function Settings() {
                 {
                     name: "Profile",
                     description: "Your email address is your identity on this app and is used to log in.",
-                    tags: ["email", "username", "first name", "last name", "date of birth"],
+                    tags: ["email", "username", "first name", "last name"],
                 },
                 {
                     name: "Security",
-                    description: "Want to reset your password? Then Logout then click on the 'reset password' link",
-                    tags: ["verify your account", "change email", "change password"],
+                    description: "Want to change your personal data? Then use the modal above.",
+                    tags: ["check your account", "change email", "change password"],
                 },
             ],
         },
@@ -64,6 +65,8 @@ function Settings() {
     const { mode } = useSelector((state) => state.theme);
     const { userInfo } = useSelector((state) => state.auth);
     const [logoutApiCall] = useLogoutMutation();
+    const supabase = useSupabaseClient();
+
 
     useEffect(() => {
         if (!userInfo) {
@@ -71,14 +74,20 @@ function Settings() {
         }
     }, [userInfo, navigate]);
 
+
+
+     async function GooglesignOut() {
+    await supabase.auth.signOut();
+  }
+
+
     const logoutHandler = async () => {
         try {
+            await GooglesignOut();
             await logoutApiCall().unwrap();
             dispatch(logout());
-            toast.success('Logout successful');
         } catch (err) {
             console.error(err);
-            toast.error('Logout failed');
         }
     };
 
@@ -114,6 +123,30 @@ function Settings() {
 
         setVisibleOptions(returnedItems);
     };
+
+
+    const handleGoogleConnection = async () => {
+        const { data: { user } } = await supabase.auth.getUser();
+
+        if (user?.app_metadata?.provider === "google") {
+            toast.info("Sei già connesso con Google");
+            return;
+        }
+        await googleSignIn();
+    };
+
+
+
+    async function googleSignIn() {
+        const { error } = await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: { scopes: 'https://www.googleapis.com/auth/calendar' }
+        });
+        if (error) {
+            toast.error("Google Calendar connection failed");
+            console.log(error);
+        }
+    }
 
     if (!userInfo) return null;
 
@@ -167,9 +200,28 @@ function Settings() {
                     ))}
                 </div>
 
-                <button className='btn btn-secondary mt-3 mb-2' type="button" style={{ cursor: "pointer" }} onClick={logoutHandler}>
-                    Logout
-                </button>
+                <div className='d-flex flex-column'>
+                    <button className="google mt-2"
+                        style={{ width: '20rem' }}
+                        onClick={handleGoogleConnection}
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 262">
+                            <path fill="#4285F4" d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"></path>
+                            <path fill="#34A853" d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1"></path>
+                            <path fill="#FBBC05" d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782"></path>
+                            <path fill="#EB4335" d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251"></path>
+                        </svg>
+                        <span>Be connected with Google</span>
+                    </button>
+
+                    <button className='btn btn-secondary mt-5'
+                        type="button"
+                        style={{ cursor: "pointer", width: '5rem' }} onClick={logoutHandler}>
+                        Logout
+                    </button>
+
+                </div>
+
             </div>
         </div>
     );

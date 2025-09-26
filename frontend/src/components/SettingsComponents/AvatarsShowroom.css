@@ -1,0 +1,61 @@
+.avatars-showroom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.307);
+  backdrop-filter: blur(5px);
+}
+
+.avatar-modal {
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  border-radius: 12px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.avatar-modal h5 {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.avatar_close-btn {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  justify-items: center;
+}
+
+.avatar-option {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.2s ease, border 0.2s ease;
+}
+
+.avatar-option:hover {
+  transform: scale(1.1);
+  border-color: #999;
+}
+
+.avatar-option.selected {
+  border-color: #6c757d;
+}

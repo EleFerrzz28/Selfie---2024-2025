@@ -1,62 +1,71 @@
-import tomato from "../../assets/tomato.png";
+import { useEffect } from "react";
 import { useGetLastSessionQuery } from '../../redux/pomodoro/pomodoroApiSlice';
+import "../NotesComponents/NotesList.css";
 import './PomoCard.css';
 
 const PomoCard = () => {
-  const { data: sessionData = [], isLoading } = useGetLastSessionQuery();
+  const result = useGetLastSessionQuery(undefined, { refetchOnMountOrArgChange: true });
+  const isLoading = result.isLoading;
+  const sessionData = result.data ? result.data : [];
   const lastSession = sessionData?.[0];
 
-  // Conversione solo se esiste il campo prodPeriod
+
   const prodPeriod = lastSession?.prodPeriod !== undefined
-    ? (lastSession.prodPeriod < 60 
-        ? `${lastSession.prodPeriod} sec` 
-        : `${Math.floor(lastSession.prodPeriod / 60)} min`)
+    ? (lastSession.prodPeriod < 60
+      ? `${lastSession.prodPeriod} sec`
+      : `${Math.floor(lastSession.prodPeriod / 60)} min`)
     : "-";
 
   const breakTime = lastSession?.break !== undefined ? `${lastSession.break} min` : "-";
   const longBreak = lastSession?.longBreak !== undefined ? `${lastSession.longBreak} min` : "-";
   const cycles = lastSession?.cycles !== undefined ? lastSession.cycles : "-";
+  const ISOdate = lastSession?.date
+    ? new Date(lastSession.date)
+    : null;
+
+  const pomo_date = ISOdate
+    ? ISOdate.toLocaleDateString("it-IT", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "2-digit",
+    })
+    : "-";
+
+
+  const pomoFields = [
+    { label: "Productivity", value: prodPeriod },
+    { label: "Break", value: breakTime },
+    { label: "Long break", value: longBreak },
+    { label: "Cycles", value: cycles },
+  ];
+
 
   return (
-    <div className='PomodoroCard-container m-lg-0 mt-4'>
-      <header>Last Pomodoro Session</header>
-      <div className='pomodoro-card rounded p-3'>
-        <header className='border-bottom'></header>
+    <div className="pomocard__container">
+      <div className="title__box">
+        <h3 className="last_pomodoro"> Last Pomodoro
+          <h3 id="session"> Session </h3>
+        </h3>
+        <i className='bx  bx-cherry' ></i>
+      </div>
+      <div id="content__box">
+        <span id="left__angle">
+          <p id='pomo__time'>{pomo_date}</p>
+        </span>
 
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : !lastSession ? (
-          <p className="text-center mt-3">Start a new pomodoro session !</p>
-        ) : (
-          <table className="pomo-table table-responsive rounded-2 overflow-hidden">
-            <tbody>
-              <tr>
-                <td className='job'>Period of productivity :</td>
-                <td className='data'>{prodPeriod}</td>
-              </tr>
-              <tr>
-                <td className='job'>Break :</td>
-                <td className='data'>{breakTime}</td>
-              </tr>
-              <tr>
-                <td className='job'>Long break :</td>
-                <td className='data'>{longBreak}</td>
-              </tr>
-              <tr>
-                <td className='job'>Cycles :</td>
-                <td className='data'>{cycles}</td>
-              </tr>
-            </tbody>
-          </table>
-        )}
-
-        <img className='pomo-icon me-3 mt-2' src={tomato} alt="Tomato icon" />
+        <div className="container mt-2 ms-1 me-1 last-session">
+          {pomoFields.map((i) => (
+            <div id='r' className="row" key={i.label}>
+              <div id='session-label' className="col-6 g-1"> {i.label} : </div>
+              <div id='session-value' className="col-6 g-1 d-flex justify-content-center align-items-center">
+                {i.value}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
 export default PomoCard;
-
-
-

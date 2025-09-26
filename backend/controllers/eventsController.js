@@ -2,7 +2,7 @@ import asyncHandler from 'express-async-handler';
 import Event from '../models/eventsModel.js';
 
 const addEvent = asyncHandler(async (req, res) => {
-  const { title, description, time, endTime, day, endDay, repeat, weekDay, location, category, notificationsEvent } = req.body;
+  const { title, description, time, endTime, day, endDay, repeat, weekDay, location, category, notificationsEvent, googleEventId } = req.body;
 
  if (!title || !day) {
     res.status(400);
@@ -24,6 +24,7 @@ const addEvent = asyncHandler(async (req, res) => {
     reminderSentSteps: [],
     reminderSent: false,
     user: req.user._id,
+    googleEventId,
   });
 
   await newEvent.save();

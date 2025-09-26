@@ -1,3 +1,7 @@
+/*BoxIcons*/
+@import url('https://cdn.boxicons.com/fonts/basic/boxicons.min.css');
+@import url('https://cdn.boxicons.com/fonts/transformations.min.css');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -55,6 +59,10 @@ code {
 
   --toggle-bg: #f0eb9d;
   --toggle-fg: #ffd000;
+
+  --warning: #FABE58;
+  --error: #D63031;
+
 
 }
 

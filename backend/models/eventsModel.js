@@ -55,6 +55,10 @@ const eventsSchema = new Schema({
         ref: 'User', 
         required: true 
     },
+    googleEventId: {
+        type: String,
+        default: null
+    }
 })
 
 const Event = mongoose.model('Event', eventsSchema);

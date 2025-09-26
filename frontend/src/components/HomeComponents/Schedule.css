@@ -1,25 +1,13 @@
 
 
-.undo-popup {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: var(--darkPurple);
-  color: white;
-  padding: 1rem;
-  z-index: 9000;
-  gap: 1rem;
+#schedule__categories-button{
+    background-color: transparent;
+    border: none;
 }
 
 
-
-.undo-popup button {
-  margin-left: 1rem;
-  background: #eee;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 5px;
+#schedule__categories-button i{
+    color: #fff;
 }
 
 
@@ -44,24 +32,74 @@
 }
 
 .schedule__header h4{
-    font-weight: 600;
+    font-size: clamp(1.7rem, 1.8vw, 1.9rem);
+    font-weight: bold;
     color: #fff;
 }
 
-#schedule__categories-button{
-    background-color: transparent;
+
+.buttons_wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    
+}
+
+.button_IsCollapsed{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
     border: none;
+    color: white;
 }
 
+.collapsed-icon{
+    transform: rotate(180deg);
+}
 
-#schedule__categories-button i{
+.bx-chevron-down{
+    transition: .3s transform ease-in-out;
+}
+
+.no-events__design{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 2rem;   
     color: #fff;
+    animation: entrance 0.4s ease-out;
+
 }
 
+.no-events__design h1{
+     font-weight: bold;
+     text-align: end;
+     margin : 0;
+     margin-bottom: 3rem;
+}
 
+.no-events__design h3{
+     font-weight: 600;
+     text-align: end;
+     margin-top: 8px;
+}
 
+.rest-image{
+    width: 15rem;
+    height: 15rem;
+    opacity: 70%;
+}
 
+#no-cat{
+    margin-top: 1rem;
+    color: white;
+    font-weight: 300;
 
+}
 
 
 

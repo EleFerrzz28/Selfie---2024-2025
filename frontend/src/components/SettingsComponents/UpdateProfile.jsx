@@ -1,15 +1,20 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { useUpdateUserMutation } from '../redux/features/userApiSlice.js';
-import { setCredentials } from '../redux/features/authSlice.js';
+import { useUpdateUserMutation } from '../../redux/features/userApiSlice.js';
+import { setCredentials } from '../../redux/features/authSlice.js';
+import AvatarsShowroom, {AVATARS} from './AvatarsShowroom.jsx';
 import './UpdateProfile.css'
+
+
 
 const UpdateProfile = () => {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [avatar, setAvatar] = useState(0);
+    const [showSelected, setShowSelected] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -20,7 +25,9 @@ const UpdateProfile = () => {
     useEffect(() => {
         setName(userInfo.name);
         setEmail(userInfo.email);
-    }, [userInfo.email, userInfo.name]);
+        setAvatar(typeof userInfo.avatar === 'number' ? userInfo.avatar : 0);
+    }, [userInfo.email, userInfo.name, userInfo.avatar]);
+
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -33,6 +40,7 @@ const UpdateProfile = () => {
                     name,
                     email,
                     password,
+                    avatar, 
                 }).unwrap();
                 console.log(res);
                 dispatch(setCredentials(res));
@@ -42,14 +50,32 @@ const UpdateProfile = () => {
             }
         }
     };
+
+
     return (
-        <div className='updateProfile rounded p-3 mt-4 mb-4'>
-            <h3>Update your Profile </h3>
-            <div className='container-fluid'>
-                <div className='row'>
-                    <div className='col-12 col-lg-4 mt-3 mb-3 m-lg-0 d-flex align-items-center justify-content-center'>
-                        <img className="avatar-image" src="https://www.famousbirthdays.com/faces/zagato-gianmarco-image.jpg" />
+        <div className='updateProfile rounded'>
+            <h3 className='mb-4 m-lg-0'>Update your Profile </h3>
+            <div className='container-fluid '>
+                <div className='row h-100 d-flex align-items-center'>
+
+
+            <div className="profile-image 
+            col-12 col-lg-4">
+            <img
+              className="avatar-image"
+              src={AVATARS[avatar]}
+              alt="User avatar"
+            />
+
+                        <button
+                            type="button"
+                            className="change-avatar__button"
+                            onClick={() => setShowSelected(true)}
+                        >
+                            <i class='bx-sm  bx-pencil' ></i>
+                        </button>
                     </div>
+
                     <div className='col-12 fields-container col-lg-8 d-flex flex-column'>
                         <p> username </p>
                         <input className="mb-3 p-2"
@@ -74,6 +100,16 @@ const UpdateProfile = () => {
                 </div>
 
             </div>
+
+            <AvatarsShowroom
+        isOpen={showSelected}
+        onClose={() => setShowSelected(false)}
+        onSelect={(idx) => {
+          setAvatar(idx);
+          setShowSelected(false);
+        }}
+        selected={avatar}
+      />
 
         </div>
     );

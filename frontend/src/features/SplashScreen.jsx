@@ -4,7 +4,7 @@ import 'animate.css'
 const SplashScreen = () => {
   return (
     <div className="splash-screen">
-      <h1 className='text-light animate__animated animate__flip animate__slow'>SELFIE</h1>
+      <h1 className='text-light animate__animated animate__flip'>SELFIE</h1>
     </div>
   );
 };

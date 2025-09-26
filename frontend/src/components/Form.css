@@ -1,15 +1,8 @@
-/* body{
-    background-image: url("https://i.pinimg.com/736x/2d/96/a9/2d96a9e420ae6dd9cbdeca0931dad1dd.jpg");
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}  */
 
 .card-container {
     perspective: 100vmin; 
-    width: 55vmin;
-    height: 85vmin;
+    width: 40%;
+    height: 45%;
     min-width: 320px;
     margin: auto;
 }
@@ -87,4 +80,39 @@
 .appIcon:hover{
     background-color: aliceblue;
     border-radius: 50%;
+}
+
+.login-pic {
+    width: 100px;
+    max-height: 100px;
+    margin-top: 30px;
+}
+
+.signUpPic{
+    width: 120px;
+    max-height: 100px;
+    margin-top: 30px;
+
+}
+
+.card-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+
+}
+
+@media (height < 500px) {
+
+    .card-front, .card-back {
+    flex-direction: row;
+   
+}
+
+.card-container {
+    width: 55vw; 
+}
+
 }
