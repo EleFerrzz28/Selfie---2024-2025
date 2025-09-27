@@ -1,8 +1,6 @@
-import { useEffect } from "react";
 import { useGetAllNotesQuery } from "../../redux/notes/notesApiSlice.js";
 import { useGetEventsQuery } from "../../redux/calendar/eventsApiSlice";
 import { useGetActQuery } from "../../redux/calendar/actApiSlice";
-import { DateTime } from 'luxon';
 import "../NotesComponents/NotesList.css";
 import './Review.css';
 
@@ -22,37 +20,37 @@ const Review = () => {
       <h2> Review </h2>
       <div className='container'>
         <div className='row'>
+
           {/* colonna di sinistra */}
           <div className='col-6'>
             <div className='review__box events-counter'>
-              <span className='circle-design'  id='ev-1'></span>
-              <span className='circle-design'  id='ev-2'></span>
-              <i className='bx-sm bx-calendar-alt review__icons' ></i> 
-             <h6> {eventsCount}</h6>
-               <p>Events Scheduled</p>
-              </div> 
-
+              <span className='circle-design' id='ev-1'></span>
+              <span className='circle-design' id='ev-2'></span>
+              <i className='bx-sm bx-calendar-alt review__icons' ></i>
+              <h6> {eventsCount}</h6>
+              <p>Events Scheduled</p>
+            </div>
           </div>
 
           {/* colonna di destra */}
-          <div className='col-6'> 
+          <div className='col-6'>
             <div className='row mb-2'>
               <div className='review__box notes-counter'>
-              <span className='circle-design'  id='not-1'></span>
-              <span className='circle-design'  id='not-2'></span>
-              <i className='bx  bx-pencil-draw review__icons'  ></i> 
-              <h6> {notesCount}</h6>
-               <p>Notes created</p>
-              </div> 
-               </div>
-            <div className='row mt-2'> 
+                <span className='circle-design' id='not-1'></span>
+                <span className='circle-design' id='not-2'></span>
+                <i className='bx  bx-pencil-draw review__icons'  ></i>
+                <h6> {notesCount}</h6>
+                <p>Notes created</p>
+              </div>
+            </div>
+            <div className='row mt-2'>
               <div className='review__box acts-counter'>
-              <span className='circle-design'  id='acts-1'></span>
-              <span className='circle-design'  id='acts-2'></span>
-                <i className='bx  bx-browser-activity review__icons'></i> 
-              <h6>{actsCount}</h6>
-               <p>Activity in program</p>
-              </div> 
+                <span className='circle-design' id='acts-1'></span>
+                <span className='circle-design' id='acts-2'></span>
+                <i className='bx  bx-browser-activity review__icons'></i>
+                <h6>{actsCount}</h6>
+                <p>Activity in program</p>
+              </div>
 
             </div>
           </div>
@@ -65,57 +63,3 @@ const Review = () => {
 
 export default Review;
 
-
-/*
- 
- <div className='container'>
-        <div className='col-6'>
-          <div className='review__item item-notesCounter'>
-            <p className='review-description'>Created Notes </p>
-            {loadingNotes ? (
-              <p className='review-number'>...</p>
-            ) : errorNotes ? (
-              <p className='review-number'>Err </p>
-            ) : (
-              <p className='review-number'>{notesCount}</p>
-            )}
-          </div>
-
-          <div className='review__item item-eventsToDo'>
-            {loadingEvents ? (
-              <p className='review-number'>...</p>
-            ) : errorEvents ? (
-              <p className='review-number'>Err</p>
-            ) : (
-              <p className='review-number'>{eventsCount}</p>
-            )}
-            <p className='review-description'>Events Scheduled</p>
-          </div>
-        </div>
-
-        <div className='col-6'>
-          <div className='review__item item-activities'>
-            {loadingActs ? (
-              <p className='review-number'>...</p>
-            ) : errorActs ? (
-              <p className='review-number'>Err</p>
-            ) : (
-              <p className='review-number'>{actsCount}</p>
-            )}
-            <p className='review-description'>Activities</p>
-          </div>
-
-          <div className='review__item item-activityScheduled'>
-            {loadingEvents ? (
-              <p className='review-number'>...</p>
-            ) : errorEvents ? (
-              <p className='review-number'>Err</p>
-            ) : (
-              <p className='review-number'>{todayEvents}</p>
-            )}
-            <p className='review-description'>Events Today</p>
-          </div>
-        </div>
-      </div>
- 
- */

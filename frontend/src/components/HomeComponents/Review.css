@@ -1,11 +1,10 @@
-
-.review h2{
+.review h2 {
     color: white;
     font-weight: bold;
     margin-left: 10px;
 }
 
-.review .container{
+.review .container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,8 +12,7 @@
 }
 
 
-
-.review__box{
+.review__box {
     width: 95%;
     display: flex;
     flex-direction: column;
@@ -26,99 +24,99 @@
     overflow: hidden;
     color: #fff;
     z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    background: linear-gradient(150deg, rgba(135, 135, 135, 0.1) 40%, var(--pink) 110%);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(4px);
+    border-radius: 12px;
+
 
 }
 
-.review__box p{
+.review__box p {
     margin: 0;
     font-weight: 500;
     text-align: center;
 }
 
-.review__box h6{
+.review__box h6 {
     font-size: 1.4rem;
     font-weight: bold;
     margin-bottom: 5px;
 
 }
 
-.events-counter{
+.events-counter {
     height: 100%;
-    background-color: rgb(255, 219, 129);
 }
 
 
-.circle-design{
+.circle-design {
     position: absolute;
     border-radius: 50%;
     z-index: -1;
 
 }
 
-#ev-1{
+#ev-1 {
     top: -30px;
     right: -30px;
     width: 80px;
     height: 80px;
-    background-color: rgb(255, 197, 96);
+    background-color: var(--lightBordeaux);
 }
 
-#ev-2{
+#ev-2 {
     bottom: -30px;
     left: -30px;
     width: 60px;
     height: 60px;
-    background-color: rgb(255, 197, 96);
+    background-color: var(--lightBordeaux);
 }
 
 
-.notes-counter{
-    background-color: rgb(194, 144, 255);
-}
 
 .notes-counter i {
     font-size: 1.2rem;
 
 }
 
-#not-1{
+#not-1 {
     top: -15px;
     right: -40px;
     width: 80px;
     height: 80px;
-    background-color:  rgb(148, 99, 207);
+    background-color: var(--coral);
 }
 
 
-#not-2{
+#not-2 {
     top: -17px;
     left: 15px;
     width: 30px;
     height: 30px;
-    background-color:  rgb(148, 99, 207);
+    background-color: var(--coral);
 }
 
 
-.acts-counter{
-    background-color: rgb(255, 139, 139);
-}
 
-#acts-1{
+#acts-1 {
     top: -20px;
-    left: -20px;  
+    left: -20px;
     width: 50px;
     height: 50px;
-    background-color:  rgb(255, 105, 105);
+    background-color: var(--pink);
 
 }
 
 
-#acts-2{
+#acts-2 {
     bottom: -35px;
-    right: -40px;  
+    right: -40px;
     width: 100px;
     height: 100px;
-    background-color:  rgb(255, 105, 105);
+    background-color: var(--pink);
 
 }
 
@@ -129,97 +127,9 @@
 
 
 
-.review__icons{
+.review__icons {
     position: absolute;
     top: 0;
     right: 0;
     margin: 9px;
 }
-
-/*
-
-.review header {
-    text-align: start;
-    font-family: "Cal Sans", sans-serif;
-    font-style: normal;  
-    font-optical-sizing: auto;
-    font-size: 2rem;
-    color: white;
-}
-
-.review .container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-.review__item{
-    position: relative;
-    width: 10vh;
-    border-radius: 8px;
-    padding: 6px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
-
-.item-notesCounter{
-    background-color: rgb(132, 93, 132);
-
-
-}
-
-
-
-.review-number {
-    justify-self: flex-end;
-    margin: 0;
-    font-size: 1rem;
-    font-weight: bold;
-    color: white;
-}
-
-.review-description {
-    justify-self: flex-start;
-    margin: 0;
-    color: var(--color-info-light);
-    font-size: 0.5rem;
-}
-
-@media (max-height : 500px ) {
-    .review header {
-        margin-top: 3vw;
-        font-size: 4vw;
-    }
-
-    .box-eventsDone {
-        height: 13vw;
-        width: 13vw;
-    }
-
-    .box-eventsToDo{
-        height: 10vw;
-        width: 15vw;
-    }
-
-    .box-activityInProgress {
-        height: 10vw;
-        width: 15vw;
-    }
-
-    .box-activityScheduled {
-        height: 13vw;
-        width: 13vw;
-    }
-
-    .review-number {
-        font-size: 3vw;
-    }
-
-    .review-description {
-        font-size: 1.8vw;
-    }
-
-
-}
-*/

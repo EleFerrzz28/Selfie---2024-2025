@@ -1,11 +1,10 @@
-import { useEffect } from "react";
 import { useGetLastSessionQuery } from '../../redux/pomodoro/pomodoroApiSlice';
 import "../NotesComponents/NotesList.css";
 import './PomoCard.css';
 
+
 const PomoCard = () => {
   const result = useGetLastSessionQuery(undefined, { refetchOnMountOrArgChange: true });
-  const isLoading = result.isLoading;
   const sessionData = result.data ? result.data : [];
   const lastSession = sessionData?.[0];
 
@@ -43,10 +42,11 @@ const PomoCard = () => {
   return (
     <div className="pomocard__container">
       <div className="title__box">
-        <div className="last_pomodoro"> Last Pomodoro
+        <div className="title__p-text">
+          <h3 id="last_pomodoro"> Last Pomodoro </h3>
           <h3 id="session"> Session </h3>
         </div>
-        <i className='bx  bx-cherry' ></i>
+        <i class='bx  bx-cherry' ></i>
       </div>
       <div id="content__box">
         <span id="left__angle">

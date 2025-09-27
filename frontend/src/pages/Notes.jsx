@@ -25,7 +25,6 @@ function Notes() {
         <>
             {isDesktop ? (
                 <div className="container-fluid justify-content-center" style={{
-                    backgroundImage: 'linear-gradient(60deg, var(--sunrise), var(--darkPurple))',
                     transition: 'background-color 0.25s ease-in-out',
                     overflow: 'hidden'
                 }}>
@@ -42,7 +41,6 @@ function Notes() {
             ) : (
                 <div className="mobile-layout h-100"
                     style={{
-                        backgroundImage: 'linear-gradient(60deg, var(--sunrise), var(--darkPurple)',
                         transition: 'background-color 0.25s ease-in-out',
                         overflow: 'hidden'
                     }}>

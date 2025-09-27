@@ -95,7 +95,7 @@ const Schedule = () => {
     selectedCategory === 'all'
       ? todaysEvents
       : todaysEvents.filter(
-        (event) => String(event.category) === String(selectedCategory) // da controllare
+        (event) => String(event.category) === String(selectedCategory)
       );
 
 
@@ -118,7 +118,9 @@ const Schedule = () => {
 
   return (
     <>
-      {isDesktop ? (
+      {isDesktop ? 
+      /* Visualizzazione desktop */
+      (
         <div className="schedule__header border-bottom ">
           <h4>Schedule</h4>
           <button
@@ -148,21 +150,17 @@ const Schedule = () => {
                 id="schedule__categories-button"
                 type="button"
                 data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
+                aria-expanded="false">
                 <i className="bx bx-menu-filter bx-md"></i>
               </button>
-
               <DropdownMenu
                 categories={categories}
                 selectedCategory={selectedCategory}
                 setSelectedCategory={setSelectedCategory}
               />
-
               <button
                 className="button_IsCollapsed"
-                onClick={() => setCollapsed(!collapsed)}
-              >
+                onClick={() => setCollapsed(!collapsed)}>
                 <i
                   className={` bx bx-chevron-down bx-md  ${collapsed ? 'collapsed-icon' : ''
                     }`}
@@ -171,15 +169,20 @@ const Schedule = () => {
             </div>
           </div>
         )}
-
-      <div
-        className={`schedule ${collapsed && !isDesktop ? 'd-none h-0' : ''
-          }`}
-      >
+        
+        {/* corpo principale */}
+      <div className={`schedule ${collapsed && !isDesktop ? 'd-none h-0' : ''
+          }`}>
         {isLoading ? (
           <LoadingScreen />
         ) : isError ? (
-          <p>Error loading events</p>
+          <p style={{
+            color: 'var(--white)',
+            textAlign: 'center',
+            fontWeight: '600',
+            marginTop: '5rem'
+          }}>
+            Error loading events</p>
         ) : todaysEvents.length === 0 ? (
           <div className='no-events__design'>
             <h1> You're free today!

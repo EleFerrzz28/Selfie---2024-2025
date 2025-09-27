@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 
 const LoadingScreen = () => {
-   return (
+  return (
     <div
       className="loadingScreen"
       style={{
@@ -29,7 +29,7 @@ const LoadingScreen = () => {
           style={{
             width: "20px",
             height: "20px",
-            backgroundColor: "var(--darkPurple)",
+            backgroundColor: "var(--wine)",
             borderRadius: "50%",
           }}
         />

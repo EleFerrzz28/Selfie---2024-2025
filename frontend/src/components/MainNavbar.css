@@ -14,9 +14,8 @@
     box-sizing: border-box;
     height: 100vh;
     width: fit-content;
-    background-color: var(--navbar);
+    background-color: var(--beige);
     font-weight: bold;
-
     position: sticky;
     top: 0;
     align-self: start;
@@ -24,7 +23,7 @@
     overflow: hidden;
     text-wrap: nowrap;
 
-    color: var(--white);
+    color: var(--wine);
     font-family: "Cal Sans", sans-serif;
     font-style: normal;
     font-optical-sizing: auto;
@@ -58,14 +57,14 @@
     transition: 0.4s;
     border-radius: .5em;
     text-decoration: none;
-    color: var(--darkblue);
+    color: var(--wine);
     display: flex;
     align-items: center;
     gap: 3vmin;
     transition: opacity 0.5s ease;
 
     svg {
-        fill: var(--darkblue)
+        fill: var(--wine)
     }
 }
 
@@ -91,7 +90,7 @@
 
 #openButton svg {
     width: 4vmin;
-    fill: var(--darkPurple);
+    fill: var(--wine);
     font-weight: bold;
 }
 
@@ -100,13 +99,6 @@
     z-index: 2;
 }
 
-/* .avatar {
-    flex-shrink: 0;
-    width: 8vmin;
-    height: auto;
-    border-radius: 50%;
-    opacity: 1;
-} */
 
 #sidebar .nav-link span {
     flex-grow: 1;
@@ -114,29 +106,29 @@
 
 #sidebar .nav-link:hover,
 .timeMachine:hover {
-    background-color: var(--marigold);
-    color: white;
+    background-color: var(--lightBordeaux);
+    color: var(--white);
 
     svg {
-        fill: white;
+        fill: var(--white);
     }
 }
 
 #sidebar .active {
-    color: var(--darkPurple);
+    color: var(--lightBordeaux);
     font-weight: bolder;
 }
 
 .nav-link.active svg {
-    fill: var(--midnight);
+    fill: var(--lightBordeaux);
 }
 
 #sidebar .active:hover {
     background-color: var(--lightBlue);
-    color: var(--darkblue);
+    color: var(--night);
 
     svg {
-        fill: var(--darkblue);
+        fill: var(--night);
     }
 }
 

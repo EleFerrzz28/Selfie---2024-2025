@@ -14,7 +14,6 @@ import { useGetAllNotesQuery } from "../../redux/notes/notesApiSlice.js";
 
 
 function NotesList() {
-    const { mode } = useSelector((state) => state.theme);
 
     const [openMenuId, setOpenMenuId] = useState(null); // Modale per il menu Edit - Copy - Delete
     const [openModal, setOpenModal] = useState(false); // Modale per i tags
@@ -63,7 +62,7 @@ function NotesList() {
     </div>);
 
     return (
-        <div className="noteListContainer ps-1 pe-1"  data-theme={mode ? "dark" : "light"}
+        <div className="noteListContainer ps-1 pe-1" 
             onClick={() => { setOpenMenuId(null); }}>
             {isCreatingNote || editingNoteId ? (
                 <NewNote

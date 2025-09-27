@@ -3,7 +3,6 @@ import MainNavbar from './components/MainNavbar';
 import BottomNavbar from "./components/BottomNavbar";
 import Home from "./components/HomeComponents/HomeLayout";
 import useMediaQuery from './hooks/useMediaQuery';
-
 import './App.css';
 import "./pages/Page.css";
 

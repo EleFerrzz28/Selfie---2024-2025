@@ -76,7 +76,7 @@
     flex-wrap: wrap;
     color:white;
     position:relative;
-    background-color:var(--darkPurple);
+    background-color:var(--wine);
     padding:3vmin 0 3vmin 0;
     will-change: transform;
 }

@@ -20,7 +20,8 @@ function Calendar() {
   if (!isReady) return null;
 
   return (
-    <div className="container-fluid calendar-font">
+    <div className="container-fluid calendar-font"
+    >
       {isDesktop ? (
         <div className="row">
           <div className="col-auto p-0 m-0">

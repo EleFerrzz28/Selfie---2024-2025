@@ -1,87 +1,97 @@
-
-.notecard__container{
+.notecard__container {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     position: relative;
-    width: 80% ;
+    width: 80%;
     max-width: 30rem;
-    height: 15rem;
+    height: 14rem;
+    overflow: hidden;
 }
 
-.header__box{
+.header__box {
     width: 100%;
-    height: 5rem;
+    height: 4.5rem;
     position: relative;
     padding: 5px;
     border-radius: 15px;
-    background-color: rgb(226, 216, 100);
-    color: rgb(197, 173, 19);
+    background-color: var(--lightBlue);
+    color: var(--night);
     overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
     z-index: 0;
 
-    
+
 }
 
-.last_modified{
-    text-align: left;
-    font-weight: bold; 
-    margin-top: 2px;
+
+.title__n-text {
+    max-width: 25rem;
+}
+
+#last_edited {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: 0;
     margin-left: 5px;
     z-index: 2;
 }
 
-#note{
-    text-align: right;
-    font-weight: bold;  
-    margin-top: 0; 
-    margin-right: 7rem;
+#_note {
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin: 0;
+    margin-left: 35%;
     z-index: 2;
 }
 
-.header__box i{
+
+
+.header__box i {
     position: absolute;
     bottom: -30px;
     right: -10px;
     transform: rotate(-30deg);
     font-size: 100px;
-    color: rgb(197, 173, 19);
+    color: var(--night);
     z-index: -1;
 }
 
-.content__box{
+.content__box {
     width: 100%;
-    height: 9.5rem;
+    height: 9rem;
     position: relative;
     border-radius: 15px;
-    border-top-left-radius: 0 ;
-    background: white;
+    border-top-left-radius: 0;
+    background: var(--white);
+
 }
 
 
-.left__angle{
+.left__angle {
     position: absolute;
     top: -40px;
     height: 40px;
     width: 30%;
-    border-top: 6px solid rgba(190, 111, 97);
-    border-right: 6px solid rgba(190, 111, 97);
+    border-top: 6px solid #B03F5C;
+    border-right: 6px solid #B03F5C;
     border-top-right-radius: 15px;
-    background-color: white;
+    background-color: var(--white);
 }
 
 
-.left__angle::before{
+.left__angle::before {
     content: '';
     position: absolute;
     width: 20px;
     height: 20px;
     border-radius: 22%;
-    box-shadow: -6px -3px 0 rgba(190, 111, 97);
-    background-color: white; 
+    box-shadow: -6px -3px 0 #B03F5C;
+    background-color: var(--white);
 }
 
-.left__angle::after{
+.left__angle::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -89,12 +99,12 @@
     width: 20px;
     height: 20px;
     border-radius: 22%;
-    box-shadow: -9px 9px 0 #fff ;
-    background-color: transparent; 
+    box-shadow: -9px 9px 0 #fff;
+    background-color: transparent;
 }
 
 
-#note__time{
+#note__time {
     display: block;
     position: relative;
     font-size: 0.7rem;
@@ -104,11 +114,11 @@
     margin: 10px 10px;
     border-radius: 5px;
     color: white;
-    background-color: rgb(197, 173, 19);
+    background-color: #45555a;
 
 }
 
-.note__info{
+.note__info {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -116,11 +126,11 @@
     padding: 0.5rem;
 }
 
-.note__info h5{
+.note__info h5 {
     font-weight: 600;
 }
 
-.note__text{
+.note__text {
     width: 95%;
     height: 6rem;
     display: flex;
@@ -130,124 +140,7 @@
     padding: auto;
     font-size: 0.7rem;
     border-radius: 5px;
-    background-color: beige;
+    background-color: #e7e7e7;
     overflow: hidden;
-    
+
 }
-
-
-
-
-
-
-/*
-.NoteCard-container header {
-    text-align: start;
-    font-family: "Cal Sans", sans-serif;
-    font-style: normal;
-    font-optical-sizing: auto;
-    font-size: 2.5vh;
-    color: white;
-    margin-bottom: 2vh;
-}
-
-.note-card {
-    z-index: 1;
-    min-width: 30vh;
-    height: 32vh;
-    display: flex;
-    flex-direction: row;
-    box-shadow: 0 2rem 4rem -2rem var(--color-light);
-    background-color: var(--white);
-    transition: all 300ms ease;
-    overflow: hidden;
-    position: relative;
-}
-
-.note-card:hover {
-    box-shadow: none;
-    transform: scale(1.05);
-    transition: 0.5s ease-in-out;
-}
-
-.note-card::before {
-    content: '';
-    position: absolute;
-    bottom:  0;
-    right: 0;
-    width: 100%;
-    height: 0;
-    background: var(--sunrise) ;
-    z-index: -1;
-    transition: 0.3s ease-in-out;
-}
-
-.note-card:hover::before {
-    height: 100%;
-}
-
-
-
-
-.note-container{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-
-.tags-container{
-    display: flex;
-    justify-content: center;
-    gap: 2vmin;
-    overflow-x: auto ;
-}
-
-.tag{
-    padding: 3px;
-    text-align: center;
-    border-radius: var(--card-border-radius);
-    width: fit-content;
-}
-   
-
-
-.note-title {
-    color: var(--color-dark);
-    font-weight: bold;
-}
-
-.note-text {
-    z-index: 2;
-    font-size: 1.9vh;
-    color: var(--color-dark);
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    overflow: hidden;
-}
-
-
-.note-footer {
-    z-index: 2;
-    font-size: 0.5vw;
-    color: lightslategray;
-}
-
-.note-icon {
-    fill: gray;
-    z-index: 0;
-    width: 25vh;
-    height: 25vh;
-    position: absolute;
-    bottom: -30px;
-    right: 0;
-    transform: rotate(-20deg);
-    opacity: 15%;
-}
-
-.note-card:hover .note-icon {
-    fill: var(--darkPurple); 
-    transition: fill 0.3s ease-in-out;
-}
-
-*/

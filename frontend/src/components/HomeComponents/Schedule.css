@@ -1,18 +1,16 @@
-
-
-#schedule__categories-button{
+#schedule__categories-button {
     background-color: transparent;
     border: none;
 }
 
 
-#schedule__categories-button i{
+#schedule__categories-button i {
     color: #fff;
 }
 
 
 .schedule {
-    max-height: 92vh; 
+    max-height: 92vh;
     width: 100%;
 
     padding: 20px;
@@ -22,31 +20,31 @@
     overflow-x: hidden;
 }
 
-.schedule__header{
+.schedule__header {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 5px;
-   
+
 }
 
-.schedule__header h4{
+.schedule__header h4 {
     font-size: clamp(1.7rem, 1.8vw, 1.9rem);
     font-weight: bold;
     color: #fff;
 }
 
 
-.buttons_wrap{
+.buttons_wrap {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    
+
 }
 
-.button_IsCollapsed{
+.button_IsCollapsed {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,51 +54,47 @@
     color: white;
 }
 
-.collapsed-icon{
+.collapsed-icon {
     transform: rotate(180deg);
 }
 
-.bx-chevron-down{
+.bx-chevron-down {
     transition: .3s transform ease-in-out;
 }
 
-.no-events__design{
+.no-events__design {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    padding: 2rem;   
+    padding: 2rem;
     color: #fff;
     animation: entrance 0.4s ease-out;
 
 }
 
-.no-events__design h1{
-     font-weight: bold;
-     text-align: end;
-     margin : 0;
-     margin-bottom: 3rem;
+.no-events__design h1 {
+    font-weight: bold;
+    text-align: end;
+    margin: 0;
+    margin-bottom: 3rem;
 }
 
-.no-events__design h3{
-     font-weight: 600;
-     text-align: end;
-     margin-top: 8px;
+.no-events__design h3 {
+    font-weight: 600;
+    text-align: end;
+    margin-top: 8px;
 }
 
-.rest-image{
+.rest-image {
     width: 15rem;
     height: 15rem;
     opacity: 70%;
 }
 
-#no-cat{
+#no-cat {
     margin-top: 1rem;
     color: white;
     font-weight: 300;
 
 }
-
-
-
-

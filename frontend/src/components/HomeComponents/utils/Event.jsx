@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useGetCatQuery } from '../../../redux/calendar/catApiSlice';
-import { DateTime } from 'luxon';
 import { motion } from 'framer-motion';
 import './Event.css';
 
@@ -14,8 +12,6 @@ const Event = ({ events, onDelete }) => {
   const [checked, setChecked] = useState(false);
 
   const maxTitleLenght = 29;
-  
-
 
 
   const handleClick = (events) => {
@@ -32,11 +28,9 @@ const Event = ({ events, onDelete }) => {
 
 
   const truncateTitle = (title) =>
-    title.length > maxTitleLenght ? 
-    title.substr(0, maxTitleLenght) + "..."
+    title.length > maxTitleLenght ?
+      title.substr(0, maxTitleLenght) + "..."
       : title || "No title available";
-
-
 
 
   return (
@@ -59,7 +53,7 @@ const Event = ({ events, onDelete }) => {
           className="animated-check"
           style={{
             background: 'none',
-            border: `${category ? category.color : 'var(--bs-light)'} solid 3px`,
+            border: `${category ? category.color : 'var(--bs-light)'} solid 3.5px`,
             width: '1.6rem',
             height: '1.6rem',
             display: 'flex',

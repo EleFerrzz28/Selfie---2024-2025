@@ -1,12 +1,11 @@
-
-.updateProfile{
+.updateProfile {
     height: fit-content;
     padding: 1.5rem;
     margin-top: 1.5rem;
     background-color: white;
 }
 
-.avatar-image{
+.avatar-image {
     border-radius: 50%;
     height: 10rem;
     width: 10rem;
@@ -15,7 +14,7 @@
 
 }
 
-.profile-image{
+.profile-image {
     max-height: 200px;
     display: flex;
     flex-direction: column;
@@ -25,7 +24,7 @@
 }
 
 
-.profile-image button{
+.profile-image button {
     position: absolute;
     bottom: 0;
     right: 85px;
@@ -35,15 +34,14 @@
     background: none;
 }
 
-.fields-container input{
+.fields-container input {
     width: 90%;
     border: 1px solid #ccc;
     border-radius: 1vmin;
 }
 
 
-.fields-container button{
+.fields-container button {
     width: 90px;
-   
-}
 
+}

@@ -2,17 +2,19 @@ import { useState, useEffect } from 'react';
 import { WeatherSvg } from "weather-icons-animated";
 import { useSelector } from 'react-redux';
 import { DateTime } from "luxon";
+
 import "../NotesComponents/NotesList.css";
 import './WeatherApp.css';
 
 
 const WeatherApp = () => {
     const api_key = 'd5f3580dfd8bca5d0f2a605b803c595a';
-    const [data, setData] = useState({});
-    const { userInfo } = useSelector((state) => state.auth);
 
+    const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const { userInfo } = useSelector((state) => state.auth);
+
 
     const TM_date = useSelector((state) => state.time.value);
     const d = DateTime.fromISO(TM_date);
@@ -50,12 +52,8 @@ const WeatherApp = () => {
         setWeather();
     }, []);
 
-
-
-
     return (
         <div className='weather-app d-flex flex-column m-lg-0 m-md-0 mt-4 ms-4'>
-
             <header className='weather-header d-flex justify-content-between'>
                 <div className='welcome d-flex align-self-start flex-column'>
                     <h3 className='m-0' id='hi'> Welcome </h3>
@@ -68,27 +66,23 @@ const WeatherApp = () => {
                         <p> {d.toFormat("yy")} </p>
                     </div>
                 </div>
-
             </header>
             <div className='weather m-0 d-flex justify-content-around align-items-center'>
                 <div className='weather-data m-0'>
                     <div className='weather-info d-flex mt-1'>
-                        <p className='degree m-0'> {data.main ? `${Math.floor(data.main.temp)}` : null}°</p>
+                        <p className='degree m-0'> {data.main ? `${Math.floor(data.main.temp)}` : "n/d"}°</p>
                         <p className='weather-description d-flex align-self-end m-0 '> {data.weather ? data.weather[0].main : null} </p>
                     </div>
                     <div className='location'>
                         <i className='bx-sm  bx-location'></i>
-                        <h6 id='city' className='ms-1'> {data.name ? data.name : null} </h6>
+                        <h6 id='city' className='ms-1'> {data.name ? data.name : "n/d"} </h6>
                     </div>
                 </div>
                 <div className='weather-icon'>
                     <WeatherSvg state={weatherImage} />
                 </div>
-
             </div>
-
         </div>
-
     );
 }
 
