@@ -35,6 +35,22 @@ const pomodoroSchema = new Schema({
         type: Boolean,
         default: true,
     },
+    notificationsPomo: {
+        type: String,
+        default: '5min'
+    },
+    reminderSentSteps: {
+        type: [String],   
+        default: []
+    },
+    reminderSent: {
+        type: Boolean,
+        default: false
+    },
+    reminderSent: {
+        type: Boolean,
+        default: false
+    },
     user:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',

@@ -233,13 +233,13 @@ function CalendarPage() {
     return (
         <>
             <ToastContainer autoClose={3000} />
-            <div className={`body container-fluid ${bigView ? 'p-0 m-0' : 'p-0 p-sm-3 p-md-3 p-lg-3'}`}>
+            <div className={`body container-fluid ${bigView ? 'p-0 m-0' : 'p-0 p-sm-3 p-lg-3'}`}>
                 <div className="row" style={{ alignItems: "center" }}>
                     <div className={`col-12 ${bigView ? 'col-lg-12' : 'col-lg-8'}`}>
-                        <CalendarComponent events={normalizedEvents} activities={activities} activeDay={activeDay} setActiveDay={setActiveDay} bigView={bigView}></CalendarComponent>
+                        <CalendarComponent events={normalizedEvents} activities={activities} activeDay={activeDay} setActiveDay={setActiveDay} bigView={bigView} notifications={notifications}></CalendarComponent>
                     </div>
                     {isDesktop &&
-                        <div className={`${bigView ? 'd-none' : 'col-12 col-lg-4'}`}>
+                        <div className={`${bigView ? 'd-none' : 'col-4'}`}>
                             <div className="row">
                                 <Activity activities={activities} notifications={notifications}></Activity>
                                 <div>
@@ -282,7 +282,7 @@ function CalendarPage() {
                         </div>
                     </div>
                 </div>
-                <ChangeView setBigView={setBigView} open={open} setOpen={setOpen} />
+                {isDesktop && <ChangeView setBigView={setBigView} open={open} setOpen={setOpen} />}
             </>
         </>
     );

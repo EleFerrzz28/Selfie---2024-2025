@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './Notifications.css';
 import { useUpdateNotificationsMutation } from '../redux/calendar/eventsApiSlice';
 import { useUpdateNotificationActMutation } from '../redux/calendar/actApiSlice';
+import { useUpdateNotificationsPomoMutation } from '../redux/pomodoro/pomodoroApiSlice.js';
 import { ToastContainer,toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDefaultNotification } from '../redux/calendar/notificationReducer.js';
@@ -12,6 +13,7 @@ function Notifications({notifications}){
     const [valueState, setValueState] = useState(defaultNotification);
     const [updateNotifications] = useUpdateNotificationsMutation();
     const [updateNotificationAct] = useUpdateNotificationActMutation();
+    const [updateNotificationPomo] = useUpdateNotificationsPomoMutation();
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -20,6 +22,9 @@ function Notifications({notifications}){
                 notifications: valueState
             }).unwrap();
             await updateNotificationAct({
+                notifications: valueState
+            }).unwrap();
+            await updateNotificationPomo({
                 notifications: valueState
             }).unwrap();
             dispatch(setDefaultNotification(valueState));
@@ -32,7 +37,7 @@ function Notifications({notifications}){
     return(
         <div>
             <ToastContainer></ToastContainer>
-            <div id="notBG" className="rounded p-5 text-white border border-white">
+            <div id="notBG" className="rounded p-5 text-white border border-white calendar-font">
                 <h3 className="pb-4">Notifications settings <i className="bxr bx-bell-ring" style={{color:'#ffffff'}}/></h3>
                 <div className='decoration-not'></div>
                 

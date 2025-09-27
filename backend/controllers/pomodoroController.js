@@ -1,8 +1,8 @@
 import Pomodoro from "../models/pomodoroModel.js"
-import AsyncHandler from "express-async-handler"
+import asyncHandler from "express-async-handler"
 
 const addSession=(async(req, res)=>{
-    const {date, originalDate, description, prodPeriod, breakPeriod, longBreakPeriod, cycles, planned, completed} = req.body;
+    const {date, originalDate, description, prodPeriod, breakPeriod, longBreakPeriod, cycles, planned, completed, notificationsPomo} = req.body;
 
     if(!date){
         res.status(400);
@@ -19,6 +19,7 @@ const addSession=(async(req, res)=>{
         cycles,
         planned, 
         completed,
+        notificationsPomo,
         user: req.user._id,
     });
 
@@ -30,12 +31,12 @@ const addSession=(async(req, res)=>{
     });
 });
 
-const getLastSession = AsyncHandler(async (req, res) => {
+const getLastSession = asyncHandler(async (req, res) => {
     const lastSession = await Pomodoro.find({user: req.user._id}).sort({date:-1});
     res.json(lastSession)
 });
 
-const getAllSession = AsyncHandler(async(req, res) => {
+const getAllSession = asyncHandler(async(req, res) => {
     try{
       const sessions = await Pomodoro.find({ user: req.user._id });
       res.json( sessions );
@@ -47,7 +48,7 @@ const getAllSession = AsyncHandler(async(req, res) => {
     }
 })
 
-const setCompleted = AsyncHandler(async(req, res) => {
+const setCompleted = asyncHandler(async(req, res) => {
     const pomodoro = await Pomodoro.findById(req.params.id);
 
     if(!pomodoro){
@@ -66,11 +67,67 @@ const setCompleted = AsyncHandler(async(req, res) => {
     });
 })
 
+const editPomodoro = asyncHandler(async(req, res) =>{
+  const pomodoro = await Pomodoro.findById(req.params.id);
+
+  if(!pomodoro){
+    res.status(404);
+    throw new Error("Pomodoro not found!");
+  } else {
+    Object.entries(req.body).forEach(([key, value]) => {
+      if (value!==undefined) {
+        pomodoro[key] = value;
+      }
+    });
+
+    if (req.body.notifications) {
+      pomodoro.reminderSentSteps = [];
+      pomodoro.reminderSent = false;
+    }
+
+    await pomodoro.save();
+  
+    res.status(200).json({
+      message: "Pomodoro updated successfully",
+      event: pomodoro,
+    });
+  }
+});
+
+const updateNotificationsPomo = asyncHandler(async(req, res) => {
+    const { notificationsPomo } = req.body;
+    await Pomodoro.updateMany({}, { 
+      $set: { 
+        notificationsPomo: notificationsPomo,
+        reminderSentSteps: [],
+        reminderSent: false,
+      } 
+    });
+
+    return res.status(200).json({
+      message: "All events updated successfully",
+    });
+  }
+);
+
+const deletePomodoro = asyncHandler(async (req, res) => {
+  const pomodoro = await Pomodoro.findByIdAndDelete( req.params.id );
+  if (pomodoro) {
+    res.json({ message: "Pomodoro deleted successfully", pomodoro });
+  } else {
+    res.status(404);
+    throw new Error("Pomodoro not found.");
+  }
+});
+
 //req: request, res: response
 
 export{
     addSession,
     getLastSession,
     getAllSession,
-    setCompleted
+    setCompleted,
+    editPomodoro, 
+    updateNotificationsPomo,
+    deletePomodoro
 };

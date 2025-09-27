@@ -9,11 +9,13 @@ import { useLocation } from "react-router";
 import { useState } from "react";
 import {DateTime} from "luxon";
 import { useSelector } from "react-redux";
+import useMediaQuery from "../../hooks/useMediaQuery.jsx";
 
 function PomodoroPage(){
     const [addSession] = useAddSessionMutation();
     const [setCompleted] = useSetCompletedMutation();
     const { refetch } = useGetAllSessionQuery();
+    const isDesktop = useMediaQuery("(min-width: 960px)");
 
     const timeData = DateTime.fromISO(useSelector((state) => state.time.value));
     
@@ -39,7 +41,7 @@ function PomodoroPage(){
                 await refetch();
             }
             const newSession={
-                date: timeData.toISOString(),
+                date: timeData.toISO(),
                 prodPeriod: duration,
                 cycles: nCycles,
             };
@@ -56,7 +58,7 @@ function PomodoroPage(){
         <>
             <ToastContainer/>
             <PomodoroAnimation/>
-            <LastSession/>
+            {isDesktop && <LastSession/>}
 
             <h5 id="general-title" className="text-center">Get ready to concentrate!</h5>
             

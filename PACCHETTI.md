@@ -1,6 +1,6 @@
 FRONT-END:
 npm install 
-npm i react-toastify classnames react-router react-router-dom @reduxjs/toolkit framer-motion react-markdown remark-gfm rehype-starry-night remark-breaks  @supabase/auth-helpers-react
+n
 
 
 BACK-END: 

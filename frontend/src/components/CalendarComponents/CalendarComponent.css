@@ -1,3 +1,4 @@
+
 .category-none::after, .category::after{
     content:attr(data-title);
     font-size: 1vmin;
@@ -315,6 +316,17 @@
     .calendar-grid-cell{
         height: 8vmin;
     }
+    .calendar-container{
+        height: 72vh;
+        width: 95dvw;
+    }
+    
+    .calendar-week-column{
+        display:flex;
+        flex-direction: column;
+        flex: 1 1 0;    
+        min-height: 100%; /*per scroll*/
+    }
     .calendar-grid-cell::before{
         width:0;
         height:0;
@@ -340,6 +352,39 @@
     }
 }
 @media (max-width: 576px){/*telefono*/
+    .calendar-container {
+        height: calc(100dvh - 28vmin);
+        min-height: calc(100dvh - 28vmin);
+        max-height: calc(100dvh - 28vmin);
+        width: 100dvw;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+    }
+    .calendar {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        flex: 1;
+        overflow: hidden;
+    }
+    .calendar-grid-week{
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        height: calc(100dvh - 10vh - 6vh - 28vmin);
+        align-items: stretch;
+    }
+    .calendar-week-column{
+        display:flex;
+        flex-direction: column;  
+        height: 100%; /*per scroll*/
+    }
+    .calendar-weeks-grid{
+        height: 6vh;
+    }
+    .calendar-headline{
+        height: 10vh;
+    }
     .calendar-headline-control{
         font-size:4vmin;
     }
@@ -355,19 +400,15 @@
     .fivePrev{
         left: 10vh;
     }
-    
     .prev{
         left: 13vh;
     }
-    
     .fiveNext{
        right:10vh;
-    }
-    
+    } 
     .next{
         right: 13vh;
     }
-
     .event-card-width{
         min-width: 30vw;
     }
@@ -375,15 +416,16 @@
         width: 15vmin;
     }
     .calendar-grid-cell{
-        height:21vmin;     
+        height:calc((100dvh - 6vh - 10vh - 28vmin) / 6);     
         font-size: 4vw; 
-        border: 0.1px solid #58466a24;
+        border: 1px solid #58466a0a;
     }
     .calendar-grid-cell-week {
-        height:21vmin;
+        height: calc((100dvh - 6vh - 10vh - 28vmin) / 6);
     }
     .space-under-week{
-        height: 105vmin;
+        flex: 1; 
+        overflow-y: auto;
     }
     .category-none::after, .category::after{
         font-size: 2vmin;
@@ -405,10 +447,6 @@
         opacity: 0.2; 
         z-index: -1;
         pointer-events: none;
-    }
-    .calendar-grid-cell::before{
-        width:0;
-        height:0;
     }
     .calendar-grid-cell-active::before{
         width:8vmin;

@@ -20,20 +20,20 @@ function Calendar() {
   if (!isReady) return null;
 
   return (
-    <div className="container-fluid calendar-font">
+    <div className="container-fluid calendar-font" >
       {isDesktop ? (
         <div className="row">
-          <div className="col-auto p-0 m-0">
+          <div className="col-auto p-0 m-0 min-vh-100 vh-100">
             <MainNavbar />
           </div>
-          <div className="col flex-grow-1 m-0 p-0" style={{ display: "flex", alignItems: "center" }}>
+          <div className="col-8 flex-grow-1 m-0 p-0 min-vh-100 vh-100" style={{ display: "flex", alignItems: "center", overflow: 'hidden' }}>
             <CalendarPage></CalendarPage>
           </div>
         </div>
       ) : (
         <div className="mobile-layout">
           <BottomNavbar />
-          <div className="mobilerow row">
+          <div className="mobilerow row me-0" style={{ height: '100dvh' }}>
             <CalendarPage></CalendarPage>
           </div>
         </div>

@@ -21,15 +21,18 @@ function EventForm({ newPomo, newAct, newEvent, setNewEvent, setNewAct, setNewPo
     const [category, setCategory] = useState("");
     const [notEvent, setNotEvent] = useState();
     const [notAct, setNotAct] = useState();
+    const [notPomo, setNotPomo] = useState();
 
     const { data: catData = [] } = useGetCatQuery();
 
     useEffect(() => {
         setNotEvent(defaultNotification);
         setNotAct(defaultNotification);
+        setNotPomo(defaultNotification);
 
         setNewEvent(prev => ({ ...prev, notificationsEvent: defaultNotification }));
         setNewAct(prev => ({ ...prev, notificationsAct: defaultNotification }));
+        setNewPomo(prev => ({ ...prev, notificationsPomo: defaultNotification }));
     }, [defaultNotification]);
 
     const weekDays=Info.weekdays("narrow");
@@ -333,9 +336,23 @@ function EventForm({ newPomo, newAct, newEvent, setNewEvent, setNewAct, setNewPo
                         <label className="form-label">cycles:</label><br/>
                         <input id="input-cycles" className="border-0 shadow-none form-control" type="number" name="cycles" value={newPomo.cycles} min="0" onChange={(e)=>{handleChangePomo(e)}} required/>
                     </div>
-                    <div>
+                    <div className='mb-3'>
                         <label className='form-label'>Day:</label><br/>
                         <input id='pomoDay' className='border-0 shadow-none form-control' type='date' name='date' value={newPomo.date} onChange={(e)=>{handleChangePomo(e)}}/>
+                    </div>
+                    <div>
+                        <label htmlFor='notPomo' className='form-label'>Do you want to change notifications settings for this pomodoro?</label>
+                        {Object.keys(notifications).map((key)=>(
+                            <div key={key}>
+                                <div className="form-check pb-2">
+                                <input className="form-check-input shadow-none border-0 radio-event-form" type="radio" name="notificationsPomo" id={key} 
+                                    value= {key} checked={key === notPomo} onChange={(e)=>{setNotPomo(e.target.value); setNewPomo(prev => ({ ...prev, notificationsPomo: e.target.value }))}}/>
+                                    <label className="form-check-label text-white" htmlFor={key}>
+                                        {notifications[key]}
+                                    </label>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </form>

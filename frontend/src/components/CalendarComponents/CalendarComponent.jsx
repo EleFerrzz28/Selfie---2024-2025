@@ -10,7 +10,7 @@ import { useGetAllSessionQuery } from '../../redux/pomodoro/pomodoroApiSlice';
 import { useGetActQuery } from '../../redux/calendar/actApiSlice'
 import { Link } from "react-router-dom"
 
-function CalendarComponent({events, activities, activeDay, setActiveDay, bigView}){
+function CalendarComponent({events, activities, activeDay, setActiveDay, bigView, notifications}){
     const [slide, setSlide]=useState(0);
     const [holidays, setHolidays] = useState([]);
     const totalDays=42;
@@ -290,7 +290,7 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
                                                                 Scheduled break period: {event.breakPeriod} minutes.<br/>
                                                                 Scheduled long break period: {event.longBreakPeriod} minutes.<br/>
                                                                 Scheduled number of cycles: {event.cycles} {event.cycles === 1 ? "cycle." : "cycles."}<br/>
-                                                                {event.completed ? <small>Completato</small> : <small>Non completato</small>}<br/>
+                                                                {event.completed ? '' : <small> (not completed yet)</small>}<br/>
                                                                 <Link to='/Pomodoro' state={{
                                                                     linkProdPeriod:(event.prodPeriod/event.cycles), 
                                                                     linkBreakPeriod: event.breakPeriod,
@@ -328,17 +328,18 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
                                 <div key={weekDayIndex} className="calendar-weeks-grid-cell">{weekDay}</div>
                             ))}
                         </div>
-                        <div className="calendar-grid">
+                        <div className="calendar-grid calendar-grid-week">
                             {daysOfWeek.map((_,index)=>{
                                 const isRealDay = index < 7;
                                 var day = isRealDay ? daysOfWeek[index] : null; //i primi 7 giorni hanno una data
                                 const activitiesOfDay = activities[day?.toISODate()]?.map(act =>({...act, type:"activity"})) ?? []
                                 const holidayOfDay = isHoliday(day) ?  [{
                                         type: "holiday",
-                                        title: holidaysNames(day)
+                                        title: holidaysNames(day?.toISODate())
                                     }] : [];
                                 const eventsOfDay = isRealDay && day ? events[day.toISODate()] : []; 
-                                const dayEvAndAc = [...(eventsOfDay || []), ...(activitiesOfDay || []), ...(holidayOfDay || [])];
+                                const pomodorosOfDay = isRealDay && day ? pomodoroData[DateTime.fromISO(day).toISODate()] : [];
+                                const dayEvAndAc = [...(eventsOfDay || []), ...(activitiesOfDay || []), ...(holidayOfDay || []), ...(pomodorosOfDay || [])];
                                 dayEvAndAc.sort((a,b) => {
                                     const aTime = DateTime.fromISO(a.time);
                                     const bTime = DateTime.fromISO(b.time);
@@ -347,7 +348,7 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
 
                                 const ref = el => (containerRef.current[index] = el);
                                 return(
-                                    <div key={index} className='d-flex flex-column' >
+                                    <div key={index} className='calendar-week-column' >
                                         <div 
                                         className={classnames({
                                             "calendar-grid-cell-week":true,
@@ -358,7 +359,7 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
                                             {day && isRealDay ? 
                                                 <div>{day.day}</div> : null}
                                         </div>
-                                        <div className="space-under-week pt-4 border-end" ref={ref}>
+                                        <div className="space-under-week border-end" ref={ref}>
                                             {dayEvAndAc && dayEvAndAc.length > 0 ? (
                                                 dayEvAndAc.map((ev, index) => { 
                                                     const key = ev._id || `${index}-${ev.title}`;
@@ -391,14 +392,14 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
                                                                     </svg>
                                                                 </div>
                                                             ) : ""}
-                                                            {/*{ev.type === "pomodoro" ? (
-                                                                <div className='d-flex justify-content-end mt-1'>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="var(--color-week)" className="bi bi-check2-circle" viewBox="0 0 16 16">
-                                                                        <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0"/>
-                                                                        <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
-                                                                    </svg>
-                                                                </div>
-                                                            ) : ""}*/}
+                                                            {ev.type === "pomodoro" ? (
+                                                                <>
+                                                                    {ev.completed ? '' : <small> (not completed yet)</small>}
+                                                                    <div className='d-flex justify-content-end mt-1'>
+                                                                        <i className='bx-sm  bx-cherry' style={{color: 'var(--color-week)'}}></i>
+                                                                    </div>
+                                                                </>
+                                                            ) : ""}
                                                             </div>
                                                             <br/>
                                                         </>
@@ -418,7 +419,7 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
                     </div>
                 </div>
 
-                <EventModal activeDayEvents={activeDayEvents} activeDay={activeDay.toLocaleString(DateTime.DATE_MED)} categoryMap={categoryMap}></EventModal>
+                <EventModal activeDayEvents={activeDayEvents} activeDay={activeDay.toLocaleString(DateTime.DATE_MED)} categoryMap={categoryMap} notifications={notifications}></EventModal>
                 <MonthSelection months={months} selectSpecificMonth={selectSpecificMonth}></MonthSelection>
                 <SpecificDayModal months={months} years={years} currentYear={currentYear} setCurrentYear={setCurrentYear} goToSpecificDate={goToSpecificDate}></SpecificDayModal>
 
