@@ -63,6 +63,8 @@ code {
   --warning: #FABE58;
   --error: #D63031;
 
+  --glassCard: rgba(255, 255, 255, 0.7);
+
 
 }
 
@@ -90,6 +92,8 @@ img {
   --lionsmane: rgb(62, 62, 66);
   --toggle-bg: #444444;
   --toggle-fg: rgb(41, 97, 182);
+
+  --glassCard: rgba(83, 77, 82, 0.7);
 }
 
 html,

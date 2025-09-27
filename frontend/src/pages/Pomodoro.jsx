@@ -20,9 +20,9 @@ function Pomodoro() {
   if (!isReady) return null;
 
   return (
-    <div className="container-fluid" style={{backgroundColor:"var(--color-background)"}}>
+    <div className="container-fluid min-vh-100" style={{backgroundColor:"var(--color-background)"}}>
       {isDesktop ? (
-        <div className="row">
+        <div className="row min-vh-100">
           <div className="col-auto p-0 m-0">
             <MainNavbar />
           </div>

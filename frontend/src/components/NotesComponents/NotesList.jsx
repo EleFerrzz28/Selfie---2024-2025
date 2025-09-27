@@ -5,6 +5,7 @@ import DeleteNoteModal from "./DeleteNoteModal.jsx";
 import NewNote from "./NewNote.jsx"
 import TagsModal from "./TagsModal.jsx";
 import { AnimatePresence } from "framer-motion";
+import LoadingScreen from "../HomeComponents/utils/LoadingScreen.jsx";
 
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
@@ -34,36 +35,11 @@ function NotesList() {
             note.tags?.some(tag => tagsSelected.includes(tag))
         )
 
-    if (isLoading) return (
-        <div className="noteListContainer d-flex justify-content-center align-items-center" >
-            <div className="card glass-card shadow border-0"
-                style={{
-                    width: "10vmin",
-                    height: "10vmin"
-                }}>
-                <div className="card-body d-flex justify-content-around align-items-center p-1">
-                    <div className="spinner-border" role="status" />
-                </div>
-            </div>
-        </div>);
-    if (error) return (<div className="noteListContainer d-flex justify-content-center align-items-center">
-        <div className="card glass-card shadow border-0"
-            style={{
-                width: "50vmin",
-                height: "10vmin"
-            }}>
-            <div className="card-body d-flex justify-content-around mt-2 p-1">
-                <h5 className="card-title mt-1" style={{
-                    fontFamily: '"Cal Sans", sans-serif',
-                    fontStyle: "normal",
-                    fontOpticalSizing: "auto",
-                }}>Ops, Something went wrong...</h5>
-            </div>
-        </div>
-    </div>);
+    if (isLoading) return (<LoadingScreen />);
+    if (error) return (<div className="error d-flex align-items-center w-100 h-100 justify-content-center"><h5 className="bg-light rounded shadow p-3">Ops, something went wrong...</h5></div>);
 
     return (
-        <div className="noteListContainer ps-1 pe-1"  data-theme={mode ? "dark" : "light"}
+        <div className="noteListContainer ps-1 pe-1" data-theme={mode ? "dark" : "light"}
             onClick={() => { setOpenMenuId(null); }}>
             {isCreatingNote || editingNoteId ? (
                 <NewNote

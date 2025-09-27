@@ -140,6 +140,13 @@
     font-size: 4vh;
 }
 
+.error {
+    text-align: center;
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+}
+
 @media screen and (max-width: 960px) {
     .noteListButtons {
         height: max-content;
