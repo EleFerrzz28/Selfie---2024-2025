@@ -39,7 +39,6 @@ function Notifications({notifications}){
             <ToastContainer></ToastContainer>
             <div id="notBG" className="rounded p-5 text-white border border-white calendar-font">
                 <h3 className="pb-4">Notifications settings <i className="bxr bx-bell-ring" style={{color:'#ffffff'}}/></h3>
-                <div className='decoration-not'></div>
                 
                 <form onSubmit={handleSubmit}>
                     {Object.keys(notifications).map((key)=>(
@@ -54,8 +53,7 @@ function Notifications({notifications}){
                             </div>
                         </div>
                     ))}
-                    <button type='submit' className='btn buttonClose m-2'>Save changes</button>
-                    <div className='decoration-not-under'></div>
+                    <button type='submit' className='btn button-save-not text-light border m-2'>Save changes</button>
                 </form>
             </div>
             <p className='mt-4 text-white'>You will be able to change the settings for each specific event/activity.

@@ -32,7 +32,12 @@ function Activity({activities, notifications}){
         if (!Array.isArray(actData)) return;
         const arr = actData
             .map((activity, index) => ({ ...activity, localId: `${activity._id}-${index}` }))
-            .sort((a, b) => DateTime.fromISO(a.deadline) - DateTime.fromISO(b.deadline));
+            .sort((a, b) => {
+                if (a.completedAct !== b.completedAct) {
+                    return a.completedAct ? 1 : -1;
+                }
+                return DateTime.fromISO(a.deadline) - DateTime.fromISO(b.deadline);
+            });
         setActivitiesArray(arr);
     }, [actData]);
 

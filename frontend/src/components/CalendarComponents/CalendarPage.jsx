@@ -100,7 +100,8 @@ function CalendarPage() {
             title: activity.title,
             description: activity.description,
             deadline: activity.deadline,
-            category: activity.category
+            category: activity.category,
+            completedAct: activity.completedAct
         });
         return acc;
     }, {});

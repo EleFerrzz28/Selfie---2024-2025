@@ -17,6 +17,7 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
     const totalDays=42;
     const {data: catData = []} = useGetCatQuery();
     const [weeklyView, setWeeklyView] = useState(false);
+    const [version, setVersion] = useState(0); // State to trigger re-render
 
     const {data: sessionData=[], refetch: refetchSessions } = useGetAllSessionQuery();
     const {data: actData=[], refetch: refetchActs } = useGetActQuery();
@@ -161,17 +162,29 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
     }, {});
 
     const holidayName = holidaysNames(activeDay);
-    
-    const actRefetch = actData.filter(act => DateTime.fromISO(act.date).toISODate() === activeDay)
 
-    const activeDayEvents = [
-        ...(holidayName ? [{
+    const [holidaysValue, setHolidaysValue] = useState([]);
+    useEffect(() => {
+        setHolidaysValue(holidayName ? [{
             type: "holiday",
             title: holidayName
-        }] : []),
-        ...(events[activeDay] ?? []), 
-        ...(actRefetch ?? []),
-        ...(pomodoroData[DateTime.fromISO(activeDay).toISODate()] ?? [])
+        }] : [])
+    }, [holidayName])
+
+    const [actsValue, setActsValue] = useState([]);
+    const [pomoValue, setPomoValue] = useState([]);
+
+    useEffect(() => {
+        setActsValue(activities[activeDay] ?? []);
+        setPomoValue(pomodoroData[DateTime.fromISO(activeDay).toISODate()] ?? [])
+    }, [activities, activeDay, version, pomodoroData]);
+
+
+    const activeDayEvents = [
+        ...holidaysValue,
+        ...(events[activeDay] ?? []),
+        ...actsValue,
+        ...pomoValue
     ];
 
     useEffect(() => {
@@ -188,6 +201,7 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
         const interval = setInterval(() => {
             refetchSessions(); 
             refetchActs();
+            setVersion((v) => v + 1);
         }, 1000); // ogni secondo
         return () => clearInterval(interval);
     }, []);
@@ -292,7 +306,7 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
                                                         </small>
                                                         <small className={event.type==="activity" ? "" : "d-none"}>
                                                             Category: {categoryMap[event.category]?.name ?? "-"}<br/>
-                                                            {event.completedAct ? <small>Completed</small> : <small>Not completed yet</small>}<br/>
+                                                            {event.completedAct ? <small className='completed-act-text p-1'>Completed</small> : <small>Not completed yet</small>}<br/>
                                                         </small>
                                                         <div className={event.type==="pomodoro" ? "" : "d-none"}>
                                                             {event.planned ? 
