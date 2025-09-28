@@ -24,13 +24,12 @@ function Notes() {
     return (
         <>
             {isDesktop ? (
-                <div className="container-fluid justify-content-center h-100" style={{
-                    backgroundImage: 'linear-gradient(60deg, var(--sunrise), var(--darkPurple))',
+                <div className="container-fluid justify-content-center" style={{
                     transition: 'background-color 0.25s ease-in-out',
                     overflow: 'hidden'
                 }}>
                     <ToastContainer />
-                    <div className="row h-100">
+                    <div className="row" >
                         <div className="p-0 m-0 col-auto">
                             <MainNavbar />
                         </div>
@@ -42,7 +41,6 @@ function Notes() {
             ) : (
                 <div className="mobile-layout h-100"
                     style={{
-                        backgroundImage: 'linear-gradient(60deg, var(--sunrise), var(--darkPurple)',
                         transition: 'background-color 0.25s ease-in-out',
                         overflow: 'hidden'
                     }}>

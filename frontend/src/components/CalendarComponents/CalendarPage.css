@@ -85,9 +85,3 @@
 .tooltip-element:hover .tooltip-element-text {
     visibility: visible;
 }
-
-html, body, #root {
-  height: 100%;
-  margin: 0;
-  overflow: hidden; /* nasconde e blocca lo scroll */
-}

@@ -15,10 +15,10 @@ const AvatarsShowroom = ({ isOpen, onClose, onSelect, selected }) => {
   if (!isOpen) return null;
 
   return (
-        <div className="avatars-showroom">
+    <div className="avatars-showroom">
       <div className="avatar-modal">
         <button className="avatar_close-btn" onClick={onClose}>
-          <i className='bx  bx-x'></i> 
+          <i className='bx  bx-x'></i>
         </button>
         <h5>Scegli il tuo avatar</h5>
         <div className="avatar-grid">

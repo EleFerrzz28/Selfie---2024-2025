@@ -3,6 +3,7 @@
     overflow-y: scroll;
 }
 
+
 .option-category{
     width: 100%;
 }
@@ -36,8 +37,6 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    /*** full width block ***/
-    /* width: 100%; */
 }
 
 .google svg {
@@ -52,7 +51,7 @@
     margin-top: 1px;
 }
 
-/*** disabled style ***/
+
 .google:disabled {
     pointer-events: none;
     opacity: .65;

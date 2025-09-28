@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useLogoutMutation } from '../redux/features/userApiSlice.js';
 import { logout } from '../redux/features/authSlice.js';
-import ThemeToggler from '../components/SettingsComponents/Theme';
-import { toggleDarkMode } from '../redux/features/themeSlice';
 import UpdateProfile from '../components/SettingsComponents/UpdateProfile.jsx';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { toast, ToastContainer } from 'react-toastify';
@@ -14,7 +12,6 @@ import './SettingsPage.css';
 
 
 function Settings() {
-
     const options = [
         {
             header: { name: "Account" },
@@ -62,7 +59,6 @@ function Settings() {
     const [visibleOptions, setVisibleOptions] = useState(options);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { mode } = useSelector((state) => state.theme);
     const { userInfo } = useSelector((state) => state.auth);
     const [logoutApiCall] = useLogoutMutation();
     const supabase = useSupabaseClient();
@@ -76,9 +72,9 @@ function Settings() {
 
 
 
-     async function GooglesignOut() {
-    await supabase.auth.signOut();
-  }
+    async function GooglesignOut() {
+        await supabase.auth.signOut();
+    }
 
 
     const logoutHandler = async () => {
@@ -151,11 +147,14 @@ function Settings() {
     if (!userInfo) return null;
 
     return (
-        <div className='Settings' data-theme={mode ? "dark" : "light"}>
+        <div className='Settings'>
             <ToastContainer position="top-right" autoClose={3000} />
             <div className='container my-5'>
                 <h1>
-                    <span>
+                    <span style={{
+                        color: 'var(--white)',
+                        fontWeight: '600'
+                    }}>
                         <NavLink to={'/Home'}>
                             <button className='btn btn-secondary me-3'>
                                 <span>&lt;</span> Back
@@ -166,7 +165,7 @@ function Settings() {
                 </h1>
 
                 <UpdateProfile />
-
+                
                 <h2 className='mt-5' style={{ fontWeight: 'bold' }}> About our website </h2>
                 <input
                     type='text'
@@ -175,10 +174,6 @@ function Settings() {
                     placeholder='search...'
                 />
 
-                <ThemeToggler
-                    isChecked={mode}
-                    handleChange={() => dispatch(toggleDarkMode())}
-                />
 
                 <div className='option-category'>
                     {visibleOptions.map((option) => (

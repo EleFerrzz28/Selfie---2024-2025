@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useUpdateUserMutation } from '../../redux/features/userApiSlice.js';
 import { setCredentials } from '../../redux/features/authSlice.js';
-import AvatarsShowroom, {AVATARS} from './AvatarsShowroom.jsx';
+import AvatarsShowroom, { AVATARS } from './AvatarsShowroom.jsx';
 import './UpdateProfile.css'
 
 
@@ -40,7 +40,7 @@ const UpdateProfile = () => {
                     name,
                     email,
                     password,
-                    avatar, 
+                    avatar,
                 }).unwrap();
                 console.log(res);
                 dispatch(setCredentials(res));
@@ -51,21 +51,16 @@ const UpdateProfile = () => {
         }
     };
 
-
     return (
         <div className='updateProfile rounded'>
             <h3 className='mb-4 m-lg-0'>Update your Profile </h3>
             <div className='container-fluid '>
                 <div className='row h-100 d-flex align-items-center'>
-
-
-            <div className="profile-image 
-            col-12 col-lg-4">
-            <img
-              className="avatar-image"
-              src={AVATARS[avatar]}
-              alt="User avatar"
-            />
+                    <div className="profile-image col-12 col-lg-4">
+                        <img
+                            className="avatar-image"
+                            src={AVATARS[avatar]}
+                            alt="User avatar"/>
 
                         <button
                             type="button"
@@ -75,7 +70,6 @@ const UpdateProfile = () => {
                             <i className='bx-sm  bx-pencil' ></i>
                         </button>
                     </div>
-
                     <div className='col-12 fields-container col-lg-8 d-flex flex-column'>
                         <p> username </p>
                         <input className="mb-3 p-2"
@@ -98,19 +92,15 @@ const UpdateProfile = () => {
                             className='btn btn-secondary mt-3 mb-4'> Update </button>
                     </div>
                 </div>
-
             </div>
-
             <AvatarsShowroom
-        isOpen={showSelected}
-        onClose={() => setShowSelected(false)}
-        onSelect={(idx) => {
-          setAvatar(idx);
-          setShowSelected(false);
-        }}
-        selected={avatar}
-      />
-
+                isOpen={showSelected}
+                onClose={() => setShowSelected(false)}
+                onSelect={(idx) => {
+                    setAvatar(idx);
+                    setShowSelected(false);
+                }}
+                selected={avatar}/>
         </div>
     );
 };

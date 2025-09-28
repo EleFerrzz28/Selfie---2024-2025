@@ -9,9 +9,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: linear-gradient(60deg, var(--sunrise), var(--darkPurple));
   user-select: none;
   overflow-x: hidden;
+
+  background: linear-gradient(to bottom, var(--wine), var(--bordeaux), var(--lightBordeaux), var(--coral), var(--pink), var(--sun));
 }
 
 code {
@@ -37,25 +38,26 @@ code {
 
   --darkPurple: #58466a;
   --sunrise: #ec815d;
-  --navbar: #f5f3f3;
 
-  --white: rgb(255, 255, 255);
-  --color-info-dark: #7d8da1;
-  --color-info-light: #dce1eb;
-  --color-dark: #363949;
-  --color-dark-variant: #677483;
-  --color-light: rgba(132, 139, 200, 0.18);
+
+
   --color-background: rgba(239, 239, 239, 255);
+  --white: #fff;
+  --textBlack: #363949;
+  --color-info-dark: #7d8da1;
+  --wine: #4C1D3D;
+  --bordeaux: #852E4E;
+  --lightBordeaux: #A33757;
+  --coral: #DC586D;
+  --pink: #FB9590;
+  --beige: #FFBB94;
+  --lightBlue: #C4C3E3;
+  --darkblue: #504E76;
+  --night: #45555a;
+  --darkPurple: #58466a;
+  --red: #851A2B;
+  --sun: #ffac7b;
 
-  --card-border-radius: 2rem;
-  --border-radius-1: 0.4rem;
-  --border-radius-2: 0.8rem;
-  --border-radius-3: 1.2rem;
-
-  --card-padding: 1.8rem;
-  --padding-1: 1.2rem;
-
-  --box-shadow: 0 2rem 3rem var(--color-light);
 
   --toggle-bg: #f0eb9d;
   --toggle-fg: #ffd000;
@@ -64,7 +66,6 @@ code {
   --error: #D63031;
 
   --glassCard: rgba(255, 255, 255, 0.7);
-
 
 }
 
@@ -81,20 +82,6 @@ img {
   box-sizing: border-box;
 }
 
-[data-theme="dark"] {
-  --color-background: rgb(37, 37, 38);
-  --white: rgb(62, 62, 66);
-
-  --midnight: rgb(244, 162, 88);
-  --lightBlue: #C4C3E3;
-  --darkBlue: #FCDD9D;
-  --color-dark: #dce1eb;
-  --lionsmane: rgb(62, 62, 66);
-  --toggle-bg: #444444;
-  --toggle-fg: rgb(41, 97, 182);
-
-  --glassCard: rgba(83, 77, 82, 0.7);
-}
 
 html,
 body,

@@ -15,8 +15,6 @@ import { useGetAllNotesQuery } from "../../redux/notes/notesApiSlice.js";
 
 
 function NotesList() {
-    const { mode } = useSelector((state) => state.theme);
-
     const [openMenuId, setOpenMenuId] = useState(null); // Modale per il menu Edit - Copy - Delete
     const [openModal, setOpenModal] = useState(false); // Modale per i tags
     const [previewNoteModal, setPreviewNoteModal] = useState(null); // Modale per la preview
@@ -39,7 +37,7 @@ function NotesList() {
     if (error) return (<div className="error d-flex align-items-center w-100 h-100 justify-content-center"><h5 className="bg-light rounded shadow p-3">Ops, something went wrong...</h5></div>);
 
     return (
-        <div className="noteListContainer ps-1 pe-1" data-theme={mode ? "dark" : "light"}
+        <div className="noteListContainer ps-1 pe-1"
             onClick={() => { setOpenMenuId(null); }}>
             {isCreatingNote || editingNoteId ? (
                 <NewNote
