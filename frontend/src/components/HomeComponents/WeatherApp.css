@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap');
+
+.weather-app {
+    width: 100%;
+    height: 30vh;
+    transition: all 300ms ease;
+
+}
+
+.current-day {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    padding: 3px;
+    color: var(--textBlack);
+    background-color: var(--white);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+}
+
+
+.current-day h6 {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.wrap p {
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+#hi {
+    color: var(--white);
+    font-weight: bold;
+    font-size: 1.6rem;
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+    margin-bottom: 0;
+}
+
+#hi-user {
+    color: var(--white);
+    font-weight: bold;
+    font-size: 1.5rem;
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+
+}
+
+.degree {
+    font-size: 9vh;
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+}
+
+
+.weather-description {
+    font-size: 3vh;
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+
+}
+
+.weather-info p {
+    color: var(--white);
+}
+
+.location {
+    display: flex;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.location h6 {
+    font-size: 1rem;
+    color: #fff;
+}
+
+.location i {
+    color: #fff;
+}
+
+
+
+.weather-icon {
+    height: 19vh;
+    width: 19vh;
+
+
+}
+
+@media (max-height: 500px) {
+
+    .weather-app {
+        height: fit-content;
+    }
+
+
+    .day-date p {
+        font-size: 2vw;
+    }
+
+    .day-number h6 {
+        font-size: 4vw;
+    }
+
+
+    #hi {
+        font-size: 4vw;
+    }
+
+    #hi-user {
+        font-size: 3vw;
+    }
+
+
+    .degree {
+        font-size: 9vw;
+
+    }
+
+
+
+    .weather-description {
+        font-size: 3vw;
+
+
+    }
+
+
+
+    .location h6 {
+        font-size: 2vw;
+
+    }
+
+    .location svg {
+        width: 3vw;
+        height: 3vw;
+    }
+
+
+    .weather-icon {
+        width: 20vw;
+        height: 20vw;
+    }
+
+
+}

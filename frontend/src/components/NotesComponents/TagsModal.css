@@ -1,0 +1,30 @@
+#tagList{
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.tagListStyle{
+    font-weight: bold;
+    background-color: var(--marigold);
+    color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.isSelected{
+    background-color: var(--sageGreen);
+}
+
+.tagsModal {
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;  
+    font-optical-sizing: auto;
+}
+
+.tagModalDialog{
+     width: 90%;
+    max-width: 500px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+}

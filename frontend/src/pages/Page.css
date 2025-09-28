@@ -1,0 +1,28 @@
+.mobilerow {
+    padding-top: 14vmin;
+    padding-bottom: 16vmin;
+}
+
+/* Regola per tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .mobilerow {
+        padding-top: 6vmin;   /* valore tablet */
+        padding-bottom: 8vmin; /* valore tablet */
+    }
+}
+
+
+.mobile-layout {
+    background: transparent;
+}
+
+.timecontainer {
+    height: 100vh;
+    overflow: auto;
+}
+
+.calendar-font {
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+}

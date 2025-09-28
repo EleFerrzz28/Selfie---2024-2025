@@ -1,0 +1,90 @@
+/*BoxIcons*/
+@import url('https://cdn.boxicons.com/fonts/basic/boxicons.min.css');
+@import url('https://cdn.boxicons.com/fonts/transformations.min.css');
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  overflow-x: hidden;
+
+  background: linear-gradient(to bottom, var(--wine), var(--bordeaux), var(--lightBordeaux), var(--coral), var(--pink), var(--sun));
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+:root {
+  --celeste: rgb(147, 203, 206);
+  --lionsmane: rgb(252, 243, 227);
+  --herb: rgb(112, 140, 105);
+  --marigold: rgb(244, 162, 88);
+  --midnight: rgb(1, 61, 90);
+  --lightBlue: #C4C3E3;
+  --darkblue: #504E76;
+  --panna: #FDF8E2;
+  --sageGreen: #A3B565;
+  --lightOrange: #FCDD9D;
+  --orange: #F1642E;
+  --scarletRed: #e36255;
+  --electricBlue: rgb(41, 97, 182);
+
+  --darkPurple: #58466a;
+  --sunrise: #ec815d;
+
+
+
+  --color-background: rgba(239, 239, 239, 255);
+  --white: #fff;
+  --textBlack: #363949;
+  --color-info-dark: #7d8da1;
+  --wine: #4C1D3D;
+  --bordeaux: #852E4E;
+  --lightBordeaux: #A33757;
+  --coral: #DC586D;
+  --pink: #FB9590;
+  --beige: #FFBB94;
+  --lightBlue: #C4C3E3;
+  --darkblue: #504E76;
+  --night: #45555a;
+  --darkPurple: #58466a;
+  --red: #851A2B;
+  --sun: #ffac7b;
+
+
+  --toggle-bg: #f0eb9d;
+  --toggle-fg: #ffd000;
+
+  --warning: #FABE58;
+  --error: #D63031;
+
+  --glassCard: rgba(255, 255, 255, 0.7);
+
+}
+
+
+img {
+  display: block;
+  width: 100%;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+html,
+body,
+#root {
+  height: 100%;
+}

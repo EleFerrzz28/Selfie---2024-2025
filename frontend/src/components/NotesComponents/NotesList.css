@@ -1,0 +1,174 @@
+@keyframes entrance {
+    0% {
+        opacity: 0;
+        transform: translateX(10px) scale(0.98);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+.noteListContainer .card .card-body {
+    height: 90vh;
+    overflow-y: auto;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+#noteList::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+#noteList {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.cardHeading {
+    height: 8vmin;
+}
+
+.noteListButtons {
+    height: 6vmin;
+    background-color: var(--marigold);
+    border: none;
+    transition: 0.4s;
+
+    font-weight: bold;
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+
+    svg {
+        fill: white;
+    }
+}
+
+.noteListButtons:hover {
+    border: none;
+    background-color: var(--lightBlue);
+
+    svg {
+        fill: var(--darkblue);
+    }
+}
+
+.newNoteMobile {
+    display: none;
+}
+
+.searchNote {
+    color: var(--white);
+    font-weight: bold;
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+}
+
+.searchNote input {
+    background-color: rgba(196, 195, 227, 0.3);
+    border-color: rgba(196, 195, 227, 0.3);
+    box-shadow: none;
+    transition: 0.4s ease;
+    min-height: 24px;
+}
+
+.searchNote input:focus {
+    border-color: var(--lightBlue);
+    box-shadow: none;
+}
+
+.headingIcon {
+    width: 4vmin;
+    height: auto;
+}
+
+.newNote {
+    position: fixed;
+    top: 80%;
+    right: 5%;
+    z-index: 9999;
+    background-color: rgba(162, 116, 206, 0.2);
+    backdrop-filter: blur(5px);
+    width: 10vmin;
+    height: 10vmin;
+    max-width: 150px;
+    max-height: 150px;
+    min-width: 70px;
+    min-height: 70px;
+    border-radius: 50%;
+    transition: transform 0.5s ease, background-color 0.5s ease;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.newNote:hover {
+    background-color: rgb(162, 116, 206);
+    transform: rotate(45deg);
+}
+
+.newNote svg {
+    fill: black;
+    width: 90%;
+    height: auto;
+    pointer-events: none;
+    transition: fill 0.5s ease;
+}
+
+.newNote:hover svg {
+    fill: white;
+}
+
+.blur-background {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.cardHeading>h5 {
+    color: var(--white);
+    font-weight: bold;
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+    font-size: 4vh;
+}
+
+.error {
+    text-align: center;
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+}
+
+@media screen and (max-width: 960px) {
+    .noteListButtons {
+        height: max-content;
+    }
+
+    .noteListButtons svg {
+        width: 24px;
+    }
+
+    .cardHeading {
+        height: 70px;
+    }
+
+    .newNote {
+        top: 60%;
+    }
+
+    .cardHeading>.card-title {
+        font-size: 24px;
+    }
+
+    #noteList {
+        margin-bottom: calc(max(42vmin, 160px));
+    }
+}

@@ -1,0 +1,11 @@
+.last-session-div h4{
+    color:var(--sunrise);
+}
+.last-session-div {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    line-height: 1;
+    z-index: 5;
+    font-size: smaller;
+}

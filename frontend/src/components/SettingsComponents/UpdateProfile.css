@@ -1,0 +1,47 @@
+.updateProfile {
+    height: fit-content;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    background-color: white;
+}
+
+.avatar-image {
+    border-radius: 50%;
+    height: 10rem;
+    width: 10rem;
+    border: 1px solid rgb(201, 198, 198);
+    box-shadow: 10px 10px 5px rgb(201, 198, 198);
+
+}
+
+.profile-image {
+    max-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+.profile-image button {
+    position: absolute;
+    bottom: 0;
+    right: 85px;
+    border: none;
+    margin-top: 20px;
+    color: var(--darkPurple);
+    background: none;
+}
+
+.fields-container input {
+    width: 90%;
+    border: 1px solid #ccc;
+    border-radius: 1vmin;
+}
+
+
+.fields-container button {
+    width: 90px;
+
+}

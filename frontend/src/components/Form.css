@@ -1,0 +1,125 @@
+#welcomeForm {
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+}
+
+.card-container {
+    perspective: 100vmin;
+    width: 40%;
+    height: 45%;
+    min-width: 320px;
+    margin: auto;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.card-inner.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 1auto;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 0 1vmin 2vmin rgba(0, 0, 0, 0.2);
+    border-radius: 2vmin;
+}
+
+#welcomeForm input {
+    width: 75%;
+    border: 1px solid #ccc;
+    border-radius: 3vmin;
+}
+
+.formButtons {
+    background: var(--wine);
+    width: 75%;
+    color: white;
+    border: none;
+    border-radius: 3vmin;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.formButtons:hover {
+    background: var(--beige);
+    box-shadow: 0 0 0 1vmin #fff,
+        0 0 0 1vmin var(--beige);
+}
+
+#welcomeForm span {
+    color: var(--wine);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#welcomeForm span:hover {
+    text-decoration: underline;
+}
+
+.appIcon {
+    width: 7vmin;
+    height: 7vmin;
+    min-width: 24px;
+    min-height: 24px;
+    transition: 0.4s;
+}
+
+.appIcon:hover {
+    background-color: aliceblue;
+    border-radius: 50%;
+}
+
+.login-pic {
+    width: 100px;
+    max-height: 100px;
+    margin-top: 30px;
+}
+
+.signUpPic {
+    width: 120px;
+    max-height: 100px;
+    margin-top: 30px;
+
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+
+}
+
+@media (height < 500px) {
+
+    .card-front,
+    .card-back {
+        flex-direction: row;
+
+    }
+
+    .card-container {
+        width: 55vw;
+    }
+
+}

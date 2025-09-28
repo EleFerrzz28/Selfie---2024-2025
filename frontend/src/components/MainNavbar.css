@@ -1,0 +1,164 @@
+@keyframes entrance {
+    0% {
+        opacity: 0;
+        transform: translateX(10px) scale(0.98);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+#sidebar {
+    box-sizing: border-box;
+    height: 100vh;
+    width: fit-content;
+    background-color: var(--beige);
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    align-self: start;
+    transition: 300ms ease-in-out;
+    overflow: hidden;
+    text-wrap: nowrap;
+
+    color: var(--wine);
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+    border-radius: 0 1.00rem 0 0;
+}
+
+#sidebar>nav {
+    height: 100%;
+}
+
+#sidebar>ul>li:first-child .logo {
+    font-weight: bold;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#sidebar ul {
+    list-style: none;
+}
+
+#sidebar .nav-link,
+#sidebar .logo,
+#sidebar .timeMachine {
+    opacity: 1;
+    transition: 0.4s;
+    border-radius: .5em;
+    text-decoration: none;
+    color: var(--wine);
+    display: flex;
+    align-items: center;
+    gap: 3vmin;
+    transition: opacity 0.5s ease;
+
+    svg {
+        fill: var(--wine)
+    }
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+    display: block;
+    max-width: 120px;
+}
+
+#sidebar li:first-child {
+  gap: 8px; 
+}
+
+
+
+#sidebar svg,
+.timeMachine svg {
+    width: 4vmin;
+    height: 4vmin;
+    flex-shrink: 0;
+}
+
+#openButton svg {
+    width: 4vmin;
+    fill: var(--wine);
+    font-weight: bold;
+}
+
+#openButton {
+    position: relative;
+    z-index: 2;
+}
+
+
+#sidebar .nav-link span {
+    flex-grow: 1;
+}
+
+#sidebar .nav-link:hover,
+.timeMachine:hover {
+    background-color: var(--lightBordeaux);
+    color: var(--white);
+
+    svg {
+        fill: var(--white);
+    }
+}
+
+#sidebar .active {
+    color: var(--lightBordeaux);
+    font-weight: bolder;
+}
+
+.nav-link.active svg {
+    fill: var(--lightBordeaux);
+}
+
+#sidebar .active:hover {
+    background-color: var(--lightBlue);
+    color: var(--night);
+
+    svg {
+        fill: var(--night);
+    }
+}
+
+#sidebar ul li span {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: opacity 0.3s ease, width 0.3s ease;
+}
+
+.closed,
+.open {
+    animation: entrance 0.4s ease-out;
+    transition: 0.2s ease-in-out;
+}
+
+.closed {
+    width: 10vmin;
+}
+
+.closed span {
+    opacity: 0;
+    width: 0;
+}
+
+.open {
+    width: 200px;
+}
+
+.open span {
+    opacity: 1;
+    width: auto;
+}

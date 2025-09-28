@@ -1,0 +1,135 @@
+.review h2 {
+    color: white;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.review .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.review__box {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 5px;
+    border-radius: 15px;
+    overflow: hidden;
+    color: #fff;
+    z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    background: linear-gradient(150deg, rgba(135, 135, 135, 0.1) 40%, var(--pink) 110%);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(4px);
+    border-radius: 12px;
+
+
+}
+
+.review__box p {
+    margin: 0;
+    font-weight: 500;
+    text-align: center;
+}
+
+.review__box h6 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+
+}
+
+.events-counter {
+    height: 100%;
+}
+
+
+.circle-design {
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+
+}
+
+#ev-1 {
+    top: -30px;
+    right: -30px;
+    width: 80px;
+    height: 80px;
+    background-color: var(--lightBordeaux);
+}
+
+#ev-2 {
+    bottom: -30px;
+    left: -30px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--lightBordeaux);
+}
+
+
+
+.notes-counter i {
+    font-size: 1.2rem;
+
+}
+
+#not-1 {
+    top: -15px;
+    right: -40px;
+    width: 80px;
+    height: 80px;
+    background-color: var(--coral);
+}
+
+
+#not-2 {
+    top: -17px;
+    left: 15px;
+    width: 30px;
+    height: 30px;
+    background-color: var(--coral);
+}
+
+
+
+#acts-1 {
+    top: -20px;
+    left: -20px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--pink);
+
+}
+
+
+#acts-2 {
+    bottom: -35px;
+    right: -40px;
+    width: 100px;
+    height: 100px;
+    background-color: var(--pink);
+
+}
+
+.acts-counter i {
+    font-size: 1.2rem;
+
+}
+
+
+
+.review__icons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 9px;
+}

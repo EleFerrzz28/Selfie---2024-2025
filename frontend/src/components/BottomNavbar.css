@@ -1,0 +1,154 @@
+@keyframes entrance-bottom {
+    0% {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+ul {
+    list-style: none;
+}
+
+a,
+li {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.header {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--beige);
+    border-radius: 0 0 1.25rem 1.25rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.24);
+    transition: 0.4s;
+
+    svg {
+        fill: var(--wine);
+        width: 8vmin;
+    }
+
+}
+
+.navContainer svg {
+    width: 8vmin;
+    height: auto;
+
+    fill: var(--wine);
+    font-weight: 600;
+}
+
+.pomoCiliegia {
+    color: var(--wine);
+}
+
+.navContainer {
+    height: 14vmin;
+}
+
+.navImg {
+    width: 10vmin;
+    height: auto;
+    border-radius: 50%;
+}
+
+.nav__logo {
+    font-weight: bold;
+    color: var(--wine);
+}
+
+.navMenu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: var(--beige);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.24);
+    height: 15vmin;
+    border-radius: 1.25rem 1.25rem 0 0;
+    transition: 0.4s;
+
+    svg {
+        width: 10vmin;
+    }
+}
+
+.navList li {
+    animation: entrance-bottom 0.4s ease-out;
+}
+
+.navList span {
+    display: none;
+    font-size: x-small;
+    color: var(--wine);
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+}
+
+.activeB {
+    background-color: var(--lightBordeaux);
+    color: var(--white);
+    width: 20vmin;
+    height: 20vmin;
+    transition: 0.4s;
+}
+
+.activeB span {
+    display: block;
+    padding-top: 5px;
+}
+
+/* .activeBD {
+    color: var(--sunrise);
+    width: 10vmin;
+    height: 10vmin;
+    transition: 0.4s;
+} */
+
+.logo img {
+    height: 45px;
+    width: auto;
+    display: block;
+    max-width: 120px;
+}
+
+@media screen and (max-width: 960px) {
+    .navMenu {
+        max-height: 50px;
+
+        svg {
+            max-width: 40px;
+        }
+    }
+
+    .activeB {
+        max-width: 70px;
+        max-height: 70px;
+    }
+
+    .activeBD {
+        max-width: 40px;
+        max-height: 40px;
+    }
+
+    .navContainer svg {
+        max-width: 30px;
+        height: auto;
+    }
+
+    .navContainer {
+        max-height: 50px;
+    }
+}

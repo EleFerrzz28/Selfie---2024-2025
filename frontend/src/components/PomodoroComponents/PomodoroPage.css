@@ -1,0 +1,10 @@
+.pomodoroCard button{
+    background-color: var(--bordeaux);
+    color:var(--lionsmane);
+}
+#general-title{
+    background-color: var(--bordeaux);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color:transparent;
+}

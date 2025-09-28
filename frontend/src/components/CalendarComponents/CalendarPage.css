@@ -1,0 +1,87 @@
+#changeSlideButtons input[type="radio"]{
+    appearance: none;
+    border:solid 1px var(--darkblue);
+    border-radius: 50%;
+}
+#changeSlideButtonsAct input[type="radio"]{
+    appearance: none;
+    border:solid 1px white;
+    border-radius: 50%;
+}
+#changeSlideButtons input[type="radio"]{
+    margin: 1vmin;
+    width: 2vmin;
+    height: 2vmin;
+}
+#changeSlideButtonsAct input[type="radio"]{
+    width: 3vmin;
+    height: 3vmin;
+}
+#changeSlideButtons input[type="radio"]:checked{
+    background-color: var(--lightBlue);
+    border: solid 1px var(--darkblue);
+}
+#changeSlideButtonsAct input[type="radio"]:checked{
+    background-color: var(--lightBlue);
+    border: solid 1px white;
+}
+#logo {
+    height:15vmin;
+}
+#anteprimaCalendario {
+    height: 100vmin;
+}
+#modal-window{
+    background-color: rgba(255, 255, 255, 0.129);
+    backdrop-filter:blur(5px);
+}
+.buttonClose,.buttonClose:hover{
+    background-color: var(--lightBlue);
+    border-color: var(--lightBlue);
+    color:white;
+}
+.buttonSave,.buttonSave:hover{
+    background-color: var(--celeste);
+    border-color: var(--celeste);
+    color:white;
+}
+.modal-header {
+    border-bottom: solid 1px #fff;
+}
+
+#button-add-event-act{
+    position:relative;
+    background: var(--lightBlue);
+    color:var(--darkPurple);
+    border:solid 1px var(--darkPurple);
+    cursor:pointer;
+    border-radius: 50%;
+    width:70px;
+    height:70px;
+    font-size: xx-large;
+    transition: transform 0.2s ease;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+#button-add-event-act:active{
+    transform:scale(0.9);
+}
+
+.icon-button-add{
+    width:70px;
+    height:65px;
+}
+
+.tooltip-element .tooltip-element-text {
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.285);
+    color: #fff;
+    text-align: center;
+    padding: 1vmin;
+    position: absolute;
+    transform: translate(0,-9vmin);
+    font-size: x-small;
+}
+
+.tooltip-element:hover .tooltip-element-text {
+    visibility: visible;
+}
