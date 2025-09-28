@@ -32,7 +32,7 @@ const activitiesSchema = new Schema({
         type: Boolean,
         default: false
     },
-    completed: {            
+    completedAct: {            
         type: Boolean,
         default: false
     },

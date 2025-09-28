@@ -11,9 +11,9 @@ const pomodoroSchema = new Schema({
     description: {
         type: String
     },
-    prodPeriod: {//tot min of productivity
+    prodPeriod: {
         type: Number,
-        default: 30*4 //30 minutes * 4 cycles
+        default: 30 
     },
     breakPeriod:{
         type: Number,
@@ -31,9 +31,25 @@ const pomodoroSchema = new Schema({
         type: Boolean,
         default: false
     },
-    completed: {
+    completedPomo: {
         type: Boolean,
-        default: true,
+        default: false,
+    },
+    notificationsPomo: {
+        type: String,
+        default: '5min'
+    },
+    reminderSentSteps: {
+        type: [String],   
+        default: []
+    },
+    reminderSent: {
+        type: Boolean,
+        default: false
+    },
+    reminderSent: {
+        type: Boolean,
+        default: false
     },
     user:{
         type: mongoose.Schema.Types.ObjectId,

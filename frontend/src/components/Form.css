@@ -1,6 +1,11 @@
+#welcomeForm {
+    font-family: "Cal Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+}
 
 .card-container {
-    perspective: 100vmin; 
+    perspective: 100vmin;
     width: 40%;
     height: 45%;
     min-width: 320px;
@@ -23,11 +28,12 @@
     transform: rotateY(180deg);
 }
 
-.card-front, .card-back {
+.card-front,
+.card-back {
     position: absolute;
     width: 100%;
     height: 1auto;
-    backface-visibility: hidden; 
+    backface-visibility: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,8 +49,8 @@
     border-radius: 3vmin;
 }
 
-#welcomeForm button {
-    background: var(--celeste);
+.formButtons {
+    background: var(--wine);
     width: 75%;
     color: white;
     border: none;
@@ -53,14 +59,14 @@
     transition: 0.2s;
 }
 
-#welcomeForm button:hover {
-    background: var(--herb);
+.formButtons:hover {
+    background: var(--beige);
     box-shadow: 0 0 0 1vmin #fff,
-    0 0 0 1vmin var(--herb);
+        0 0 0 1vmin var(--beige);
 }
 
 #welcomeForm span {
-    color: var(--herb);
+    color: var(--wine);
     cursor: pointer;
     font-weight: bold;
 }
@@ -69,7 +75,7 @@
     text-decoration: underline;
 }
 
-.appIcon{
+.appIcon {
     width: 7vmin;
     height: 7vmin;
     min-width: 24px;
@@ -77,7 +83,7 @@
     transition: 0.4s;
 }
 
-.appIcon:hover{
+.appIcon:hover {
     background-color: aliceblue;
     border-radius: 50%;
 }
@@ -88,14 +94,14 @@
     margin-top: 30px;
 }
 
-.signUpPic{
+.signUpPic {
     width: 120px;
     max-height: 100px;
     margin-top: 30px;
 
 }
 
-.card-content{
+.card-content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -106,13 +112,14 @@
 
 @media (height < 500px) {
 
-    .card-front, .card-back {
-    flex-direction: row;
-   
-}
+    .card-front,
+    .card-back {
+        flex-direction: row;
 
-.card-container {
-    width: 55vw; 
-}
+    }
+
+    .card-container {
+        width: 55vw;
+    }
 
 }

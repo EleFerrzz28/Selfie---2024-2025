@@ -5,6 +5,7 @@ function LastSession(){
     const {data: sessionData=[], isLoading } = useGetLastSessionQuery();
     const lastSessionData = sessionData?.[0];
 
+    const totalProductionTime = lastSessionData ?(lastSessionData.prodPeriod * lastSessionData.cycles) : 0;
     return(
         <div className="last-session-div p-4">
             <h4 className="pb-2" >Last session</h4>
@@ -13,7 +14,7 @@ function LastSession(){
                 lastSessionData ? (
                 <div>
                     <p>Date: {new Date(lastSessionData.date).toLocaleString()}</p>
-                    <p>Total production period: {lastSessionData.prodPeriod<60 ? `${lastSessionData.prodPeriod} sec` : `${Math.floor(lastSessionData.prodPeriod/60)} min`}</p>
+                    <p>Total production period: {totalProductionTime<60 ? `${totalProductionTime} sec` : `${Math.floor(totalProductionTime/60)} min`}</p>
                     <p>Total number of cycles: {lastSessionData.cycles}</p>
                 </div>
                 ):(

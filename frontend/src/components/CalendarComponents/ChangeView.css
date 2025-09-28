@@ -1,14 +1,12 @@
 .bottom-preview-container {
   position: fixed;
   top: 0;
-  right: 250px;
-  width: 100%;
+  right: 0;
   display: flex;
   justify-content: end;
 }
 
 .modal-preview-select-struct {
-  width: 100%;
   max-width: 200px;
   height: 54px;
   overflow: hidden;

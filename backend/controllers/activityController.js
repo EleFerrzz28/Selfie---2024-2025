@@ -2,7 +2,7 @@ import asyncHandler from 'express-async-handler';
 import Act from '../models/activityModel.js';
 
 const addAct = asyncHandler(async (req, res) => {
-  const { title, description, deadline, originalDeadline, category, notificationsAct } = req.body;
+  const { title, description, deadline, originalDeadline, category, notificationsAct, completedAct } = req.body;
 
  if (!title || !deadline) {
     res.status(400);
@@ -18,7 +18,7 @@ const addAct = asyncHandler(async (req, res) => {
     notificationsAct,
     reminderSentSteps: [],
     reminderSent: false,
-    completed: false, 
+    completedAct: false, 
     user: req.user._id,
   });
 
@@ -89,9 +89,9 @@ const setCompletedAct = asyncHandler(async(req, res) => {
         res.status(404);
         throw new Error("Activity not found!");
     }
-   
-    activity.completed = true;
-
+   console.log('Activity before:', activity.completedAct);
+    activity.completedAct = true;
+    console.log('Activity after:', activity.completedAct);
     await activity.save();
 
     res.status(200).json({

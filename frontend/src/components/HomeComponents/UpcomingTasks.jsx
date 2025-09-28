@@ -29,11 +29,12 @@ const UpcomingTasks = () => {
 
   const TM_date = useSelector((state) => state.time.value);
 
-  const getStatus = (deadline) => {
+  const getStatus = (deadline, completed) => {
     const now = DateTime.fromISO(TM_date); 
     const dl = DateTime.fromISO(deadline).endOf('day');
 
 
+    if (completed) return 'completed';
     if (dl < now) return 'expired';
     if (dl <= now.plus({ weeks: 1 })) return 'red';
     if (dl <= now.plus({ weeks: 4 })) return 'orange';
@@ -46,13 +47,15 @@ const UpcomingTasks = () => {
     red: 'due soon',
     orange: 'coming',
     green: 'ongoing',
+    completed: 'completed'
   };
 
   const statusColor = {
     expired: 'text-muted',
     red: 'text-danger',
-    orange: 'text-primary',
+    orange: 'text-dark',
     green: 'text-success',
+    completed: 'text-primary'
   };
 
 
@@ -61,6 +64,7 @@ const UpcomingTasks = () => {
     red: '#ed8282ff',
     orange: '#ffdb9cff',
     green: 'rgba(186, 244, 149, 1)',
+    completed: 'rgba(180, 233, 235, 1)',
   };
 
 
@@ -71,7 +75,7 @@ const UpcomingTasks = () => {
       <div className="tasks-wrapper">
         {upcomingTwo.length > 0 ? (
           upcomingTwo.map((act) => {
-            const status = getStatus(act.deadline);
+            const status = getStatus(act.deadline, act.completedAct);
             return (
               <div
                 key={act._id}

@@ -18,10 +18,33 @@ export const pomodoroApiSlice = apiSlice.injectEndpoints({
             providesTags: ['Pomodoro'],
         }),
         setCompleted: builder.mutation({
-            query: ({id})=>({
-            url: `/api/pomodoros/${id}`,
+            query: (id)=>({
+            url: `/api/pomodoros/${id}/complete`,
                 method: 'PATCH'
             }),
+        }),
+        editPomodoro: builder.mutation({
+            query: (pomodoroData) => ({
+                url:`/api/pomodoros/${pomodoroData._id}`,
+                method: 'PATCH',
+                body: pomodoroData
+            }),
+            invalidatesTags: ['Pomodoro'],
+        }),
+        updateNotificationsPomo: builder.mutation({
+            query: (pomodoroData) => ({
+                url:`/api/pomodoros/notifications`,
+                method: 'PATCH',
+                body: pomodoroData
+            }),
+            invalidatesTags: ['Pomodoro'],
+        }),
+        deletePomodoro: builder.mutation({
+            query: (id) => ({
+                url: `/api/pomodoros/${id}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: ['Pomodoro'],
         }),
     }),
 });
@@ -30,5 +53,8 @@ export const {
     useAddSessionMutation,
     useGetLastSessionQuery,
     useGetAllSessionQuery,
-    useSetCompletedMutation
+    useSetCompletedMutation,
+    useEditPomodoroMutation,
+    useDeletePomodoroMutation,
+    useUpdateNotificationsPomoMutation,
 } = pomodoroApiSlice;

@@ -24,8 +24,6 @@ function CalendarPage() {
 
     const supabase = useSupabaseClient();
 
-
-
     const [date, setDate] = useState(activeDay ? activeDay : todayISO);
     //pads the beginning of a string with another string until it reaches a certain length.
 
@@ -52,12 +50,12 @@ function CalendarPage() {
         date: todayISO,
         originalDate: '',
         description: '',
-        prodPeriod: 120,
+        prodPeriod: 30,
         breakPeriod: 5,
         longBreakPeriod: 15,
         cycles: 4,
         planned: true,
-        completed: false
+        completedPomo: false
     });
     const [formType, changeFormType] = useState(0); // 0 = event, 1 = activity, //2 = pomodoro
     const [normalizedEvents, setNormalizedEvents] = useState({});
@@ -102,7 +100,8 @@ function CalendarPage() {
             title: activity.title,
             description: activity.description,
             deadline: activity.deadline,
-            category: activity.category
+            category: activity.category,
+            completedAct: activity.completedAct
         });
         return acc;
     }, {});
@@ -136,6 +135,7 @@ function CalendarPage() {
             } else if (formType === 2) {
                 await addPomo(newPomo).unwrap();
                 toast.success("Pomodoro added successfully!", { toastId: 'act-added' });
+                console.log(newPomo);
                 refetchPomo();
             }
         } catch (err) {
@@ -225,7 +225,7 @@ function CalendarPage() {
                 longBreakPeriod: 15,
                 cycles: 4,
                 planned: true,
-                completed: false
+                completedPomo: false
             });
             setReset(false);
         }
@@ -233,13 +233,13 @@ function CalendarPage() {
     return (
         <>
             <ToastContainer autoClose={3000} />
-            <div className={`body container-fluid ${bigView ? 'p-0 m-0' : 'p-0 p-sm-3 p-md-3 p-lg-3'}`}>
+            <div className={`body container-fluid ${bigView ? 'p-0 m-0' : 'p-0 p-sm-3 p-lg-3'}`}>
                 <div className="row" style={{ alignItems: "center" }}>
                     <div className={`col-12 ${bigView ? 'col-lg-12' : 'col-lg-8'}`}>
-                        <CalendarComponent events={normalizedEvents} activities={activities} activeDay={activeDay} setActiveDay={setActiveDay} bigView={bigView}></CalendarComponent>
+                        <CalendarComponent events={normalizedEvents} activities={activities} activeDay={activeDay} setActiveDay={setActiveDay} bigView={bigView} notifications={notifications}></CalendarComponent>
                     </div>
                     {isDesktop &&
-                        <div className={`${bigView ? 'd-none' : 'col-12 col-lg-4'}`}>
+                        <div className={`${bigView ? 'd-none' : 'col-4'}`}>
                             <div className="row">
                                 <Activity activities={activities} notifications={notifications}></Activity>
                                 <div>
@@ -262,7 +262,7 @@ function CalendarPage() {
                 </div>
             </div>
             <>
-                <div className="modal fade" id="modal-event-act" tabIndex="-1" aria-labelledby="exampleModalLabel"
+                <div className="modal fade" id="modal-event-act" tabIndex="-1"
                     aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered">
                         <div id="modal-window" className="modal-content border border-white text-white">
@@ -282,7 +282,7 @@ function CalendarPage() {
                         </div>
                     </div>
                 </div>
-                <ChangeView setBigView={setBigView} open={open} setOpen={setOpen} />
+                {isDesktop && <ChangeView setBigView={setBigView} open={open} setOpen={setOpen} />}
             </>
         </>
     );

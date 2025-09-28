@@ -353,6 +353,8 @@
     position:relative;
     width:20vmin;
     height:55vmin;
+    overflow: hidden;
+    z-index:0;
 }
 
 .goccia {

@@ -9,18 +9,29 @@ const PomoCard = () => {
   const lastSession = sessionData?.[0];
 
 
-  const prodPeriod = lastSession?.prodPeriod !== undefined
+  const prodPeriod = lastSession?.prodPeriod != null
     ? (lastSession.prodPeriod < 60
       ? `${lastSession.prodPeriod} sec`
       : `${Math.floor(lastSession.prodPeriod / 60)} min`)
     : "-";
 
-  const breakTime = lastSession?.break !== undefined ? `${lastSession.break} min` : "-";
-  const longBreak = lastSession?.longBreak !== undefined ? `${lastSession.longBreak} min` : "-";
-  const cycles = lastSession?.cycles !== undefined ? lastSession.cycles : "-";
+  const longBreakPeriod = lastSession?.longBreakPeriod != null 
+    ? (lastSession.longBreakPeriod < 60
+      ? `${lastSession.longBreakPeriod} sec`
+      : `${Math.floor(lastSession.longBreakPeriod / 60)} min`)
+    : "-";
+
+  const breakPeriod = lastSession?.breakPeriod != null
+    ? (lastSession.breakPeriod < 60
+      ? `${lastSession.breakPeriod} sec`
+      : `${Math.floor(lastSession.breakPeriod / 60)} min`)
+    : "-";
+
+  const cycles = lastSession?.cycles != null ? lastSession.cycles : "-";
   const ISOdate = lastSession?.date
     ? new Date(lastSession.date)
     : null;
+
 
   const pomo_date = ISOdate
     ? ISOdate.toLocaleDateString("it-IT", {
@@ -33,8 +44,8 @@ const PomoCard = () => {
 
   const pomoFields = [
     { label: "Productivity", value: prodPeriod },
-    { label: "Break", value: breakTime },
-    { label: "Long break", value: longBreak },
+    { label: "Break", value: breakPeriod },
+    { label: "Long break", value: longBreakPeriod },
     { label: "Cycles", value: cycles },
   ];
 

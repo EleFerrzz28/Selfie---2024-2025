@@ -86,7 +86,7 @@ function Form() {
           <h6>Sign In</h6>
           <input className="m-3 p-2" type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
           <input className="mb-1 p-2" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          <button className='mt-3' type="submit" onClick={LoginHandler}>Login</button>
+          <button className='mt-3 formButtons' type="submit" onClick={LoginHandler}>Login</button>
           <p className="mt-2">Don't have an account? <span onClick={() => setIsFlipped(true)}>Sign Up</span></p>
         </div>
         </div>
@@ -105,7 +105,7 @@ function Form() {
           <div id="passwordHelpBlock" className="form-text m-2 ps-3">
             Your password must be 6-12 characters long, contain letters and numbers, and must not contain spaces or special characters.
           </div>       
-          <button type="submit" onClick={RegisterHandler}>Register</button>
+          <button className="formButtons" type="submit" onClick={RegisterHandler}>Register</button>
           <p className="mt-2">Already have an account? <span onClick={() => setIsFlipped(false)}>Sign In</span></p>
         </div>
         </div>

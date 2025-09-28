@@ -20,20 +20,22 @@ function Pomodoro() {
   if (!isReady) return null;
 
   return (
-    <div className="container-fluid min-vh-100" style={{backgroundColor:"var(--color-background)"}}>
+    <div className="container-fluid calendar-font " style={{backgroundColor:"var(--color-background)"}}>
       {isDesktop ? (
-        <div className="row min-vh-100">
-          <div className="col-auto p-0 m-0">
+        <div className="row">
+          <div className="col-auto p-0 m-0 min-vh-100 vh-100" style = {{overflow: "hidden"}}>
             <MainNavbar />
           </div>
-          <div className="col flex-grow-1 m-0 p-0">
+          <div className="col flex-grow-1 m-0 p-0 min-vh-100 vh-100" style = {{overflow: "hidden"}}>
             <PomodoroPage/>
           </div>
         </div>
       ) : (
-        <div className="mobile-layout p-5">
+        <div className="mobile-layout">
           <BottomNavbar />
-          <PomodoroPage />
+          <div className="mobilerow row ">
+            <PomodoroPage />
+          </div>
         </div>
       )}
     </div>

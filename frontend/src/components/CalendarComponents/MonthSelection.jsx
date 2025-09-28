@@ -6,7 +6,7 @@ function MonthSelection({months, selectSpecificMonth}){
     }
     return(
         <>
-            <div className="modal fade" id="selectMonth" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div className="modal fade" id="selectMonth" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-hidden="true">
                 <div className="modal-dialog  modal-dialog-centered" >
                     <div className="modal-content border text-white" style={{backgroundColor: 'rgba(243, 233, 233, 0.2)', backdropFilter: 'blur(5px)'}}>
                         <div className="modal-header">

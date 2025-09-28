@@ -1,6 +1,7 @@
 import cron from "node-cron";
 import Event from "./models/eventsModel.js";
 import Act from "./models/activityModel.js";
+import Pomodoro from "./models/pomodoroModel.js";
 import { transporter } from "./config/mailer.js";
 import juice from "juice";
 import { DateTime } from "luxon";
@@ -91,7 +92,6 @@ export const startScheduler = () => {
                   <h3>Tra ${step.label} hai un evento!</h3>
                   <h4>${event.title}</h4>
                   <p>${event.description || ""}</p>
-                  <button>Riprogramma</button>
                   <p>~ SELFIE App</p>
                 `),
               });
@@ -119,7 +119,7 @@ export const startScheduler = () => {
 
       for (const act of activities) {
         if (!act.deadline || !act.user?.email) continue;
-        if (act.completed) continue; // attività già completata → skip
+        if (act.completedAct) continue; // attività già completata → skip
 
         const zone = "Europe/Rome";
         const deadlineDateTime = DateTime.fromJSDate(act.deadline, { zone }).set({
@@ -144,7 +144,6 @@ export const startScheduler = () => {
                   <h3>Attenzione! Tra ${step.label} scade un'attività.</h3>
                   <h4>${act.title}</h4>
                   <p>${act.description || ""}</p>
-                  <button>Completa ora</button>
                   <p>~ SELFIE App</p>
                 `),
               });
@@ -165,12 +164,62 @@ export const startScheduler = () => {
         }
 
         // Se la deadline è passata e l’attività non è completata → segna come in ritardo
-        if (diff < 0 && !act.completed) {
+        if (diff < 0 && !act.completedAct) {
           console.log(`Attività in ritardo: ${act.title}`);
           await Act.findByIdAndUpdate(act._id, { reminderSent: true });
         }
       }
+      
+      // =========================
+      // POMODORO
+      // =========================
+      const pomodoros = await Pomodoro.find({ reminderSent: false, planned: true }).populate("user");
 
+      for (const pomodoro of pomodoros) {
+        if (!pomodoro.date || !pomodoro.user?.email) continue;
+        if (pomodoro.completedPomo) continue; // pomodoro già completato → skip
+
+        const zone = "Europe/Rome";
+        const dateDateTime = DateTime.fromJSDate(pomodoro.date, { zone }).set({
+          second: 0,
+          millisecond: 0,
+        });
+
+        const diff = dateDateTime.toMillis() - now.toMillis();
+        const steps = NOTIFICATION_STEPS[pomodoro.notificationsPomo] || [];
+
+        for (const step of steps) {
+          if (pomodoro.reminderSentSteps?.includes(step.label)) continue;
+
+          if (diff <= step.ms && diff > step.ms - 2 * 60 * 1000) {
+            try {
+              await transporter.sendMail({
+                from: `"SELFIE App" <${process.env.SMTP_USER}>`,
+                to: pomodoro.user.email,
+                subject: `Promemoria pomodoro.`,
+                text: `Hai programmato un pomodoro tra ${step.label}.`,
+                html: juice(`
+                  <h3>Hai programmato un pomodoro tra ${step.label}.</h3>
+                  <p>${pomodoro.description || ""}</p>
+                  <p>~ SELFIE App</p>
+                `),
+              });
+
+              console.log(`Notifica pomodoro inviata a ${pomodoro.user.email} (${step.label})`);
+
+              const updatedSteps = [...(pomodoro.reminderSentSteps || []), step.label];
+              const allStepsSent = updatedSteps.length >= steps.length;
+
+              await Pomodoro.findByIdAndUpdate(pomodoro._id, {
+                reminderSentSteps: updatedSteps,
+                reminderSent: allStepsSent,
+              });
+            } catch (err) {
+              console.error("Errore nell'invio email pomodoro:", err);
+            }
+          }
+        }
+      }
     } catch (err) {
       console.error("Errore scheduler:", err);
     }
