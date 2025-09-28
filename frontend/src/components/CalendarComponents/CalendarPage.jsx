@@ -24,8 +24,6 @@ function CalendarPage() {
 
     const supabase = useSupabaseClient();
 
-
-
     const [date, setDate] = useState(activeDay ? activeDay : todayISO);
     //pads the beginning of a string with another string until it reaches a certain length.
 
@@ -52,12 +50,12 @@ function CalendarPage() {
         date: todayISO,
         originalDate: '',
         description: '',
-        prodPeriod: 120,
+        prodPeriod: 30,
         breakPeriod: 5,
         longBreakPeriod: 15,
         cycles: 4,
         planned: true,
-        completed: false
+        completedPomo: false
     });
     const [formType, changeFormType] = useState(0); // 0 = event, 1 = activity, //2 = pomodoro
     const [normalizedEvents, setNormalizedEvents] = useState({});
@@ -136,6 +134,7 @@ function CalendarPage() {
             } else if (formType === 2) {
                 await addPomo(newPomo).unwrap();
                 toast.success("Pomodoro added successfully!", { toastId: 'act-added' });
+                console.log(newPomo);
                 refetchPomo();
             }
         } catch (err) {
@@ -225,7 +224,7 @@ function CalendarPage() {
                 longBreakPeriod: 15,
                 cycles: 4,
                 planned: true,
-                completed: false
+                completedPomo: false
             });
             setReset(false);
         }
@@ -262,7 +261,7 @@ function CalendarPage() {
                 </div>
             </div>
             <>
-                <div className="modal fade" id="modal-event-act" tabIndex="-1" aria-labelledby="exampleModalLabel"
+                <div className="modal fade" id="modal-event-act" tabIndex="-1"
                     aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered">
                         <div id="modal-window" className="modal-content border border-white text-white">

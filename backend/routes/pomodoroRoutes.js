@@ -7,7 +7,7 @@ const pomodoroRouter = express.Router();
 pomodoroRouter.post('/', protect, addSession);
 pomodoroRouter.get('/last', protect, getLastSession);
 pomodoroRouter.get('/', protect, getAllSession);
-pomodoroRouter.patch('/:id', protect, setCompleted);
+pomodoroRouter.patch('/:id/complete', protect, setCompleted);
 pomodoroRouter.patch('/:id', protect, editPomodoro);
 pomodoroRouter.put('/notifications', protect, updateNotificationsPomo);
 pomodoroRouter.delete('/:id', protect, deletePomodoro);

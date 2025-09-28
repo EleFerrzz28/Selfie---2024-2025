@@ -9,6 +9,7 @@ import { useGetCatQuery } from "../../redux/calendar/catApiSlice";
 import { useGetAllSessionQuery } from '../../redux/pomodoro/pomodoroApiSlice';
 import { useGetActQuery } from '../../redux/calendar/actApiSlice'
 import { Link } from "react-router-dom"
+import { AnimatePresence, motion } from 'framer-motion';
 
 function CalendarComponent({events, activities, activeDay, setActiveDay, bigView, notifications}){
     const [slide, setSlide]=useState(0);
@@ -152,7 +153,8 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
             longBreakPeriod: pomodoro.longBreakPeriod,
             cycles: pomodoro.cycles,
             planned: pomodoro.planned,
-            completed: pomodoro.completed,
+            completedPomo: pomodoro.completedPomo,
+            notificationsPomo: pomodoro.notificationsPomo,
             title: 'Pomodoro session',
         });
         return acc;
@@ -160,13 +162,15 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
 
     const holidayName = holidaysNames(activeDay);
     
+    const actRefetch = actData.filter(act => DateTime.fromISO(act.date).toISODate() === activeDay)
+
     const activeDayEvents = [
         ...(holidayName ? [{
             type: "holiday",
             title: holidayName
         }] : []),
         ...(events[activeDay] ?? []), 
-        ...(activities[activeDay] ?? []),
+        ...(actRefetch ?? []),
         ...(pomodoroData[DateTime.fromISO(activeDay).toISODate()] ?? [])
     ];
 
@@ -261,9 +265,17 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
                                     {activeDay && activeDayEvents.length > 0 && (
                                         <>
                                             <div id='carousel'>
+                                                <AnimatePresence mode="wait">
+                                                <motion.div
+                                                    key={slide}
+                                                    initial={{ opacity: 0, y: 5 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: -5 }}
+                                                    transition={{ duration: 0.5 }}
+                                                >
                                                 {activeDayEvents.map((event, eventIndex) => (
                                                     <div key={eventIndex} className={classnames({
-                                                        'list-group':true, 
+                                                        'list-group':true,
                                                         "d-none":eventIndex!==slide,
                                                         "holidaysDay": event.type==="holiday", 
                                                         "deadlineAct": event.type==="activity",
@@ -280,26 +292,26 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
                                                         </small>
                                                         <small className={event.type==="activity" ? "" : "d-none"}>
                                                             Category: {categoryMap[event.category]?.name ?? "-"}<br/>
-                                                            {event.completed ? <small>Completato</small> : <small>Non completato</small>}<br/>
+                                                            {event.completedAct ? <small>Completed</small> : <small>Not completed yet</small>}<br/>
                                                         </small>
                                                         <div className={event.type==="pomodoro" ? "" : "d-none"}>
                                                             {event.planned ? 
                                                             <small>
                                                                 Description: {event.description ? event.description : '-'}<br/>
-                                                                Scheduled production period: {event.prodPeriod / event.cycles} minutes.<br/>
+                                                                Scheduled production period: {event.prodPeriod} minutes.<br/>
                                                                 Scheduled break period: {event.breakPeriod} minutes.<br/>
                                                                 Scheduled long break period: {event.longBreakPeriod} minutes.<br/>
                                                                 Scheduled number of cycles: {event.cycles} {event.cycles === 1 ? "cycle." : "cycles."}<br/>
-                                                                {event.completed ? '' : <small> (not completed yet)</small>}<br/>
+                                                                {event.completedPomo ? '' : <small> (not completed yet) </small>}<br/>
                                                                 <Link to='/Pomodoro' state={{
-                                                                    linkProdPeriod:(event.prodPeriod/event.cycles), 
+                                                                    linkProdPeriod:event.prodPeriod, 
                                                                     linkBreakPeriod: event.breakPeriod,
                                                                     linkLongBreak: event.longBreakPeriod,
                                                                     linkCycles: event.cycles,
                                                                     linkId: event._id
                                                                 }}>Let's start!</Link>                              
                                                             </small>
-                                                            : <small>Production period: {event.prodPeriod} minutes.</small>
+                                                            : <small>Production period: {Number(event.prodPeriod) * Number(event.cycles)} minutes.</small>
                                                             }<br/>
                                                         </div>
                                                         <div className='d-flex justify-content-end'>
@@ -309,6 +321,8 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
                                                         </div>
                                                     </div>
                                                 ))}
+                                                </motion.div>
+                                                </AnimatePresence>
                                                 <div id='changeSlideButtons'>
                                                     {activeDayEvents.map((_, eventIndex) => (
                                                         <input key={eventIndex} className="radio-button" type="radio" name="toggle" checked={eventIndex===slide} onChange={()=>setSlide(eventIndex)}/> 
@@ -365,8 +379,8 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
                                                     const key = ev._id || `${index}-${ev.title}`;
                                                     const categoryDayWeekColor = categoryMap[ev.category]?.color || '#f4a258ff'
                                                     return (
-                                                        <>
-                                                            <div key={key} className="m-2 p-2 event-act-week-plan"
+                                                        <div key={key}>
+                                                            <div className="m-2 p-2 event-act-week-plan text-wrap"
                                                                 style={{'--color-week':categoryDayWeekColor}}>
                                                                     {ev.title}<br/>
                                                             {ev.type === "event" ? (<>time:{ev.time ? ` ${ev.time}${ev.endTime ? ` - ${ev.endTime}` : ""}` : "00:00 - 23:59"} <br/>
@@ -394,7 +408,7 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
                                                             ) : ""}
                                                             {ev.type === "pomodoro" ? (
                                                                 <>
-                                                                    {ev.completed ? '' : <small> (not completed yet)</small>}
+                                                                    {ev.completedPomo ? '' : <small> (not completed yet)</small>}
                                                                     <div className='d-flex justify-content-end mt-1'>
                                                                         <i className='bx-sm  bx-cherry' style={{color: 'var(--color-week)'}}></i>
                                                                     </div>
@@ -402,7 +416,7 @@ function CalendarComponent({events, activities, activeDay, setActiveDay, bigView
                                                             ) : ""}
                                                             </div>
                                                             <br/>
-                                                        </>
+                                                        </div>
                                                     )
                                                 })
                                             ) : (

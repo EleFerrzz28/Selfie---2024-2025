@@ -69,21 +69,21 @@ function PomodoroPage(){
                             <div className="me-4">
                                 <div>
                                     <label className="mt-3">Period of productivity: (min)</label><br/>
-                                    <input id="input-prod" className="border p-2" type="number" value={newSession?.sessionProd} name="prod" placeholder="30" min="0" onChange={(e)=>setNewSession((prev)=>({...prev, sessionProd: e.target.value}))}/>
+                                    <input id="input-prod" className="border p-2" type="number" value={newSession?.sessionProd ?? ""} name="prod" placeholder="30" min="0" onChange={(e)=>setNewSession((prev)=>({...prev, sessionProd: e.target.value}))}/>
                                 </div>
                                 <div>
                                     <label className="mt-3">Break: (min)</label><br/>
-                                    <input id="input-break" className="border p-2" type="number" value={newSession?.sessionBreak} name="break" placeholder="5" min="0" onChange={(e)=>setNewSession((prev)=>({...prev, sessionBreak: e.target.value}))}/>
+                                    <input id="input-break" className="border p-2" type="number" value={newSession?.sessionBreak ?? ""} name="break" placeholder="5" min="0" onChange={(e)=>setNewSession((prev)=>({...prev, sessionBreak: e.target.value}))}/>
                                 </div>
                             </div>
                             <div>
                                 <div>
                                     <label className="mt-3">Long break: (min)</label><br/>
-                                    <input id="input-long-break" className="border p-2" type="number" value={newSession?.sessionLongBreak} name="long-break" placeholder="15" min="0" onChange={(e)=>setNewSession((prev)=>({...prev, sessionLongBreak: e.target.value}))}/>
+                                    <input id="input-long-break" className="border p-2" type="number" value={newSession?.sessionLongBreak ?? ""} name="long-break" placeholder="15" min="0" onChange={(e)=>setNewSession((prev)=>({...prev, sessionLongBreak: e.target.value}))}/>
                                 </div>
                                 <div>
                                     <label className="mt-3">cycles:</label><br/>
-                                    <input id="input-cycles" className="border p-2" type="number" value={newSession?.sessionCycles} name="cycles-number" placeholder="4" min="0" onChange={(e)=>setNewSession((prev)=>({...prev, sessionCycles: e.target.value}))}/>
+                                    <input id="input-cycles" className="border p-2" type="number" value={newSession?.sessionCycles ?? ""} name="cycles-number" placeholder="4" min="0" onChange={(e)=>setNewSession((prev)=>({...prev, sessionCycles: e.target.value}))}/>
                                 </div>
                             </div>
                         </div>

@@ -67,7 +67,7 @@ function CategoryList(){
     return(
         <>
             <ToastContainer/>
-            <div className="modal fade" id="categoryList" tabIndex="-1" aria-labelledby="exampleModalLabel"
+            <div className="modal fade" id="categoryList" tabIndex="-1"
                 aria-hidden="true">
                 <div  className=" modal-dialog modal-dialog-centered">
                     <div  id="modal-window" className="modal-content border text-white">
@@ -97,9 +97,9 @@ function CategoryList(){
                             <form>
                                 <div className="mt-3">
                                     <label htmlFor="newCatEvent" className="form-label">Want to add a new category?</label>
-                                    <input type="text" className="form-control input rounded shadow-none border-0" id="newCatEvent" name="category" placeholder="Business meeting" value={newCat} onChange={(e) => setNewCat(e.target.value)}/>
+                                    <input type="text" className="form-control input rounded shadow-none border-0" id="newCatEvent" name="category" placeholder="Business meeting" value={newCat ? newCat : ''} onChange={(e) => setNewCat(e.target.value)}/>
                                     <label htmlFor='selColor' className="mt-3">Select a color:</label>
-                                    <input type='color' className='m-3 form-control form-control-color' id ="selColor" name="color" value={newCatColor} onChange={(e) => setNewCatColor(e.target.value)}/><br/>
+                                    <input type='color' className='m-3 form-control form-control-color' id ="selColor" name="color" value={newCatColor ? newCatColor : ''} onChange={(e) => setNewCatColor(e.target.value)}/><br/>
                                     <button type='button' className='btn text-light border' onClick={addCategory}>Add category</button>
                                 </div>
                             </form>
@@ -123,7 +123,7 @@ function CategoryList(){
                     </div>
                 </div>
             </div>
-            <div className="modal fade" aria-hidden="true" aria-labelledby="staticBackdropLabel" tabIndex="-1" id="modalChangeCategory">
+            <div className="modal fade" aria-hidden="true" tabIndex="-1" id="modalChangeCategory">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content border bg-transparent text-light">
                         <div className="modal-header border-bottom">

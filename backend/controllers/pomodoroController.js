@@ -2,7 +2,7 @@ import Pomodoro from "../models/pomodoroModel.js"
 import asyncHandler from "express-async-handler"
 
 const addSession=(async(req, res)=>{
-    const {date, originalDate, description, prodPeriod, breakPeriod, longBreakPeriod, cycles, planned, completed, notificationsPomo} = req.body;
+    const {date, originalDate, description, prodPeriod, breakPeriod, longBreakPeriod, cycles, planned, completedPomo, notificationsPomo} = req.body;
 
     if(!date){
         res.status(400);
@@ -18,7 +18,7 @@ const addSession=(async(req, res)=>{
         longBreakPeriod,
         cycles,
         planned, 
-        completed,
+        completedPomo,
         notificationsPomo,
         user: req.user._id,
     });
@@ -56,7 +56,7 @@ const setCompleted = asyncHandler(async(req, res) => {
         throw new Error("Pomodoro not found!");
     }
    
-    pomodoro.completed = true;
+    pomodoro.completedPomo = true;
     pomodoro.planned = false;
 
     await pomodoro.save();

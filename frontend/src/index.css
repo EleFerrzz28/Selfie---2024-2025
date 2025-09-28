@@ -10,7 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: linear-gradient(60deg, var(--sunrise), var(--darkPurple));
+ background: linear-gradient(to bottom, var(--wine), var(--bordeaux), var(--lightBordeaux), var(--coral), var(--pink), var(--sun) );
   user-select: none;
   overflow-x: hidden;
 }
@@ -64,6 +64,18 @@ code {
   --warning: #FABE58;
   --error: #D63031;
 
+  --wine : #4C1D3D;
+  --bordeaux: #852E4E;
+  --lightBordeaux: #A33757;
+  --coral : #DC586D;
+  --pink: #FB9590;
+  --beige: #FFBB94;
+  --lightBlue: #C4C3E3;
+  --darkblue: #504E76;
+  --night:  #45555a;
+  --darkPurple: #58466a;
+  --red: #851A2B;
+  --sun : #ffac7b;
 
 }
 

@@ -44,11 +44,11 @@ function SpecificDayModal({months, years, currentYear, setCurrentYear, goToSpeci
 
     return(
     <>
-        <div className="modal fade" id="specificDayModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div className="modal fade" id="specificDayModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="specificDayModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content border">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="staticBackdropLabel">Select a specific day:</h5>
+                        <h5 className="modal-title" id="specificDayModalLabel">Select a specific day:</h5>
                         <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body ">

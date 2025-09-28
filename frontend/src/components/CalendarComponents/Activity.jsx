@@ -63,8 +63,8 @@ function Activity({activities, notifications}){
 
     const updateAct = async() => {
         if (!actToUpdate._id) {
-        toast.error("Error: Missing activity ID");
-        return;
+            toast.error("Error: Missing activity ID");
+            return;
         }
         try {
             await editAct(actToUpdate).unwrap();
@@ -105,8 +105,8 @@ function Activity({activities, notifications}){
                             const redAct = DateTime.fromISO(actIt.deadline) < (today.plus({weeks: 1}));
                             const orangeAct = DateTime.fromISO(actIt.deadline) < (today.plus({weeks: 4})) && DateTime.fromISO(actIt.deadline) >= (today.plus({weeks: 1}));
                             return (
-                            <div key={index} ref={(el) => sliderRefs.current[index] = el} className={`position-relative rounded p-4 slider-activity m-1 
-                            ${index!==slideAct ? "not-main-slider" : "main-slider"} ${actIt.completed ? 'completed-act' : ''}`}>
+                            <div key={actIt._id} ref={(el) => sliderRefs.current[index] = el} className={`position-relative rounded p-4 slider-activity m-1 
+                            ${index!==slideAct ? "not-main-slider" : "main-slider"} ${actIt.completedAct ? 'completed-act' : ''}`}>
                                 <p>Deadline: {DateTime.fromISO(actIt.deadline).toISODate()}</p>
                                 <small>Category: {categoryMap[actIt.category]?.name ?? "-"}</small>
                                 <p className="card-title text-uppercase">
@@ -118,10 +118,10 @@ function Activity({activities, notifications}){
                                 </div>
                                 <p className="card-text pb-2">{actIt.description}</p>
                                 <div className='checkbox-container p-1'>
-                                    <input className='checkbox' type="checkbox" checked={actIt.completed} onChange={()=>handleCheckAct(actIt._id)}/>
+                                    <input className='checkbox' type="checkbox" checked={actIt.completedAct} onChange={()=>handleCheckAct(actIt._id)}/>
                                     <span className='checkmark rounded'></span>
                                 </div>
-                                {actIt.completed ? '' : <div className={`position-absolute signal-act rounded-circle d-flex justify-content-center align-items-center fs-6 ${redAct ? 'signal-act-tomato' : (orangeAct ? 'signal-act-gold' : 'signal-act-forestGreen')}`}>!</div>}
+                                {actIt.completedAct ? '' : <div className={`position-absolute signal-act rounded-circle d-flex justify-content-center align-items-center fs-6 ${redAct ? 'signal-act-tomato' : (orangeAct ? 'signal-act-gold' : 'signal-act-forestGreen')}`}>!</div>}
                             </div>
                            )})}
                         </div>
@@ -138,7 +138,7 @@ function Activity({activities, notifications}){
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content modal-blur rounded border border-white">
                         <div className="modal-body">
-                            <p className="m-2">Are you sure you want to delete this activity?</p>
+                            <p id="deleteActModalLabel" className="m-2">Are you sure you want to delete this activity?</p>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn buttonClose" data-bs-dismiss="modal">Cancel</button>
@@ -147,7 +147,7 @@ function Activity({activities, notifications}){
                     </div>
                 </div>
             </div>
-             <div className="modal fade text-white" id="updateModalAct" tabIndex="-1" aria-labelledby="updateModalActLabel" aria-hidden="true">
+             <div className="modal fade text-white" id="updateModalAct" tabIndex="-1" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content modal-blur rounded border border-white">
                         <div className="modal-body">
@@ -184,9 +184,7 @@ function Activity({activities, notifications}){
                                         <select className="form-control shadow-none border-0" name="category" value={actToUpdate.category ?? ""} onChange={handleChangeActivity} id="select">
                                             <option value="">Type to search...</option>
                                             {catData.map((cat)=>(
-                                                <>
-                                                    <option key={cat._id} value={cat._id}>{cat.name}</option>
-                                                </>
+                                                <option key={cat._id} value={cat._id}>{cat.name}</option>
                                             ))}
                                         </select>
                                     </div>

@@ -18,8 +18,8 @@ export const pomodoroApiSlice = apiSlice.injectEndpoints({
             providesTags: ['Pomodoro'],
         }),
         setCompleted: builder.mutation({
-            query: ({id})=>({
-            url: `/api/pomodoros/${id}`,
+            query: (id)=>({
+            url: `/api/pomodoros/${id}/complete`,
                 method: 'PATCH'
             }),
         }),

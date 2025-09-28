@@ -181,7 +181,7 @@ function EventForm({ newPomo, newAct, newEvent, setNewEvent, setNewAct, setNewPo
                     </div>
                     <div className="mb-3">
                         <label htmlFor="dayEvent" className="form-label">Day/Start day:</label>
-                        <input type="date" min={todayCorrectFormat} className="form-control shadow-none border-0" id="dayEvent" name="day" value={newEvent.day} onChange={(e)=>{handleChangeEvent(e);}} required/>
+                        <input type="date" min={todayCorrectFormat} className="form-control shadow-none border-0" id="dayEvent" name="day" value={newEvent.day ? newEvent.day : ''} onChange={(e)=>{handleChangeEvent(e);}} required/>
                     </div>
                     <div className='mb-3'>
                         <label htmlFor="endEvent" className="form-label">End day (if the event lasts several days):</label>
@@ -196,9 +196,9 @@ function EventForm({ newPomo, newAct, newEvent, setNewEvent, setNewAct, setNewPo
                     <div className="mb-3">
                         <p>Time:</p>
                         <label htmlFor="timeEvent" className="form-label">From:</label>
-                        <input type="time" className="form-control shadow-none border-0" id="timeEvent" name="time" value={time} onChange={(e)=>{handleChangeEvent(e);handleChangeTime(e)}} required/>
+                        <input type="time" className="form-control shadow-none border-0" id="timeEvent" name="time" value={time ? time : ''} onChange={(e)=>{handleChangeEvent(e);handleChangeTime(e)}} required/>
                         <label htmlFor="timeEvent" className="form-label mt-3">To:</label>
-                        <input type="time" className="form-control shadow-none border-0" id="timeEvent" name="endTime" value={endTime} onChange={(e)=>{handleChangeEvent(e)}} required/>
+                        <input type="time" className="form-control shadow-none border-0" id="timeEvent" name="endTime" value={endTime ? endTime : ''} onChange={(e)=>{handleChangeEvent(e)}} required/>
                     </div> )}
                     <hr></hr>
                     <div className="mb-3 form-check form-switch">
@@ -286,7 +286,7 @@ function EventForm({ newPomo, newAct, newEvent, setNewEvent, setNewAct, setNewPo
                     </div>
                     <div className="mb-3">
                         <label htmlFor="deadline" className="form-label">Deadline:</label>
-                        <input type="date" className="form-control shadow-none border-0" value={newAct.deadline} onChange={(e)=>{handleChangeActivity(e);}} id="deadline" name="deadline" required/>
+                        <input type="date" className="form-control shadow-none border-0" value={newAct.deadline ? newAct.deadline : ''} onChange={(e)=>{handleChangeActivity(e);}} id="deadline" name="deadline" required/>
                     </div>
                     <div className='mb-3'>
                         <label htmlFor='notAct' className='form-label'>Do you want to change notifications settings for this activity?</label>
@@ -322,23 +322,23 @@ function EventForm({ newPomo, newAct, newEvent, setNewEvent, setNewAct, setNewPo
                     </div>
                     <div className='mb-3'>
                         <label className="form-label">Period of productivity: (min)</label><br/>
-                        <input id="input-prod" className="border-0 form-control shadow-none" type="number" name="prodPeriod" value={newPomo.prodPeriod} min="0" onChange={(e)=>{handleChangePomo(e)}} required/>
+                        <input id="input-prod" className="border-0 form-control shadow-none" type="number" name="prodPeriod" value={newPomo.prodPeriod ? newPomo.prodPeriod : ''} min="0" onChange={(e)=>{handleChangePomo(e)}} required/>
                     </div>
                     <div className='mb-3'>
                         <label className="form-label">Break: (min)</label><br/>
-                        <input id="input-break" className="border-0 form-control shadow-none" type="number" name="breakPeriod" value={newPomo.breakPeriod} min="0" onChange={(e)=>{handleChangePomo(e)}} required/>
+                        <input id="input-break" className="border-0 form-control shadow-none" type="number" name="breakPeriod" value={newPomo.breakPeriod ? newPomo.breakPeriod : ''} min="0" onChange={(e)=>{handleChangePomo(e)}} required/>
                     </div>
                     <div className='mb-3'>
                         <label className="form-label">Long break: (min)</label><br/>
-                        <input id="input-long-break" className="border-0 shadow-none form-control" type="number" name="longBreakPeriod" value={newPomo.longBreakPeriod} min="0" onChange={(e)=>{handleChangePomo(e)}} required/>
+                        <input id="input-long-break" className="border-0 shadow-none form-control" type="number" name="longBreakPeriod" value={newPomo.longBreakPeriod ? newPomo.longBreakPeriod : ''} min="0" onChange={(e)=>{handleChangePomo(e)}} required/>
                     </div>
                     <div className='mb-3'>
                         <label className="form-label">cycles:</label><br/>
-                        <input id="input-cycles" className="border-0 shadow-none form-control" type="number" name="cycles" value={newPomo.cycles} min="0" onChange={(e)=>{handleChangePomo(e)}} required/>
+                        <input id="input-cycles" className="border-0 shadow-none form-control" type="number" name="cycles" value={newPomo.cycles ? newPomo.cycles : ''} min="0" onChange={(e)=>{handleChangePomo(e)}} required/>
                     </div>
                     <div className='mb-3'>
                         <label className='form-label'>Day:</label><br/>
-                        <input id='pomoDay' className='border-0 shadow-none form-control' type='date' name='date' value={newPomo.date} onChange={(e)=>{handleChangePomo(e)}}/>
+                        <input id='pomoDay' className='border-0 shadow-none form-control' type='date' name='date' value={newPomo.date ? newPomo.date : ''} onChange={(e)=>{handleChangePomo(e)}}/>
                     </div>
                     <div>
                         <label htmlFor='notPomo' className='form-label'>Do you want to change notifications settings for this pomodoro?</label>

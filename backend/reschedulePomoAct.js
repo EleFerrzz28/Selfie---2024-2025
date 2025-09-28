@@ -9,12 +9,12 @@ async function reschedule(userId, currentDay){
     const incompletePomodoros = await Pomodoro.find({
         user: userId,
         planned: true,
-        completed: false,
+        completedPomo: false,
     });
 
     const incompleteActs = await Act.find({
         user: userId,
-        completed: false,
+        completedAct: false,
     });
 
     const currentDayDate = DateTime.fromISO(currentDay).startOf('day');
@@ -30,6 +30,10 @@ async function reschedule(userId, currentDay){
 
     // Aggiorna Attività
     await Promise.all(incompleteActs.map(async (act) => {
+      if (!act.originalDeadline || isNaN(new Date(act.originalDeadline))) {
+        console.warn(`[Reschedule] Skipping activity ${act._id} because originalDeadline is invalid`);
+        return;
+      }
       const originalDate = DateTime.fromJSDate(act.originalDeadline).startOf('day');
       const diffDays = Math.round(currentDayDate.diff(originalDate, 'days').days);
 

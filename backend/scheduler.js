@@ -119,7 +119,7 @@ export const startScheduler = () => {
 
       for (const act of activities) {
         if (!act.deadline || !act.user?.email) continue;
-        if (act.completed) continue; // attività già completata → skip
+        if (act.completedAct) continue; // attività già completata → skip
 
         const zone = "Europe/Rome";
         const deadlineDateTime = DateTime.fromJSDate(act.deadline, { zone }).set({
@@ -164,7 +164,7 @@ export const startScheduler = () => {
         }
 
         // Se la deadline è passata e l’attività non è completata → segna come in ritardo
-        if (diff < 0 && !act.completed) {
+        if (diff < 0 && !act.completedAct) {
           console.log(`Attività in ritardo: ${act.title}`);
           await Act.findByIdAndUpdate(act._id, { reminderSent: true });
         }
@@ -177,7 +177,7 @@ export const startScheduler = () => {
 
       for (const pomodoro of pomodoros) {
         if (!pomodoro.date || !pomodoro.user?.email) continue;
-        if (pomodoro.completed) continue; // pomodoro già completato → skip
+        if (pomodoro.completedPomo) continue; // pomodoro già completato → skip
 
         const zone = "Europe/Rome";
         const dateDateTime = DateTime.fromJSDate(pomodoro.date, { zone }).set({

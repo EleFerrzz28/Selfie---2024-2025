@@ -165,7 +165,7 @@ export function stopTimer(){
 }
 
 export function resetTimer(saveSession=()=>{}, completed){
-    saveSession(totProductionTime, cycleCount, completed);
+    saveSession(parseFloat(document.getElementById("input-prod").value), cycleCount, completed);
     isRunning=false;
     clearInterval(timer);
     timeLeft=defaultStudyTimer;
